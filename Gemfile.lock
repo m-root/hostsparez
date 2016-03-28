@@ -170,6 +170,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pg (0.18.3)
     polyglot (0.3.4)
     prawn (0.14.0)
       pdf-reader (~> 1.2)
@@ -290,6 +291,7 @@ DEPENDENCIES
   paperclip (~> 3.5.2)
   passenger
   pdf-reader
+  pg
   prawn
   prawnto
   protected_attributes
