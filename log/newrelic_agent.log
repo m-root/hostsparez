@@ -1,0 +1,595 @@
+# Logfile created on 2016-03-25 11:12:27 +0500 by logger.rb/47272
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Environment: development
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Dispatcher: webrick
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Application: ziply (Development)
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing Net instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 11:12:27 +0500 rac-101 (4406)] INFO : Finished instrumentation
+[2016-03-25 11:12:28 +0500 rac-101 (4406)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 11:12:31 +0500 rac-101 (4406)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 11:13:41 +0500 rac-101 (4406)] INFO : Starting Agent shutdown
+[2016-03-25 11:40:39 +0500 rac-101 (20781)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 11:40:39 +0500 rac-101 (20781)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 11:40:39 +0500 rac-101 (20781)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Environment: development
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Dispatcher: webrick
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Application: ziply (Development)
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing Net instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 11:40:40 +0500 rac-101 (20781)] INFO : Finished instrumentation
+[2016-03-25 11:40:42 +0500 rac-101 (20781)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 11:40:46 +0500 rac-101 (20781)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 11:40:51 +0500 rac-101 (20781)] INFO : Starting Agent shutdown
+[2016-03-25 11:40:52 +0500 rac-101 (20781)] INFO : Unable to send error_data data, will try again later. Error: 
+[2016-03-25 11:40:52 +0500 rac-101 (20781)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : Unable to send error_event_data data, will try again later. Error: 
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : Unable to send analytic_event_data data, will try again later. Error: 
+[2016-03-25 11:40:53 +0500 rac-101 (20781)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : Environment: development
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : Dispatcher: webrick
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : Application: ziply (Development)
+[2016-03-25 11:41:43 +0500 rac-101 (20831)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing Net instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 11:41:44 +0500 rac-101 (20831)] INFO : Finished instrumentation
+[2016-03-25 11:41:45 +0500 rac-101 (20831)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 11:41:48 +0500 rac-101 (20831)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 11:42:08 +0500 rac-101 (20831)] INFO : Starting Agent shutdown
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : Environment: development
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : Dispatcher: webrick
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : Application: ziply (Development)
+[2016-03-25 11:46:06 +0500 rac-101 (20934)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing Net instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 11:46:07 +0500 rac-101 (20934)] INFO : Finished instrumentation
+[2016-03-25 11:46:08 +0500 rac-101 (20934)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 11:46:12 +0500 rac-101 (20934)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 11:46:20 +0500 rac-101 (20934)] INFO : Starting Agent shutdown
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : Environment: development
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : Dispatcher: webrick
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : Application: ziply (Development)
+[2016-03-25 11:48:59 +0500 rac-101 (21026)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing Net instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 11:49:00 +0500 rac-101 (21026)] INFO : Finished instrumentation
+[2016-03-25 11:49:01 +0500 rac-101 (21026)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 11:49:05 +0500 rac-101 (21026)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 12:07:13 +0500 rac-101 (21026)] INFO : Starting Agent shutdown
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Environment: development
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Dispatcher: webrick
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Application: ziply (Development)
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing Net instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 12:11:48 +0500 rac-101 (22663)] INFO : Finished instrumentation
+[2016-03-25 12:11:50 +0500 rac-101 (22663)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 12:11:53 +0500 rac-101 (22663)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 12:22:23 +0500 rac-101 (22663)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 12:24:10 +0500 rac-101 (22663)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 12:31:19 +0500 rac-101 (22663)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 12:33:43 +0500 rac-101 (22663)] INFO : Starting Agent shutdown
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Environment: development
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Dispatcher: webrick
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Application: ziply (Development)
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 12:33:56 +0500 rac-101 (26583)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing Net instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 12:33:57 +0500 rac-101 (26583)] INFO : Finished instrumentation
+[2016-03-25 12:33:58 +0500 rac-101 (26583)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 12:34:01 +0500 rac-101 (26583)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 12:37:20 +0500 rac-101 (26583)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 16:37:36 +0500 rac-101 (26583)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 16:41:03 +0500 rac-101 (26583)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 17:14:19 +0500 rac-101 (26583)] INFO : Starting Agent shutdown
+[2016-03-25 17:14:20 +0500 rac-101 (26583)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-25 17:14:20 +0500 rac-101 (26583)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 17:14:20 +0500 rac-101 (26583)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-25 17:14:20 +0500 rac-101 (26583)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : Environment: development
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : Dispatcher: webrick
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : Application: ziply (Development)
+[2016-03-25 17:17:47 +0500 rac-101 (9473)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing Net instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 17:17:48 +0500 rac-101 (9473)] INFO : Finished instrumentation
+[2016-03-25 17:17:50 +0500 rac-101 (9473)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 17:17:55 +0500 rac-101 (9473)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 17:20:47 +0500 rac-101 (9473)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 17:25:13 +0500 rac-101 (9473)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
+[2016-03-25 18:54:57 +0500 rac-101 (9473)] INFO : Starting Agent shutdown
+[2016-03-25 18:59:57 +0500 rac-101 (2713)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Environment: development
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Dispatcher: webrick
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Application: ziply (Development)
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing Net instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 18:59:58 +0500 rac-101 (2713)] INFO : Finished instrumentation
+[2016-03-25 19:00:00 +0500 rac-101 (2713)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 19:00:01 +0500 rac-101 (2713)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 19:39:38 +0500 rac-101 (2713)] INFO : Starting Agent shutdown
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Environment: development
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Dispatcher: webrick
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Application: ziply (Development)
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing deferred Rack instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing Net instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Installing Rails 4 view instrumentation
+[2016-03-25 19:39:48 +0500 rac-101 (4227)] INFO : Finished instrumentation
+[2016-03-25 19:39:49 +0500 rac-101 (4227)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-25 19:39:52 +0500 rac-101 (4227)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-25 19:54:11 +0500 rac-101 (4227)] INFO : Starting Agent shutdown
+[2016-03-27 10:20:28 +0500 rac-101 (16345)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 10:20:28 +0500 rac-101 (16345)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 10:20:28 +0500 rac-101 (16345)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] INFO : Environment: development
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] INFO : Dispatcher: webrick
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] INFO : Application: ziply (Development)
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] ERROR : NewRelic::Agent::ServerConnectionException: Recoverable error talking to collector.newrelic.com:443 after 2 attempts: getaddrinfo: Name or service not known
+[2016-03-27 10:20:29 +0500 rac-101 (16345)] INFO : Will re-attempt in 60 seconds
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing Net instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 10:20:30 +0500 rac-101 (16345)] INFO : Finished instrumentation
+[2016-03-27 10:20:37 +0500 rac-101 (16345)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 10:21:29 +0500 rac-101 (16345)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[2016-03-27 10:21:29 +0500 rac-101 (16345)] ERROR : NewRelic::Agent::ServerConnectionException: Recoverable error talking to collector.newrelic.com:443 after 2 attempts: getaddrinfo: Name or service not known
+[2016-03-27 10:21:29 +0500 rac-101 (16345)] INFO : Will re-attempt in 120 seconds
+[2016-03-27 10:22:44 +0500 rac-101 (16345)] INFO : Starting Agent shutdown
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Environment: development
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : No known dispatcher detected.
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Application: ziply (Development)
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing Net instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Finished instrumentation
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:443:
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] ERROR : NewRelic::Agent::ServerConnectionException: Recoverable error talking to collector.newrelic.com:443 after 2 attempts: getaddrinfo: Name or service not known
+[2016-03-27 10:25:21 +0500 rac-101 (16647)] INFO : Will re-attempt in 60 seconds
+[2016-03-27 10:25:22 +0500 rac-101 (16647)] INFO : Starting Agent shutdown
+[2016-03-27 10:41:38 +0500 rac-101 (17350)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 10:41:38 +0500 rac-101 (17350)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 10:41:38 +0500 rac-101 (17350)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Environment: development
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Dispatcher: webrick
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Application: ziply (Development)
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing Net instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 10:41:39 +0500 rac-101 (17350)] INFO : Finished instrumentation
+[2016-03-27 10:41:41 +0500 rac-101 (17350)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 10:42:01 +0500 rac-101 (17350)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 10:42:49 +0500 rac-101 (17350)] INFO : Starting Agent shutdown
+[2016-03-27 10:44:05 +0500 rac-101 (17484)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 10:44:05 +0500 rac-101 (17484)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 10:44:05 +0500 rac-101 (17484)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Environment: development
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Dispatcher: webrick
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Application: ziply (Development)
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing Net instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 10:44:06 +0500 rac-101 (17484)] INFO : Finished instrumentation
+[2016-03-27 10:44:08 +0500 rac-101 (17484)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 10:44:12 +0500 rac-101 (17484)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : Environment: development
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : Dispatcher: webrick
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : Application: ziply (Development)
+[2016-03-27 14:54:45 +0500 rac-101 (3386)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing Net instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 14:54:46 +0500 rac-101 (3386)] INFO : Finished instrumentation
+[2016-03-27 14:54:47 +0500 rac-101 (3386)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 14:54:51 +0500 rac-101 (3386)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 15:05:23 +0500 rac-101 (3386)] INFO : Starting Agent shutdown
+[2016-03-27 15:05:23 +0500 rac-101 (3386)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 15:05:23 +0500 rac-101 (3386)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 15:05:24 +0500 rac-101 (3386)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 15:05:24 +0500 rac-101 (3386)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Environment: development
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Dispatcher: webrick
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Application: ziply (Development)
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing Net instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Finished instrumentation
+[2016-03-27 15:05:29 +0500 rac-101 (4822)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 15:05:35 +0500 rac-101 (4822)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 15:06:27 +0500 rac-101 (4822)] INFO : Starting Agent shutdown
+[2016-03-27 15:06:29 +0500 rac-101 (4822)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 15:06:29 +0500 rac-101 (4822)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 15:06:29 +0500 rac-101 (4822)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 15:06:29 +0500 rac-101 (4822)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 15:06:30 +0500 rac-101 (4822)] INFO : Unable to send analytic_event_data data, will try again later. Error: 
+[2016-03-27 15:06:30 +0500 rac-101 (4822)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Environment: development
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Dispatcher: webrick
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Application: ziply (Development)
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing Net instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Finished instrumentation
+[2016-03-27 16:46:58 +0500 rac-101 (6549)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 16:47:04 +0500 rac-101 (6549)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 16:57:50 +0500 rac-101 (6549)] INFO : Starting Agent shutdown
+[2016-03-27 16:57:51 +0500 rac-101 (6549)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 16:57:51 +0500 rac-101 (6549)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Environment: development
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Dispatcher: webrick
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Application: ziply (Development)
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing Net instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Finished instrumentation
+[2016-03-27 16:57:56 +0500 rac-101 (7336)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 16:58:01 +0500 rac-101 (7336)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 17:30:02 +0500 rac-101 (7336)] INFO : Starting Agent shutdown
+[2016-03-27 17:30:02 +0500 rac-101 (7336)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 17:30:02 +0500 rac-101 (7336)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:30:03 +0500 rac-101 (7336)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 17:30:03 +0500 rac-101 (7336)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:30:03 +0500 rac-101 (7336)] INFO : Unable to send analytic_event_data data, will try again later. Error: 
+[2016-03-27 17:30:03 +0500 rac-101 (7336)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Environment: development
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Dispatcher: webrick
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Application: ziply (Development)
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing Net instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Finished instrumentation
+[2016-03-27 17:30:12 +0500 rac-101 (9766)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 17:30:17 +0500 rac-101 (9766)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 17:31:54 +0500 rac-101 (9766)] INFO : Starting Agent shutdown
+[2016-03-27 17:31:54 +0500 rac-101 (9766)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 17:31:54 +0500 rac-101 (9766)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:31:55 +0500 rac-101 (9766)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 17:31:55 +0500 rac-101 (9766)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:31:56 +0500 rac-101 (9766)] INFO : Unable to send analytic_event_data data, will try again later. Error: 
+[2016-03-27 17:31:56 +0500 rac-101 (9766)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Environment: development
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Dispatcher: webrick
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Application: ziply (Development)
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing Net instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Finished instrumentation
+[2016-03-27 17:32:02 +0500 rac-101 (9970)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 17:32:07 +0500 rac-101 (9970)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 17:32:43 +0500 rac-101 (9970)] INFO : Starting Agent shutdown
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Environment: development
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Dispatcher: webrick
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Application: ziply (Development)
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing Net instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Finished instrumentation
+[2016-03-27 17:32:48 +0500 rac-101 (10015)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 17:32:54 +0500 rac-101 (10015)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 17:37:42 +0500 rac-101 (10015)] INFO : Starting Agent shutdown
+[2016-03-27 17:37:42 +0500 rac-101 (10015)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 17:37:42 +0500 rac-101 (10015)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:37:43 +0500 rac-101 (10015)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 17:37:43 +0500 rac-101 (10015)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:37:44 +0500 rac-101 (10015)] INFO : Unable to send analytic_event_data data, will try again later. Error: 
+[2016-03-27 17:37:44 +0500 rac-101 (10015)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : Environment: development
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : Dispatcher: webrick
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : Application: ziply (Development)
+[2016-03-27 17:37:49 +0500 rac-101 (10474)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing Net instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Finished instrumentation
+[2016-03-27 17:37:50 +0500 rac-101 (10474)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 17:37:57 +0500 rac-101 (10474)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 17:39:07 +0500 rac-101 (10474)] INFO : Starting Agent shutdown
+[2016-03-27 17:39:08 +0500 rac-101 (10474)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 17:39:08 +0500 rac-101 (10474)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:39:08 +0500 rac-101 (10474)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 17:39:08 +0500 rac-101 (10474)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Environment: development
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Dispatcher: webrick
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Application: ziply (Development)
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing deferred Rack instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing Net instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Installing Rails 4 view instrumentation
+[2016-03-27 17:39:13 +0500 rac-101 (10697)] INFO : Finished instrumentation
+[2016-03-27 17:39:14 +0500 rac-101 (10697)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-27 17:39:20 +0500 rac-101 (10697)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-27 18:00:21 +0500 rac-101 (10697)] ERROR : 1 error(s) running task for event 'report_event_data' in Agent Event Loop:
+[2016-03-27 18:00:21 +0500 rac-101 (10697)] ERROR : NewRelic::Agent::ServerConnectionException: Recoverable error connecting to collector-102.newrelic.com:443 after 0.000242125 seconds: getaddrinfo: Name or service not known
+[2016-03-27 18:24:53 +0500 rac-101 (10697)] INFO : Starting Agent shutdown
+[2016-03-27 18:24:53 +0500 rac-101 (10697)] INFO : Unable to send metric_data data, will try again later. Error: 
+[2016-03-27 18:24:53 +0500 rac-101 (10697)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 18:24:55 +0500 rac-101 (10697)] INFO : Error during check_for_and_handle_agent_commands, will retry later: 
+[2016-03-27 18:24:55 +0500 rac-101 (10697)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-27 18:24:55 +0500 rac-101 (10697)] INFO : Unable to send analytic_event_data data, will try again later. Error: 
+[2016-03-27 18:24:55 +0500 rac-101 (10697)] INFO : NoMethodError: undefined method `shutdown' for nil:NilClass
+[2016-03-28 12:35:44 +0500 rac-101 (2850)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-28 12:35:44 +0500 rac-101 (2850)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-28 12:35:44 +0500 rac-101 (2850)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-28 12:35:45 +0500 rac-101 (2850)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-28 12:35:45 +0500 rac-101 (2850)] INFO : Environment: development
+[2016-03-28 12:35:45 +0500 rac-101 (2850)] INFO : Dispatcher: webrick
+[2016-03-28 12:35:45 +0500 rac-101 (2850)] INFO : Application: ziply (Development)
+[2016-03-28 12:35:45 +0500 rac-101 (2850)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing deferred Rack instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing Net instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Installing Rails 4 view instrumentation
+[2016-03-28 12:35:46 +0500 rac-101 (2850)] INFO : Finished instrumentation
+[2016-03-28 12:35:49 +0500 rac-101 (2850)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-28 12:35:49 +0500 rac-101 (2850)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-28 12:43:43 +0500 rac-101 (2850)] INFO : Starting Agent shutdown
+[2016-03-28 12:45:58 +0500 rac-101 (4263)] INFO : Starting the New Relic agent in "development" environment.
+[2016-03-28 12:45:58 +0500 rac-101 (4263)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-03-28 12:45:58 +0500 rac-101 (4263)] INFO : Reading configuration from config/newrelic.yml (/home/rac/work/ziply-web)
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : New Relic Agent Developer Mode enabled.
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Environment: development
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Dispatcher: webrick
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Application: ziply (Development)
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : delayed_job not available: No DJ worker present. Skipping DJ queue sampler
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing deferred Rack instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing DelayedJob instrumentation [part 1/2]
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing Net instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing ActiveRecord 4 instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing Rails 4 Controller instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing Rails 4 Error instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Installing Rails 4 view instrumentation
+[2016-03-28 12:45:59 +0500 rac-101 (4263)] INFO : Finished instrumentation
+[2016-03-28 12:46:02 +0500 rac-101 (4263)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-03-28 12:46:03 +0500 rac-101 (4263)] INFO : Reporting to: https://rpm.newrelic.com/accounts/349253/applications/17940141
+[2016-03-28 15:04:00 +0500 rac-101 (4263)] WARN : Skipping RUM instrumentation. Unable to find <body> tag in first 50000 bytes of document.
