@@ -1,0 +1,42 @@
+<% unless @job.transaction_history.blank? %>
+    <% unless @job.transaction_history.payment_method.blank? %>
+        <% payment_method = @job.transaction_history.payment_method %>
+        <div class="z_route_det z_100">
+          <div class="track_hold">
+
+            <div class="z_crd_list z_100">
+              <h1 class="f-l">Subtotal</h1>
+
+              <h1 class="f-r">$<%= "%.2f" % @job.amount %></h1>
+            </div>
+            <!--z_crd_list-->
+            <div class="z_crd_list z_100">
+              <h1 class="f-l">Tax</h1>
+
+              <h1 class="f-r">$<%= "%.2f" % @job_tax %></h1>
+            </div>
+            <!--z_crd_list-->
+            <div class="z_crd_list z_100">
+              <h1 class="f-l">Your Total</h1>
+
+              <h1 class="f-r txt_st">$<%= "%.2f" % (@job.amount + @job_tax) %></h1>
+            </div>
+            <!--z_crd_list-->
+          </div>
+          <!--track_hold-->
+        </div>
+
+        <div class="z_route2_det z_100 mrg_nbot">
+          <div class="z_rout_txt">
+            <p>Package: <span># <%= @job.job_code %></span></p>
+          </div>
+          <!--z_rout_txt-->
+          <div class="z_rout_txt">
+            <p>Status: <span># <%= @job.get_status %></span></p>
+          </div>
+          <!--z_rout_txt-->
+          <!--<a href="#" class="z_gray_btn f-r">File a Claim</a>-->
+        </div>
+
+    <% end %>
+<% end %>

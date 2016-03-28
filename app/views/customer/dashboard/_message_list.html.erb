@@ -1,0 +1,51 @@
+<div class="jb_title">
+  MESSAGES
+  <% unless @messages.blank? %>
+      <div class="location_add_link">
+        <%= link_to(customer_messages_path) do %>
+            VIEW ALL
+            <div class="v_all_icon">
+              <i class="icon-angle-right"></i>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+<% unless @messages.blank? %>
+    <div id="msgs_list" class="msgs_list">
+      <% @messages.each_with_index do |message, index| %>
+          <% if index%2 == 0 %>
+              <% c_name = "msg" %>
+          <% else %>
+              <% c_name = "msg evn" %>
+          <% end %>
+          <div class="<%= c_name %>">
+            <p><%= message.description %></p>
+
+            <div class="msgsdet_list">
+              <div class="msg_repet">
+                <p>SUBJECT:</p>
+                <span><%= message.subject %></span>
+              </div>
+              <div class="msg_repet">
+                <p>FROM:</p>
+                <span><%= message.sender.full_name if message.sender %></span>
+              </div>
+              <div class="msg_repet">
+                <p>SENT:</p>
+                <span><%= strtime(message.created_at) %></span>
+              </div>
+              <%= link_to(customer_message_path(message)) do %>
+                  <div class="msg_rite_icon">
+                    <i class="icon-angle-right"></i>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <div class="no_rec">
+      NO MESSAGE FOUND
+    </div>
+<% end %>

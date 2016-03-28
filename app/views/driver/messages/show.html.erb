@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag "style3" %>
+<div class="wrapper">
+  <div class="tbl_left">
+    <div class="j_b_form">
+      <p>MESSAGES<span> > <%= @message.subject %></span></p>
+    </div>
+    <div class="message_hold">
+      <div class="jb_title">
+        SEND MESSAGE
+      </div>
+      <div class="message_hold_in">
+        <div class="msg_h_left">
+          <p>From:<span><%= @message.sender.full_name if @message.sender %></span></p>
+
+          <p>SENT:<span><%= strtime(@message.created_at) %></span></p>
+        </div>
+        <div class="msg_h_right">
+
+          <%= link_to(reply_customer_messages_path(:id => @message.id), html_options = {:class => "reply_btns"}) do %>
+              REPLY
+              <div class="reply_icon">
+                <i class="icon-reply"></i>
+              </div>
+          <% end %>
+
+
+          <%= link_to(customer_messages_path, html_options = {:class => "reply_btns"}) do %>
+              DELETE
+              <div class="remove_icon">
+                <i class="icon-remove-sign"></i>
+              </div>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="show_msg_fields">
+        <p>
+          lore ds dsa dsa dsa dsa d saa
+        </p>
+
+
+      </div>
+
+    </div>
+  </div>
+  <div id="right_nav">
+    <%= render :partial => "shared/right_nav" %>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,82 @@
+<div class="z_light_box">
+</div>
+<%= form_for(:bank_account, :url => "/driver/bank_accounts/update_account", :method => "post") do |f| %>
+    <%= hidden_field_tag :driver_id, @user.id %>
+    <div class="box_hold_new">
+      <h1 class="z_100">Edit Bank Account</h1>
+
+      <div id="errors"></div>
+      <div class="z_100">
+        <div class="z_feldz">
+          <!--<input type="text" class="fill_1-0" placeholder="Wells Fargot *">-->
+          <%= text_field_tag :first_name, @first_name, :class => "fill_1-0", :placeholder => "First Name *" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <!--<input type="text" class="fill_1-0" placeholder="Account Number *">-->
+          <%= text_field_tag :last_name, @last_name, :class => "fill_1-0", :placeholder => "Last Name *" %>
+        </div>
+        <div class="z_feldz">
+          <!--<input type="text" class="fill_1-0" placeholder="Account Number *">-->
+          <%= text_field_tag :phone, @phone, :class => "fill_1-0", :placeholder => "Phone *" %>
+        </div>
+        <div class="z_feldz">
+          <%= text_field_tag :account_number, @account_number, :class => "fill_1-0", :placeholder => "Account Number *" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= text_field_tag :routing_number, @routing_number, :class => "fill_1-0", :placeholder => "Routing Number *" %>
+        </div>
+
+        <!--z_feldz-->
+        <div class="z_100" id="save-btn">
+          <a class="z_orngbig_btn zset_pad z_100" href="javascript:void(0)">Save Changes</a><!--z_orngbig_btn-->
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div>
+<% end %>
+<!--box_hold_new-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $(".shadow").show();
+            $("#ajax_loader").show();
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.reload();
+                } else {
+                    $("#errors").html(response.html);
+                }
+                $(".shadow").hide();
+                $("#ajax_loader").hide();
+            }), "json");
+            return false;
+
+        });
+
+    });
+
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $('.box_hold_new').hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+</script>

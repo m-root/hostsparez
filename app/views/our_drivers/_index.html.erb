@@ -1,0 +1,83 @@
+<section class="z_contnt">
+  <div class="container">
+    <div class="z_Drivers z_100">
+      <div class="z_100 m-b-4">
+        <div class="z_driv_in">
+          <h1>Our Drivers</h1>
+
+          <p>Safety and security is our number one priority. All our drivers go through rigorous background checks. Nothing is left unturned to make sure they are trusted citizens, but friendly and reliable as well. Our drivers should feel like your friends and neighbors because most likely, they are! Learn more about our background checks here.</p>
+        </div>
+        <!--z_driv_in-->
+        <div class="z_d_verified"><img src="/assets/verified.png"></div>
+        <!--z_d_verified-->
+      </div>
+      <!--z_100-->
+      <div class="z_100">
+        <% @drivers.each do |driver| %>
+            <div class="z_driver z_100">
+              <!--<div class="z_b_drivr_img"><img src="img/d-p-img1.png"></div>-->
+              <div class="z_b_drivr_img"><%= driver.profile.blank? ? image_tag("default_image.png") : driver.profile.asset.blank? ? image_tag("default_image.png") : image_tag(driver.profile.asset.avatar.url(:thumb)) %></div>
+              <!--z_b_drivr_img-->
+              <div class="z_bd_in">
+                <div class="z_bdrivr_det">
+                  <div class="z_drivr_info f-l">
+                    <h2>
+                      <%= driver.full_name %></h2>
+
+
+                    <p>Los Angeles, California<!--<%= driver.profile.blank? ? "" : driver.profile.city %>-->
+                      <!--<%= driver.profile.blank? ? "" : driver.profile.state %>--></p>
+                  </div>
+                  <!--z_drivr_info-->
+                  <div class="z_drivr_info f-r">
+                    <div class="zrev">(<%= driver.blank? ? "" : driver.driver_reviews.size %> Reviews)</div>
+                    <!--zrev-->
+                    <% @driver_rating_whole, @driver_rating_part = driver.driver_rating %>
+                    <%= render :partial => "our_drivers/our_driver_rating" %>
+                    <!--<a href="#">Rate</a>-->
+                  </div>
+                  <!--z_drivr_info-->
+                </div>
+                <!--z_bdrivr_det-->
+                <div class="z_drivr_info z_100">
+                  <p>As a small business owner, Ziply has given my company a competitive advantage. Without a retail store, Ziply has allowed us to get our product in our customers’ hands within hours of their purchase. The feedback has been tremendous, and the service it really going to take us to the next level!</p>
+                </div>
+                <!--z_drivr_info-->
+              </div>
+              <!--z_bd_in-->
+            </div>
+        <% end %>
+        <!--z_driver-->
+      </div>
+      <!--z_100-->
+      <div class="z_100">
+        <div class="become_drvr_btn">
+          <a class="z_orngbig_btn" href="/become-driver">Become a Driver</a>
+        </div>
+        <!--become_drvr_btn-->
+      </div>
+      <!--z_100-->
+    </div>
+    <!--z_Drivers-->
+  </div>
+  <!--container-->
+</section>
+
+<script type="text/javascript">
+    $(".become_d1").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/home/become_driver',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+                $("html, body").animate({ scrollTop: 190 }, "slow");
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    });
+</script>

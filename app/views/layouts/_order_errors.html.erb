@@ -1,0 +1,44 @@
+<% if @payment_m_errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @payment_m_errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @billing_errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @billing_errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @message.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <li><%= @message %></li>
+
+      </ul>
+    </div>
+<% end %>
+<% if @b_errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @b_errors.each do |msg| %>
+            <li><%= msg.inspect %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

@@ -1,0 +1,87 @@
+<section class="z_content3 brd_bottom">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>My Reviews</h2></div>
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder">
+        <div class="z_rev_holder z_100">
+          <div class="z_dp_img2">
+            <%= @job.driver.blank? ? image_tag("default_image.png") : @job.driver.profile.blank? ? image_tag("default_image.png") : @job.driver.profile.asset.blank? ? image_tag("default_image.png") : image_tag(@job.driver.profile.asset.avatar.url(:thumb)) %>
+          </div>
+          <!--z_dp_img2-->
+          <div class="z_nrev">
+            <div class="z_review_det">
+              <div class="z_n_rev f-l">
+                <h2><%= @job.driver.full_name if @job.driver %></h2>
+
+                <p><%= @job.driver.blank? ? "" : @job.driver.profile.blank? ? "" : @job.driver.profile.city %>
+                  , <%= @job.driver.blank? ? "" : @job.driver.profile.blank? ? "" : @job.driver.profile.state %></p>
+              </div>
+              <!--z_nam_rev-->
+              <div class="z_n_rev f-r mgg">
+                <div class="zrev">(<%= @job.driver.blank? ? "" : @job.driver.driver_reviews.size %> Reviews)</div>
+                <!--zrev-->
+                <div id="star_rating">
+                  <%= render :partial => "customer/reviews/rating" %>
+                </div>
+                <!--zrev_star-->
+              </div>
+              <!--z_n_rev-->
+            </div>
+            <!--z_review_det-->
+          </div>
+          <!--z_nrev-->
+        </div>
+        <!--z_rev_holder-->
+        <div class="z_customer_rev z_100">
+          <h3>Customer Reviews</h3>
+          <% unless @driver_reviews.blank? %>
+              <% @driver_reviews.each do |driver_review| %>
+                  <div class="z_rev_gray z_100">
+                    <div class="z_rev_holdr_list z_100">
+                      <div class="z_dp_img2 mrgtp">
+                        <%= driver_review.customer.blank? ? image_tag("default_image.png") : driver_review.customer.profile.blank? ? image_tag("default_image.png") : driver_review.customer.profile.asset.blank? ? image_tag("default_image.png") : image_tag(driver_review.customer.profile.asset.avatar.url(:thumb)) %>
+                      </div>
+                      <!--z_dp_img2-->
+                      <div class="z_nrev">
+                        <div class="z_rev_det_mrg">
+                          <div class="z_n_rev f-l">
+                            <h2><%= driver_review.customer.full_name if driver_review.customer %>,</h2>
+
+                            <p><%= driver_review.customer.blank? ? "" : driver_review.customer.profile.blank? ? "" : driver_review.customer.profile.city %>
+                              , <%= driver_review.customer.blank? ? "" : driver_review.customer.profile.blank? ? "" : driver_review.customer.profile.state %></p>
+                          </div>
+                          <!--z_nam_rev-->
+                          <div class="z_n_rev f-r mgg">
+                            <div class="zrev"><%= "(#{driver_review.created_at.strftime("%m/%d/%y")})" %></div>
+                            <!--zrev-->
+                            <%= render :partial => "customer/reviews/customer_rating", :locals => {:rating => driver_review.rating, :in_active_rating => 5 - driver_review.rating} %>
+                          </div>
+                          <!--z_n_rev-->
+                        </div>
+                        <!--z_rev_det_mrg-->
+                        <div class="z_review_det zbrd0 mrg0">
+                          <div class="z_n_rev f-l">
+                            <p><%= driver_review.subject %>...</p>
+                          </div>
+                          <!--z_n_rev-->
+                          <a href="#" class="f-r colr_1">(Read More)</a>
+                        </div>
+                        <!--z_review_det-->
+                      </div>
+                      <!--z_nrev-->
+                    </div>
+                    <!--z_rev_holder-->
+                  </div>
+              <% end %>
+          <% end %>
+
+        </div>
+        <!--z_customer_rev-->
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+</section>

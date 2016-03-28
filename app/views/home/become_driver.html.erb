@@ -1,0 +1,350 @@
+<%- title "Become a Driver - Goziply" %>
+<section class="z_slider">
+  <div class="slider-wrapper parallax">
+    <ul class="main-slider1 bxslider">
+      <li class="z-bg"></li>
+      <!--<li class="z-bg2"></li>-->
+    </ul>
+    <!-- main-slider -->
+    <div class="z-get-started spoz1">
+      <h1>Become a Ziply Driver</h1>
+
+      <div class="z_input_hold_2">
+        <div id="sign_up_errors" style="height: auto"></div>
+        <%= form_for(@user, :as => :user, :url => registration_path(@user), :html => {:id => "d_sign_up_form", :onsubmit => "return false;"}) do |f| %>
+            <%= f.hidden_field :time_zone%>
+            <% f.object.profile ||= Profile.new %>
+            <%= f.fields_for :profile do |p| %>
+                <%= hidden_field_tag :role, "driver" %>
+                <div class="z_field_block1 m-r-bt">
+                  <!--<input class="z_field_in" type="text" placeholder="Full Name">-->
+                  <%= f.text_field :first_name, :autofocus => true, :class => "z_field_in", :placeholder => "First Name" %>
+                </div>
+                <!--z_field_block-->
+                <!--<div class="z_field_block1 m-r-bt"><input class="z_field_in" type="text" placeholder="Full Name"></div>&lt;!&ndash;z_field_block&ndash;&gt;-->
+                <div class="z_field_block1 m-r-bt f-r">
+                  <%= f.text_field :last_name, :class => "z_field_in", :placeholder => "Last Name" %>
+                </div>
+
+                <div class="z_field_block1 m-r-bt">
+                  <!--<input class="z_field_in" type="text" placeholder="Email Address">-->
+                  <%= f.text_field :email, :class => "z_field_in", :placeholder => "Email Address" %>
+                </div>
+
+                <div class="z_field_block1 m-r-bt f-r">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= p.text_field :phone_number, :class => "z_field_in", :placeholder => "Phone Number" %>
+                </div>
+                <div class="z_field_block1 m-r-bt">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= f.password_field :password, :class => "z_field_in", :placeholder => "Password *" %>
+                </div>
+                <div class="z_field_block1 m-r-bt f-r">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+
+                  <%= f.text_field :date_of_birth, :class => "z_field_in date-picker", :placeholder => "DOB MM-DD-YYYY *" %>
+                </div>
+                <div class="z_field_block1 m-r-bt">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+
+                  <%= p.text_field :address, :class => "z_field_in", :placeholder => "Address *" %>
+                </div>
+                <div class="z_field_block1 m-r-bt f-r">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= p.text_field :city, :class => "z_field_in", :placeholder => "City *" %>
+                </div>
+                <!--z_field_block-->
+
+                <!--z_field_block-->
+                <div class="z_field_loctn m-r-bt  wwi" style="width: 49%">
+                  <div class="z_location">
+                    <div class="z_loctn_drop">
+                      <%= p.subregion_select(:state, "US", options={:include_blank => "Select State"}, :class => "z_citz") %>
+                      <!--<select name="Year" class="z_citz">-->
+                      <!--<option>Locations</option>-->
+                      <!--<option value="2011">Ex. CA</option>-->
+                      <!--<option value="2011">Ex. CA</option>-->
+                      <!--<option value="2011">Ex. CA</option>-->
+                      <!--<option value="2011">Ex. CA</option>-->
+                      <!--</select>-->
+                    </div>
+                    <!--z_crd_exp-->
+                  </div>
+                </div>
+                <div class="z_field_block1 m-r-bt f-r">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= p.text_field :zip_code, :class => "z_field_in", :placeholder => "Zip *" %>
+                </div>
+
+
+                <div class="z_field_block1 m-r-bt f-l" >
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= p.select :vehicle_type_id, VehicleType.all.map { |vehicle_type| [vehicle_type.name, vehicle_type.id] }, {:include_blank => 'Select Vehicle Type'}, :class => "z_field_in", :style => "padding: 8px 12px 5px 8px;" %>
+                </div>
+                <div class="z_field_block1 m-r-bt f-r">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= p.select :phone_type_id, PhoneType.all.map { |phone_type| [phone_type.name, phone_type.id] }, {:include_blank => 'Select Device Type'}, :class => "z_field_in", :style => "padding: 8px 12px 5px 8px;" %>
+                </div>
+
+                <div class="z_field_block1 m-r-bt">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= text_field_tag :routing_number, @routing_number, :class => "z_field_in", :placeholder => "Routing Number *" %>
+                </div>
+
+                <div class="z_field_block1 m-r-bt f-r">
+                  <!--<input class="z_field_in" type="text" placeholder="Phone Number">-->
+                  <%= text_field_tag :account_number, @account_number, :class => "z_field_in", :placeholder => "Account Number *" %>
+                </div>
+
+
+                <!--z_field_time-->
+                <a class="z_orngbig_btn w100" href="javascript:void(0)" id="d_sign_up_btn">Get Started</a><!--z_orngbig_btn-->
+            <% end %>
+        <% end %>
+      </div>
+      <!--z_input_hold-->
+      <!--<div class="z_mem_1"><p>Praesent commodo cursus magna lerisque nisl consectetur et.</div>-->
+      <!--z_mem-->
+    </div>
+    <!--z-get-started ends-->
+  </div>
+  <!-- slider-wrapper -->
+</section><!--z_slider-->
+<section class="z_driver1">
+  <div class="container941">
+    <div class="drivr_sec">
+      <div class="z_driv_box">
+        <h2>Flexible</h2>
+
+        <p>At Ziply, you get to make your own schedule. Zipsters work whenever they feel like it! You get to deliver and drive literally whenever you want. You can also pick and choose whichever packages you want to pick up and deliver.
+        </p>
+      </div>
+      <div class="z_driv_box">
+        <h2>Earn up to $25 an Hour</h2>
+
+        <p>At Ziply, we know it’s hard work driving all day and we value your driving ability and people skills. So what does that mean? It means you can make $100-plus in a matter of hours. Your earnings are deposited directly into your account every single week — no hassle.
+        </p>
+      </div>
+      <div class="z_driv_box">
+        <h2>Fun Community</h2>
+
+        <p>We value diversity. Zipsters are people who come from all walks of life, whether they are members from your community, people from out of town or students trying to cram for a final. These people are looking for adventure and are thrilled to meet new people and discover new places.
+        </p>
+      </div>
+    </div>
+  </div>
+</section><!--z_driver-->
+<section id="z_works_2">
+  <div class="container">
+    <div class="z_w_lft"><img src="/assets/how_it_works.png"></div>
+    <!--z_w_lft-->
+    <div class="z_w_rit_2">
+      <h1>How does Ziply work?</h1>
+
+      <p>Zipsters make Ziply work. The process starts by customers using the Ziply App to request a delivery from one location to another. The Zipster then accepts the request, picks up the package from the customer and delivers it to the location destination. Ziply’s on-demand service is available all day and all night, 24/7/365. The app also provides delivery time estimates and delivery signatures.
+      </p>
+    </div>
+    <!--z_w_lft-->
+  </div>
+  <!--container ends-->
+</section><!--z_works-->
+<section class="hw_wrk_sec">
+  <div class="hw_wrk">
+    <h2>How to Become a Zipster</h2>
+
+    <p>There are not many requirements to be a Zipster, however, there are a few basic ones. First, you must be at least 18 years or older. You’ll also need to own a car, truck, van, motorcycle or anything that can transport you and the package. A positive attitude is also a must. Knowing your way through the city is a bonus, too!
+    </p>
+  </div>
+</section><!--how_wrk-->
+<section id="z_testimonial_2" class="testi-bg">
+  <div class="container">
+    <div class="z_testi" id="test_container">
+      <div class="testimonial">
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+
+            <p>Ziply has been a tremendous way for us to pick up extra work in our downtime and after hours. Our bottom line has seen a spike since we joined their network.</p>
+
+            <p>DZ Transportation</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div>
+          <!--z_testi_txt-->
+        </div>
+        <!--z_repet-->
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+
+            <p>I'm so blessed that I stumbled upon Ziply. As a college student, there are only certain times of the day or night I can work, as I have so much studying to do. Ziply allows me to pick and choose my hours and jobs.</p>
+
+            <p>Larry P, College student</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div>
+          <!--z_testi_txt-->
+        </div>
+        <!--z_repet-->
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+
+            <p>As a single mother, I'm always looking for extra ways to support my family. With Ziply, I can get more done while driving around the city, doing two jobs at once.</p>
+
+            <p>Gina S, Driver</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div>
+          <!--z_testi_txt-->
+        </div>
+        <!--z_repet-->
+
+      </div>
+      <!--testimonial-->
+    </div>
+    <!--z_testi-->
+  </div>
+  <!--container ends-->
+</section><!--z_testimonial-->
+
+<script type="text/javascript">
+    $.validator.addMethod("anyDate",
+            function(value, element) {
+//                return value.match(/^(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])\-(19|20)\d{2}$/);
+                return value.match(/^((0?[13578]|10|12)(-|\-)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\-)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\-)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\-)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$/);
+            },
+            "Please enter a date in the format!"
+    );
+    $("#d_sign_up_form").validate({
+        rules: {
+            "user[first_name]": {
+                required: true
+            },
+            "user[last_name]": {
+                required: true
+            },
+            "user[email]": {
+                required: true,
+                email: true
+            },
+            "user[profile_attributes][phone_number]": {
+                required: true
+            },
+            "user[profile_attributes][address]": {
+                required: true
+            },
+            "user[date_of_birth]": {
+                required: true,
+                anyDate:true
+            },
+            "user[password]": {
+                required: true
+            },
+            "user[profile_attributes][city]": {
+                required: true
+            },
+            "user[profile_attributes][state]": {
+                required: true
+            },
+            "user[profile_attributes][zip_code]": {
+                required: true
+            },
+            "routing_number": {
+                required: true,
+                number:true
+            },
+            "account_number": {
+                required: true,
+                number:true
+            },
+            "account_number": {
+                required: true,
+                number:true
+            },
+            "user[profile_attributes][vehicle_type_id]": {
+                required: true
+            },
+            "user[profile_attributes][phone_type_id]": {
+                required: true
+            }
+        },
+        messages: {
+            "user[first_name]": {
+                required: "Please enter your first name"
+            },
+            "user[last_name]": {
+                required: "Please enter your last name"
+            },
+            "user[email]": {
+                required: "Please enter your email",
+                email: "Please enter valid email"
+            },
+            "user[profile_attributes][phone_number]": {
+                required: "Please enter your phone number"
+            }
+        }
+    });
+    $(document).ready(function () {
+        $('#user_time_zone').set_timezone();
+//        $('.date-picker').datepicker({
+//            autoclose: true,
+//            format: 'mm-dd-yyyy'
+//        });
+        $('.date-picker').datepicker({
+//        controlType: 'select',
+            dateFormat: 'mm-dd-yy'
+
+//            minDate: new Date()
+
+        });
+        $("#user_profile_attributes_phone_number").mask("999-999-9999");
+
+    });
+
+    $("#d_sign_up_btn").click(function () {
+        var device_type = $("#user_profile_attributes_phone_type_id").val();
+        if (device_type != "1" && device_type != "") {
+            apprise("Sorry, only available on iPhone at this time");
+            return false;
+        }
+        if (!$("#d_sign_up_form").valid()) {
+            return false;
+        } else {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $("#d_sign_up_form").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide()
+                    console.log(data.success);
+                    if (data.success == true) {
+                        $('.z_light_box').hide();
+                        $("#ajax_loader").show();
+                        $(".shadow").show();
+                        $.ajax({
+                            url: '/home/driver_success',
+                            type: 'get',
+                            dataType: 'html',
+                            processData: false,
+                            success: function (data) {
+                                $("#pop_up_div").html(data);
+                                $("#ajax_loader").hide();
+                                $(".shadow").hide()
+                            }
+                        });
+                    }
+                    else if (data.success == false) {
+                        $("#sign_up_errors").html(data.html);
+                    }
+                },
+                error: function (data) {
+//                    window.location.reload();
+                }
+            });
+        }
+    });
+</script>

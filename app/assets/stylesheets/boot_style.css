@@ -1,0 +1,147 @@
+#error_explanation {
+    background: none repeat scroll 0 0 pink;
+    border: 1px solid #991514;
+    /*float: left;*/
+    margin: 20px 0px;
+    padding: 5px 20px;
+    width: 100%;
+    text-align: left;
+
+}
+
+.ajax_loader {
+    width: 200px;
+    padding: 20px;
+    color: #eee;
+    /*background: url(../images/tt.png) 0 0 repeat;*/
+    /*background: rgba(0, 0, 0, 0.7);*/
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    bottom: 235px;
+    left: 50%;
+    margin-left: -100px;
+    z-index: 9999999999;
+    text-shadow: 0 1px 1px #000;
+
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+}
+
+.ajax_loader img {
+    width: 40px;
+    padding: 5px;
+    background: #424242;
+}
+
+.shadow {
+    /*background: #171717;*/
+    background: url("/assets/pat3.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999999999999;
+}
+
+
+.hudmsg {
+    width: 200px;
+    padding: 20px;
+    color: #eee;
+    background: url(../images/tt.png) 0 0 repeat;
+    background: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    bottom: 235px;
+    left: 50%;
+    margin-left: -100px;
+    z-index: 1000;
+    text-shadow: 0 1px 1px #000;
+
+    border-radius: 15px !important;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+}
+
+.hudmsg img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+.zip_logo
+{margin: 8px 0 0;
+width: 75px;}
+
+#errors {
+    padding: 10px;
+}
+
+.zip_logo_img {
+    float: left;
+    margin: 7px 0 0;
+    width: 80px;
+}
+
+#edit_user label.error {
+    color: red;
+}
+
+
+.pager_outer .pagination {
+    float: left;
+    color: #148ebb;
+    font-size: 14px;
+    display: inline-block;
+  /*margin-right: 5px;*/
+}
+
+.back_close {
+    float: left;
+}
+.pager_outer .pagination   {
+    float: right;
+/*margin: 20px 0px;*/
+}
+.pager_outer .pagination a {
+    border: 1px solid #ccc;
+    color: blue;
+    display: inline-block;
+    font-size: 14px;
+/*margin: 0 2px;*/
+    padding: 5px 10px;
+
+}
+
+.pager_outer .pagination span {
+/*background: #808080;*/
+padding: 5px 10px;
+/*margin: 0px 5px 0 0;*/
+color:#148ebb !important;
+border: 1px solid #ccc;
+    }
+
+.pager_outer .pagination .current {
+    background: #337ab7;
+    color: #FFF;
+    padding: 6px 10px;
+/*margin: 0px 5px 0 0;*/
+
+}
+
+.pager_outer .pagination span.previous_page .disabled {
+    background: none;
+/*padding: 0px 5px;*/
+
+}
+
+#coupon_code_setting label.error {
+    color: red;
+}

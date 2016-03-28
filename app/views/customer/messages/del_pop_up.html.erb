@@ -1,0 +1,66 @@
+<div class="z_light_box">
+</div>
+<div class="box_hold_new">
+  <div class="z_expression z_100 zbrd0">
+    <h5>Are you sure you want to<br> delete this Message?</h5>
+  </div>
+  <!--z_expression-->
+  <div class="z_100">
+    <div class="z_100">
+      <%= link_to "Yes, Delete Message", delete_message_customer_messages_path(:id => @message.id), :class => "my-fancy-box z_xdel_btn zset_pad z_100" %>
+    </div>
+    <!--box_butns-->
+  </div>
+  <!--z_100-->
+  <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+</div>
+<!--box_hold_new-->                                                                                     e
+
+<script>
+    $(document).ready(function () {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+    $('.my-fancy-box').bind('click', function (e) {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: $(this).attr('href'),
+            error: function (jqXHR, textStatus) {
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                hudMsg("error", "Something went wrong please try later");
+
+            },
+            success: function (response) {
+                $("#pop_up_div").html(response).fadeIn('slow');
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    });
+
+    function reply_message(id) {
+        $.ajax({
+            url: '/customer/messages/reply?id=' + id,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#message_reply").html(data);
+            }
+        });
+    }
+
+</script>

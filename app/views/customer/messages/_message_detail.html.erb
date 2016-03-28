@@ -1,0 +1,121 @@
+<div class="z_msg_list">
+  <% if @message.parent.blank? %>
+      <div class="report_in_mssg">
+        <div class="z_msg_lft_open"><p><%= @message.sender.full_name %> <span> #<%= @message.job.job_code %></span></p>
+        </div>
+        <!--z_msg_lft-->
+        <div class="z_msg_rit"><%= @message.created_at < Time.now + 1.day ? @message.created_at.strftime("%H:%M:%S%p") : @message.created_at.strftime("%m/%d/%Y") %></div>
+        <!--z_msg_rit-->
+        <div class="z_msg_mid_open"><%= @message.description %>
+          <% if @message.job.status == "delivered" %>
+              <div class="z_100">
+                <p style="float: left;margin: 30px 30px 0 0; font-size: 18px">Driver Signatures</p>
+
+                <div style="float: left;">
+                  <%= image_tag(@message.job.asset.avatar.url(:thumb), :class => "rotate") %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+        <!--z_msg_mid-->
+        <div class="z_msg_handles">
+
+          <!--z_cloze-->
+          <div class="next_back f-r"><%= link_to "Reply", "javascript:;", :onclick => "reply_message(#{@message.id})" %>
+            <% if @message.job.status == "delivered" %>
+                <%= link_to "Rate Driver", new_customer_review_path(:id => @message.job.id) %>
+            <% end %>
+            <a href="/customer/messages/del_pop_up?id=<%= @message.id %>" class="my-fancy-box "><i class="fa fa-trash-o icon_colr"></i></a>
+          </div>
+          <%#= link_to "DELETE", del_pop_up_customer_locations_path(:id => location.id), :class => "my-fancy-box data_a_link2" %>
+        </div>
+        <!--z_msg_handles-->
+      </div>
+  <% else %>
+      <div class="report_in_mssg">
+        <div class="z_msg_lft_open">
+          <p><%= @parent_message.sender.full_name %> <span> #<%= @parent_message.job.job_code %></span></p>
+        </div>
+        <!--z_msg_lft-->
+        <div class="z_msg_rit"><%= @parent_message.created_at < Time.now + 1.day ? @parent_message.created_at.strftime("%H:%M:%S%p") : @parent_message.created_at.strftime("%m/%d/%Y") %></div>
+        <!--z_msg_rit-->
+        <div class="z_msg_mid_open"><%= @parent_message.description %>
+          <% if @parent_message.job.status == "delivered" and @parent_message.sender.driver? %>
+              <div class="z_100">
+                <p style="float: left;margin: 30px 30px 0 0; font-size: 18px">Driver Signatures</p>
+
+                <div style="float: left;">
+                  <%= image_tag(@parent_message.job.asset.avatar.url(:thumb), :class => "rotate") %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+        <!--z_msg_mid-->
+      </div>
+      <% @message.parent.message_children.where(:receiver_deleted => false).each_with_index do |message, index| %>
+          <div class="report_in_mssg">
+            <div class="z_msg_lft_open">
+              <p><%= message.sender.full_name %> <span> #<%= message.job.job_code %></span></p>
+            </div>
+            <!--z_msg_lft-->
+            <div class="z_msg_rit"><%= message.created_at < Time.now + 1.day ? message.created_at.strftime("%H:%M:%S%p") : @message.created_at.strftime("%m/%d/%Y") %></div>
+            <!--z_msg_rit-->
+            <div class="z_msg_mid_open"><%= message.description %>
+              <% if message.job.status == "delivered" and message.sender.driver? %>
+                  <div class="z_100">
+                    <p style="float: left;margin: 30px 30px 0 0; font-size: 18px">Driver Signatures</p>
+
+                    <div style="float: left;">
+                      <%= image_tag(message.job.asset.avatar.url(:thumb), :class => "rotate") %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <!--z_msg_mid-->
+            <% if  @message.parent.message_children.where(:receiver_deleted => false).size == index + 1 %>
+                <div class="z_msg_handles">
+
+                  <!--z_cloze-->
+                  <div class="next_back f-r"><%= link_to "Reply", "javascript:;", :onclick => "reply_message(#{message.parent.id})" %>
+                    <% if message.job.status == "delivered" %>
+                        <%= link_to "Rate Driver", new_customer_review_path(:id => message.job.id) %>
+                    <% end %>
+                    <a href="/customer/messages/del_pop_up?id=<%= message.id %>" class="my-fancy-box "><i class="fa fa-trash-o icon_colr"></i></a>
+                  </div>
+                  <%#= link_to "DELETE", del_pop_up_customer_locations_path(:id => location.id), :class => "my-fancy-box data_a_link2" %>
+                </div>
+            <% end %>
+            <!--z_msg_handles-->
+          </div>
+      <% end %>
+  <% end %>
+  <!--report_in_mssg-->
+</div>
+
+<script type="text/javascript">
+    $("#close_message").click(function () {
+        $("#close_message").hide();
+        $("#message_detail").html("");
+        $("#message_reply").html("");
+        $(".back_close").css("margin-top", "0px");
+    })
+    $('.my-fancy-box').bind('click', function (e) {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: $(this).attr('href'),
+            error: function (jqXHR, textStatus) {
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                hudMsg("error", "Something went wrong please try later");
+            },
+            success: function (response) {
+                $("#pop_up_div").html(response).fadeIn('slow');
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    });
+</script>

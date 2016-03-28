@@ -1,0 +1,230 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      Manage Payment Method
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/payment_methods">Payment Method</a>
+      </li>
+
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i> Create New Payment Method
+    </div>
+    <div class="tools">
+      <a class="collapse" href="javascript:;">
+      </a>
+      <a class="config" data-toggle="modal" href="#portlet-config">
+      </a>
+      <a class="reload" href="javascript:;">
+      </a>
+      <a class="remove" href="javascript:;">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <%= form_for(@payment_method, :url => super_admin_payment_methods_path, :method => "post", :html => {:class => "horizontal-form"}) do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :card_type %>
+        <%= f.hidden_field :is_active, :value => true %>
+        <div id="errors"></div>
+        <div class="form-body">
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label>Card Holder Name</label>
+                <%= f.text_field :holder_name, :class => "form-control", :placeholder => "Name on Card (ex.John Smith or Bob's Company)" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Card Number</label>
+                <%= f.text_field :card_number, :class => "form-control", :placeholder => "Card Number (ex. 4111 0000 0000 1234)", :onblur => "SetTypeText()" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!--/span-->
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Month</label>
+                <%= select_month nil, {add_month: true}, {name: "payment_method[month]", id: "card_month", :class => "form-control"} %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Year</label>
+                <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: "payment_method[year]", id: "card_year", :class => "form-control"} %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>CVV</label>
+                <%= f.text_field :cvv, :class => "form-control", :placeholder => "CVC (ex. 123)" %>
+              </div>
+            </div>
+          </div>
+          <!--/row-->
+          <div class="row">
+
+            <!--/span-->
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nick Name</label>
+                <%= f.text_field :nick_name, :autofocus => true, :class => "form-control", :placeholder => "Nickname (ex.Debit)" %>
+              </div>
+            </div>
+            <!--/span-->
+          </div>
+          <% f.object.billing_address ||= BillingAddress.new %>
+          <%= f.fields_for :billing_address do |ba| %>
+              <%= ba.hidden_field :user_id, :value => current_user.id %>
+              <div class="row">
+                <div class="col-md-12 ">
+                  <div class="form-group">
+                    <label>Street</label>
+                    <%= ba.text_field :street_address, :class => "form-control", :placeholder => "Street Address" %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Apt#</label>
+                    <%= ba.text_field :house_no, :class => "form-control", :placeholder => "Apt#" %>
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>City</label>
+                    <%= ba.text_field :city, :class => "form-control", :placeholder => "City" %>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>State</label>
+                    <%= ba.subregion_select(:state, "US", options={:include_blank => "Select State"}, :class => "form-control") %>
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Zip Code</label>
+                    <%= ba.text_field :zip_code, :class => "form-control", :placeholder => "Ex. 90001" %>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+          <% end %>
+        </div>
+        <div class="form-actions right">
+
+
+          <div class="z_100" id="save-btn">
+            <a class="btn blue" href="#"><i class="fa fa-check">Save to My Payment Methods</i></a>
+          </div>
+
+          <!--<button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>-->
+        </div>
+    <% end %>
+    <!-- END FORM-->
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    function SetTypeText() {
+        var number = $("#payment_method_card_number").val();
+        $("#payment_method_card_type").val(GetCardType(number));
+    }
+
+    function GetCardType(number) {
+        var re = new RegExp("^4");
+        if (number.match(re) != null)
+            return "visa";
+
+        re = new RegExp("^(34|37)");
+        if (number.match(re) != null)
+            return "amex";
+
+        re = new RegExp("^5[1-5]");
+        if (number.match(re) != null)
+            return "master";
+
+        re = new RegExp("^6011");
+        if (number.match(re) != null)
+            return "discover";
+
+        return "unknown";
+    }
+
+    $(document).ready(function () {
+
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $(".shadow").show();
+            $("#ajax_loader").show();
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.href = response.url
+                } else {
+                    $("#errors").html(response.html);
+                }
+                $(".shadow").hide();
+                $("#ajax_loader").hide();
+            }), "json");
+            return false;
+
+        });
+
+    });
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new_1").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new_1").hide();
+    });
+
+
+    $(document).ready(function () {
+//        $(".chosen-select_n").chosen();
+//        $(".chosen-select-month").chosen({disable_search: true});
+//        $(".chosen-select-year").chosen({disable_search: true});
+    })
+
+</script>
+
+
+

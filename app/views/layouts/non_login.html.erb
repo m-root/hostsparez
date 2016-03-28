@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= content_for?(:title) ? content_for(:title) : "Messenger Service Los Angeles, Couriers Hollywood North & South - Goziply" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? content_for(:description) : "GoZiply Couriers services company LA - Messenger Services in North & South Hollywood, - Uniformed Drivers with GPS Tracking (888) 288-1511 Los Angeles Courier Service for over 25 years." %>"/>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="flash">
+  <%= render :partial => "layouts/flash", :object => flash %>
+</div>
+<section id="g_login">
+  <!--g_head ends-->
+  <%= yield %>
+</section>
+
+</body>
+</html>

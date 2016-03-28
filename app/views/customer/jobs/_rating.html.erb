@@ -1,0 +1,14 @@
+<div class="zrev_star">
+  <% count = 0 %>
+  <% @driver_rating_whole.to_i.times do |driver_rating| %>
+      <% count = count + 1 %>
+      <div class="star active_in"><i class="fa fa-star"></i></div>
+  <% end %>
+  <% if @driver_rating_part > 0 %>
+      <% count = count + 1 %>
+      <div class="star active_in"><i class="fa fa-star"></i></div>
+  <% end %>
+  <% (5-count).times do |driver_rating| %>
+      <div class="star"><i class="fa fa-star"></i></div>
+  <% end %>
+</div>

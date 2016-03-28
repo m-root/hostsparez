@@ -1,0 +1,24 @@
+<%- title "Blogs - Goziply" %>
+<section class="about_sec" id="about">
+  <div class="container02">
+    <div class="support">
+      <% unless @blogs.blank? %>
+          <% @blogs.each do |blog| %>
+              <h2><%= blog.title %></h2>
+              <%= blog.description.html_safe %>
+      <% end %>
+      <% end %>
+    </div>
+
+    <div class="contact_btn" id="contact_btn_1">
+      <h2>Didn’t find what you were looking for? </h2>
+      <a class="z_orngxbig_btn" href="/contact-us">Contact Us</a>
+    </div>
+  </div>
+</section><!-- About -->
+
+<script type="text/javascript">
+    $(function () {
+        $("#accordion").accordion();
+    });
+</script>

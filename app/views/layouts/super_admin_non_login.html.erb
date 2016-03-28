@@ -1,0 +1,99 @@
+<html lang="en"><!--<![endif]--><!-- BEGIN HEAD -->
+<head>
+  <meta charset="utf-8">
+  <title>Ziply | Admin </title>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- BEGIN GLOBAL MANDATORY STYLES -->
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all">
+  <link type="text/css" rel="stylesheet" href="/assets/global/plugins/font-awesome/css/font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css">
+  <link type="text/css" rel="stylesheet" href="/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/assets/global/plugins/uniform/css/uniform.default.css">
+  <link type="text/css" rel="stylesheet" href="/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
+  <!-- END GLOBAL MANDATORY STYLES -->
+  <!-- BEGIN PAGE LEVEL STYLES -->
+  <link type="text/css" rel="stylesheet" href="/assets/global/plugins/select2/select2.css">
+  <link type="text/css" rel="stylesheet" href="/assets/admin/pages/css/login.css">
+  <!-- END PAGE LEVEL SCRIPTS -->
+  <!-- BEGIN THEME STYLES -->
+  <link type="text/css" rel="stylesheet" href="/assets/global/css/components.css">
+  <link type="text/css" rel="stylesheet" href="/assets/global/css/plugins.css">
+  <link type="text/css" rel="stylesheet" href="/assets/admin/layout/css/layout.css">
+  <link type="text/css" rel="stylesheet" href="/assets/admin/layout/css/themes/default.css" id="style_color">
+  <link type="text/css" rel="stylesheet" href="/assets/admin/layout/css/custom.css">
+
+  <script src="/assets/global/plugins/respond.min.js"></script>
+  <script src="/assets/global/plugins/excanvas.min.js"></script>
+  <![endif]-->
+  <script type="text/javascript" src="/assets/global/plugins/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/jquery-migrate-1.2.1.min.js"></script>
+  <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+  <script type="text/javascript" src="/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/jquery.blockui.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/jquery.cokie.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/uniform/jquery.uniform.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+  <!-- END CORE PLUGINS -->
+  <!-- BEGIN PAGE LEVEL PLUGINS -->
+  <script type="text/javascript" src="/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+  <script src="/assets/global/plugins/select2/select2.min.js" type="text/javascript"></script>
+  <!-- END PAGE LEVEL PLUGINS -->
+  <!-- BEGIN PAGE LEVEL SCRIPTS -->
+  <script type="text/javascript" src="/assets/global/scripts/metronic.js"></script>
+  <script type="text/javascript" src="/assets/admin/layout/scripts/layout.js"></script>
+  <script type="text/javascript" src="/assets/admin/layout/scripts/quick-sidebar.js"></script>
+  <script type="text/javascript" src="/assets/admin/pages/scripts/login.js"></script>
+  <%= javascript_include_tag "jquery.form" %>
+  <%= javascript_include_tag "detect_timezone" %>
+  <%= javascript_include_tag "jquery.detect_timezone" %>
+  <!-- END THEME STYLES -->
+  <!--<link href="favicon.ico" rel="shortcut icon">-->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
+</head>
+
+<body class="login">
+<!-- BEGIN LOGO -->
+<div class="logo">
+  <a href="index.html">
+    <img alt="" src="/assets/ziply_logo.png">
+  </a>
+</div>
+<!-- END LOGO -->
+<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+<div class="menu-toggler sidebar-toggler">
+</div>
+<!-- END SIDEBAR TOGGLER BUTTON -->
+<!-- BEGIN LOGIN -->
+<div class="content">
+  <%= yield %>
+</div>
+<!-- END LOGIN -->
+<!-- BEGIN COPYRIGHT -->
+<div class="copyright">
+  2014 &copy; Ziply. Admin Dashboard Template.
+</div>
+<!-- END COPYRIGHT -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+    jQuery(document).ready(function () {
+        Metronic.init(); // init metronic core components
+        Layout.init(); // init current layout
+        QuickSidebar.init() // init quick sidebar
+        Login.init();
+    });
+</script>
+<!-- END JAVASCRIPTS -->
+
+
+<span role="status" aria-live="polite" class="select2-hidden-accessible"></span></body>
+<!-- END BODY --></html>

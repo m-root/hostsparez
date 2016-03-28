@@ -1,0 +1,54 @@
+<div class="edit_in">
+  <%= form_for(@message, :url => customer_messages_path, :method => "post") do |f| %>
+      <%= f.hidden_field :parent_id, :value => @received_message.blank? ? nil : @received_message.id %>
+      <%= f.hidden_field :parent_type, :value => @received_message.blank? ? nil : "Message" %>
+      <%= f.hidden_field :job_id, :value => @received_message.job_id %>
+      <%= f.hidden_field :status, :value => "close" %>
+      <%= f.hidden_field :subject, :value => @received_message.subject %>
+      <%= f.hidden_field :sender_id, :value => current_user.id %>
+      <%= f.hidden_field :sender_type, :value => "User" %>
+      <%= f.hidden_field :receiver_id, :value => @received_message.receiver.id == current_user.id ? @received_message.sender.id : @received_message.receiver.id %>
+      <%= f.hidden_field :receiver_type, :value => "User" %>
+      <div id="errors"></div>
+      <div class="z_msg_edit z_100">
+        <div class="nam_msg_det z_100"><i class="fa fa-reply"></i>
+
+          <p><%= @received_message.sender.customer? ? @received_message.receiver.full_name : @received_message.sender.full_name %>
+            :
+            <span>#<%= @received_message.subject %></span></p></div>
+        <!--nam_msg_det-->
+        <div class="msg_textarea z_100">
+          <%= f.text_area :description %>
+        </div>
+        <!--msg_textarea-->
+        <div class="z_send z_100" id="save-btn">
+          <a class="z_orngsmal_btn" href="javascript:void(0);">Send</a>
+        </div>
+        <!--z_send-->
+      </div>
+  <% end %>
+  <!--z_msg_edit-->
+</div>
+
+<script type="text/javascript">
+    $("#save-btn").children("a").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+            if (response.success) {
+//                window.location.href = response.url
+                $("#pop_up_div").html('<%= escape_javascript(render(:partial => '/customer/messages/message_sent.html'))%>')
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            } else {
+                $("#errors").html(response.html);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+
+        }), "json");
+        return false;
+
+    });
+</script>

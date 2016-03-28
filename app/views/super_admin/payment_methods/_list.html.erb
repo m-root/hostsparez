@@ -1,0 +1,64 @@
+<table class="table table-striped table-bordered table-hover" id="super_payment_methods">
+  <thead>
+  <tr>
+    <th>
+      Card Type
+    </th>
+    <th>
+      Nick Name
+    </th>
+    <th>
+      Card Holder
+    </th>
+    <th>
+      Card Number
+    </th>
+    <th>
+      CVV
+    </th>
+    <th>
+      Card Expire
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+  </thead>
+  <% unless @payment_methods.blank? %>
+      <tbody>
+      <% @payment_methods.each_with_index do |payment_method, index| %>
+          <tr class="odd gradeX">
+            <td>
+              <%= image_tag("#{payment_method.card_type}.png") %>
+            </td>
+            <td>
+              <%= payment_method.nick_name %>
+            </td>
+            <td>
+              <%= payment_method.holder_name %>
+            </td>
+            <td>
+              **** **** **** <%= payment_method.card_number %>
+            </td>
+            <td>
+              <%= payment_method.cvv %>
+            </td>
+            <td>
+              <%= "#{payment_method.month}/#{payment_method.year}" %>
+            </td>
+            <td>
+              &nbsp;&nbsp;&nbsp;
+              <%= link_to "Edit", edit_super_admin_payment_method_path(payment_method.id), :style => "text-decoration:none" %>
+              &nbsp;&nbsp;&nbsp;
+
+              <%= link_to "Delete", "javascript:;", :style => "text-decoration:none", :onclick => "delete_payment_method(#{payment_method.id})" %>
+            </td>
+            <!--<td>-->
+            <!--<span class="label label-sm label-success">-->
+            <!--Approved </span>-->
+            <!--</td>-->
+          </tr>
+      <% end %>
+      </tbody>
+  <% end %>
+</table>

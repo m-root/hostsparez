@@ -1,0 +1,90 @@
+<div style="width: 350px">
+  <div>
+    <%= form_for(@user, :as => :user, :url => {:controller => "users/registrations", :action => "update_driver", :id => params[:id]}, :method => "put", :html => {:id => "choose_driver_id_form", :onsubmit => "return false;"}) do |f| %>
+        <div class="j_b_hold" style="margin-left: 400px">
+          <h1>Hi <%= @user.first_name %>,</h1>
+          <%= f.hidden_field :current_password, :value => "12345678" %>
+          <p class="panelTxt">Super Admin just set up an account for you on Ziply
+            All you need to do is choose a username and password.</p>
+
+          <div class="jb_title">
+            Choose Driver ID
+          </div>
+          <div class="row" id="sign_up_errors"></div>
+          <div class="jb_fields">
+            <div class="pos_rel">
+              <%= f.text_field :driver_id, :autofocus => true, :class => "input_full", :placeholder => "Driver ID (Ex.John)" %>
+            </div>
+
+            <%= f.password_field :password, :value => nil, :class => "input_full", :placeholder => "New password" %>
+            <%= f.password_field :password_confirmation, :value => nil, :class => "input_full", :placeholder => "Password Confirmation" %>
+
+            <input class="login_button" type="submit" value="REGISTER AND CONTINUE" id="choose_d_id_btn">
+
+          </div>
+
+        </div>
+
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("#choose_driver_id_form").validate({
+        rules: {
+            "user[driver_id]": {
+                required: true
+
+            },
+            "user[password]": {
+                required: true,
+                minlength: 6
+            },
+            "user[password_confirmation]": {
+                required: true,
+                minlength: 6,
+                equalTo: "#user_password"
+            },
+            messages: {
+                "user[username]": "Please enter your Username",
+                "user[password]": {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 8 characters long"
+                },
+                "user[password_confirmation]": {
+
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 8 characters long",
+                    equalTo: "Please enter the same password as above"
+                }
+
+            }
+        }
+    });
+    $("#choose_d_id_btn").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $("#choose_driver_id_form").ajaxSubmit({
+            beforeSubmit: function (a, f, o) {
+                o.dataType = 'json';
+            },
+            success: function (data) {
+                console.log(data.success);
+                if (data.success == true) {
+                    document.location.href = data.url;
+                }
+                else if (data.success == false) {
+                    $("#sign_up_errors").html(data.html);
+                    $(".shadow").hide();
+                    $("#ajax_loader").hide();
+                }
+            },
+            error: function (data) {
+//                window.location.reload();
+            }
+        });
+    });
+
+</script>
+
+

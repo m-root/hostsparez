@@ -1,0 +1,155 @@
+<%= javascript_include_tag "jqueryeasydropdown" %>
+<div class="z_crd_hed z_100">Payment Details</div>
+<%= fields_for :payment_method do |pm| %>
+    <%= pm.hidden_field :nick_name, :value => "-------" %>
+    <%= pm.hidden_field :card_type %>
+    <%= pm.hidden_field :user_id, :value => current_user.id %>
+    <div class="z_crd_input z_100">
+      <label>Card Holder's Name</label>
+      <%= pm.text_field :holder_name, :placeholder => "Ex.Jphn Smith" %>
+    </div>
+    <div class="z_crd_input z_100" style="margin-top: 18px">
+      <label>Card Number</label>
+      <%= pm.text_field :card_number, :value => @payment_method.blank? ? "" : "**** **** **** #{@payment_method.card_number}", :placeholder => "Card  Number", :onblur => "SetTypeText()" %>
+    </div>
+    <!--z_crd_input-->
+    <div class="z_exp_h z_100">
+      <div class="z_crd_input_exp">
+        <label>Expiration Date</label>
+
+        <div class="z_crd_exp_select">
+
+          <div class="z_b_month">
+            <%#= select_month nil, {add_month_numbers: false}, {name: "payment_method[month]", id: "card_month", :class => "z_month month_drop_down"} %>
+            <%= select_month nil, {add_month_numbers: false}, {name: "payment_method[month]", id: "card_month1", :class => "chosen-select-month", :style => "width:100%;border:none"} %>
+            <!--<i class="icon-angle-down set_pos"></i>-->
+            <%#= subregion_select("billing_address", "state", "US", options={:include_blank => "Select State"}, :class => "chosen-select", :style => "width:313px;height:45px") %>
+          </div>
+          <div class="z_b_year">
+            <%#= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: "payment_method[year]", id: "card_year", :class => "year_drop_down"} %>
+            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: "payment_method[year]", id: "card_year2", :class => "chosen-select-year", :style => "width:100%"} %>
+          </div>
+
+        </div>
+        <!--z_crd_exp-->
+      </div>
+      <!--z_crd_input_exp-->
+      <div class="z_crd_input_cvc">
+        <label>CVC</label>
+        <%= pm.text_field :cvv, :placeholder => "CVV" %>
+      </div>
+      <!--z_crd_input_cvc-->
+      <div class="z_crds_list">
+        <a href="javascript:void(0);" class="card_img" id="visa"><img src="/assets/visa.png"></a>
+        <a href="javascript:void(0);" class="card_img" id="master"><img src="/assets/master.png"></a>
+        <a href="javascript:void(0);" class="card_img" id="amex"><img src="/assets/amex.png"></a>
+        <a href="javascript:void(0);" class="card_img" id="discover"><img src="/assets/discover.png"></a>
+      </div>
+      <!--z_crds_list-->
+    </div>
+    <div class="z_crd_hed z_100 m-t-25">Payment Details</div>
+    <%= fields_for :billing_address do |ba| %>
+        <%= ba.hidden_field :user_id, :value => current_user.id %>
+        <div class="z_bilng_adres z_100">
+          <div class="z_s_adres">
+            <label>Street Address</label>
+            <%= ba.text_field :street_address, :placeholder => "Street Address" %>
+          </div>
+          <!--z_s_adres-->
+          <div class="z_apt">
+            <label>Apt #</label>
+            <%= ba.text_field :house_no, :placeholder => "Apt#" %>
+          </div>
+          <!--z_apt-->
+        </div>
+        <!--z_bilng_adres-->
+        <div class="z_bilng_adres z_100">
+          <div class="z_s_city">
+            <label>City</label>
+            <%= ba.text_field :city, :placeholder => "City" %>
+          </div>
+          <!--z_s_city-->
+          <div class="z_state">
+            <label>State</label>
+
+            <div class="z_crd_exp" style="padding: 0px 0">
+              <%= ba.subregion_select(:state, "US", options={:include_blank => "Select State"}, :class => "chosen-select_n", :style => "width:100%;height:45px") %>
+            </div>
+            <!--z_crd_exp-->
+          </div>
+          <!--z_apt-->
+          <div class="z_aptt">
+            <label>Zip Code</label>
+            <%= ba.text_field :zip_code, :placeholder => "Ex. 90001" %>
+          </div>
+          <!--z_aptt-->
+        </div>
+    <% end %>
+    <!--z_bilng_adres-->
+<% end %>
+
+<script type="text/javascript">
+
+    function SetTypeText() {
+        var number = $("#payment_method_card_number").val();
+        var type = GetCardType(number);
+        set_active_class(type);
+        $("#payment_method_card_type").val(GetCardType(number));
+    }
+
+    function set_active_class(type) {
+        $(".card_img img").removeClass("card_active_outline");
+        $("#" + type + " img").addClass("card_active_outline");
+    }
+
+    function GetCardType(number) {
+        var re = new RegExp("^4");
+        if (number.match(re) != null)
+            return "visa";
+
+        re = new RegExp("^(34|37)");
+        if (number.match(re) != null)
+            return "amex";
+
+        re = new RegExp("^5[1-5]");
+        if (number.match(re) != null)
+            return "master";
+
+        re = new RegExp("^6011");
+        if (number.match(re) != null)
+            return "discover";
+
+        return "unknown";
+    }
+
+    $(document).ready(function () {
+        $(".chosen-select_n").chosen();
+        $(".chosen-select-month").chosen({disable_search: true});
+        $(".chosen-select-year").chosen({disable_search: true});
+
+
+//        $(".card_img").click(function () {
+//            $("#payment_method_card_type").val($())
+//        });
+
+        var $selects = $('#card_month');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown month_dropdown',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+        var $selects = $('#card_year');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown year_dropdown',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+
+    });
+
+</script>
+

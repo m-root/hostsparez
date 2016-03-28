@@ -1,0 +1,89 @@
+<%= form_for(@file_claim, :url => customer_file_claims_path, :method => "post") do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :status, :value => "In Progress" %>
+    <div class="z_light_box">
+    </div>
+    <div class="box_hold_new">
+      <h1 class="z_100">File A Claim</h1>
+
+      <div id="errors"></div>
+      <div class="z_100">
+
+        <div class="z_feldz">
+          <%= f.text_field :subject, :placeholder => "Subject", :class => "fill_1-0" %>
+        </div>
+
+        <div class="z_feldz mrgbot bord_grey">
+          <%= f.select :job_id, current_user.customer_jobs.all.map { |job| [job.job_code, job.id] }, {include_blank: 'Please Choose your package'}, :class => "chosen-select_phone_type" %>
+        </div>
+
+
+        <!--z_feldz-->
+        <div class="z_r_deet mrgbot bord_grey">
+          <%= f.text_area :description, :placeholder => "Type your message here..." %>
+        </div>
+
+        <div class="z_100" id="save-btn">
+          <a class="z_orngbig_btn zset_pad z_100" href="#">Save Changes</a><!--z_orngbig_btn-->
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <!--<a href="index.html" class="close"><img src="img/box_close.png"></a>-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div>
+    <!--box_hold_new-->
+
+<% end %>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".chosen-select_phone_type").chosen({disable_search: true});
+    });
+
+    var placeholder = " ";
+    $("input[type=text],input[type=email],input[type=password]").focus(function () {
+        placeholder = $(this).attr("placeholder");
+        return $(this).attr("placeholder", " ");
+    });
+    $("input[type=text],input[type=email],input[type=password]").blur(function () {
+        if ($(this).val() === "") {
+            return $(this).attr("placeholder", placeholder);
+        }
+    });
+
+    $("#save-btn").children("a").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+            if (response.success) {
+//                window.location.href = response.url
+                $("#pop_up_div").html('<%= escape_javascript(render(:partial => '/customer/file_claims/file_claim_success'))%>')
+            } else {
+                $("#errors").html(response.html);
+            }
+            $("#ajax_loader").hide();
+            $(".shadow").hide();
+        }), "json");
+        return false;
+
+    });
+
+    $("#cancel-btn").click(function () {
+        $.fancybox.close();
+    });
+
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+
+
+</script>

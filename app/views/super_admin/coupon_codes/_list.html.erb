@@ -1,0 +1,217 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>Create Customer Coupons Code
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <%= form_for(@coupon_code, :url => super_admin_coupon_codes_path, :html => {:id => "coupon_code_setting", :onsubmit => "return false;"}, :method => "post") do |f| %>
+            <%= f.hidden_field :is_send, :value => true %>
+            <%= f.hidden_field :promotion_code_user_type, :value => "User" %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :code, :value => SecureRandom.hex(4) %>
+            <div class="form-body">
+              <div class="row" id="errors"></div>
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Coupon Amount</label>
+                    <%= f.text_field :coupon_value, :autofocus => true, :class => "form-control", :placeholder => "Name" %>
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Coupon Type</label>
+                    <%#= f.text_field :coupon_type, :class => "form-control", :placeholder => "Name" %>
+                    <%= select_tag("coupon_code[coupon_type]", options_for_select([["Float Amount", "amount"], ["percentage", "Percentage"]]), :class => "form-control") %>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Valid from dates</label>
+                    <%= f.text_field :valid_from, :class => "form-control date-picker", :placeholder => "Valid from dates" %>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Valid to dates</label>
+                    <%= f.text_field :valid_to, :class => "form-control date-picker", :placeholder => "Valid to dates" %>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Per User</label>
+                    <%= f.text_field :per_user, :value => "", :class => "form-control", :placeholder => "" %>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Per Coupon</label>
+                    <%= f.text_field :per_coupon, :value => "", :class => "form-control", :placeholder => "" %>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Users</label>
+                    <%= select_tag("coupon_code[coupon_group]", options_for_select([["None", "none"],["All", "all"], ["Customers", "customers"], ["Drivers", "drivers"]]), :class => "form-control") %>
+                  </div>
+                </div>
+                <div id="user_ddl">
+                  <%= render :partial => "super_admin/coupon_codes/user_drop_down" %>
+                </div>
+
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn blue" id="save-btn">Save Setting</button>
+                <button type="button" class="btn default" id="save-btn-email">CREAT BUT DONT SEND</button>
+              </div>
+
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.date-picker').datepicker({
+            rtl: Metronic.isRTL(),
+            autoclose: true,
+            format: 'mm-dd-yyyy'
+        });
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#coupon_code_setting").validate({
+            rules: {
+                "coupon_code[coupon_value]": {
+                    required: true,
+                    number: true
+                },
+                "coupon_code[coupon_type]": {
+                    required: true
+                },
+                "coupon_code[valid_from]": {
+                    required: true
+                },
+                "coupon_code[valid_to]": {
+                    required: true
+                },
+                "coupon_code[per_user]": {
+                    number: true
+                },
+                "coupon_code[per_coupon]": {
+                    number: true
+                }
+            }
+        });
+
+        $("#save-btn").click(function () {
+            if (!$("#coupon_code_setting").valid()) {
+                return false;
+            } else {
+                $("#ajax_loader").show();
+                $(".shadow").show();
+                $("#coupon_code_setting").ajaxSubmit({
+                    beforeSubmit: function (a, f, o) {
+                        o.dataType = 'json';
+                    },
+                    success: function (data) {
+                        console.log(data.success);
+                        if (data.success == true) {
+//                        window.location.reload();
+                            window.location.href = data.url;
+                        } else {
+                            $("#errors").html(data.html)
+                        }
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    },
+                    error: function (data) {
+                        hudMsg("something went wrong");
+                    }
+                });
+            }
+        });
+
+        $("#save-btn-email").click(function () {
+            $("#coupon_code_is_send").val(false);
+            if (!$("#coupon_code_setting").valid()) {
+                return false;
+            } else {
+                $("#ajax_loader").show();
+                $(".shadow").show();
+                $("#coupon_code_setting").ajaxSubmit({
+                    beforeSubmit: function (a, f, o) {
+                        o.dataType = 'json';
+                    },
+                    success: function (data) {
+                        console.log(data.success);
+                        if (data.success == true) {
+//                        window.location.reload();
+                            window.location.href = data.url;
+                        } else {
+                            $("#errors").html(data.html)
+                        }
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    },
+                    error: function (data) {
+                        hudMsg("something went wrong");
+                    }
+                });
+            }
+        });
+
+    });
+
+
+    $("#coupon_code_coupon_group").change(function () {
+        $('.shadow').show();
+        $('.ajax_loader').show();
+        $.ajax({
+            url: '/super_admin/coupon_codes/get_users?id=' + $("#coupon_code_coupon_group").val(),
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#user_ddl").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    });
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+    }
+
+
+
+
+</script>

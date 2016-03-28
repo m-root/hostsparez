@@ -1,0 +1,23 @@
+<div class="z_light_box">
+  </div>
+  <div class="box_hold_new">
+    <div class="z_expression z_100 zbrd0">
+      <h3>Sent</h3>
+      <h5>A link to reset your password has been sent to your email address</h5>
+    </div>
+
+    <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+  </div>
+  <!--box_hold_new-->
+
+
+<script type="text/javascript">
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+</script>

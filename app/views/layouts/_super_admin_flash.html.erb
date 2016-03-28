@@ -1,0 +1,10 @@
+<% [:alert, :notice].select { |type| !flash[type].blank? }.each do |type| %>
+    <div class="alert alert-success">
+      <strong>Success!</strong> <%= flash[type] %>
+    </div>
+<% end %>
+<script type="text/javascript">
+    setTimeout(function () {
+        $("#flash").fadeOut('slow');
+    }, 3000);
+</script>

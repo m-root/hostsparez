@@ -1,0 +1,46 @@
+<table class="table table-striped table-bordered table-hover" id="super_vehicle_types">
+  <thead>
+  <tr>
+    <th>
+      Vehicle Type
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+  </thead>
+  <% unless @vehicle_types.blank? %>
+      <tbody>
+      <% @vehicle_types.each_with_index do |vehicle_type, index| %>
+          <tr class="odd gradeX">
+            <td>
+              <%= vehicle_type.name %>
+            </td>
+            <td>
+              <%= vehicle_type.description %>
+            </td>
+            <td>
+              &nbsp;&nbsp;&nbsp;
+              <%= link_to "Edit", edit_super_admin_vehicle_type_path(vehicle_type.id), :style => "text-decoration:none" %>
+              &nbsp;&nbsp;&nbsp;
+
+              <%= link_to "View", super_admin_vehicle_type_path(vehicle_type.id), :style => "text-decoration:none" %>
+              &nbsp;&nbsp;&nbsp;
+
+              <%= link_to "Delete", "javascript:;", :style => "text-decoration:none", :onclick => "delete_vehicle_type(#{vehicle_type.id})" %>
+            </td>
+            <!--<td>-->
+            <!--<span class="label label-sm label-success">-->
+            <!--Approved </span>-->
+            <!--</td>-->
+          </tr>
+      <% end %>
+      </tbody>
+  <% end %>
+</table>
+
+
+

@@ -1,0 +1,87 @@
+<% unless current_user.blank? %>
+    <%= render :partial => "shared/super_admin_header_after_log_in" %>
+<% else %>
+    <section class="z_header">
+      <div class="container wid">
+        <!--<a class="logo" href="index.html"><img alt="Ziply" src="/assets/logo.png"></a>-->
+        <%= link_to image_tag("logo.png", :class => "zip_logo_img"), "/", :class => "logo" %>
+
+      </div>
+    </section>
+<% end %>
+
+
+<script type="text/javascript">
+
+    $(".smal-nav").on("click", ".init", function () {
+        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    });
+
+    var allOptions = $(".smal-nav").children('li:not(.init)');
+    $(".smal-nav").on("click", "li:not(.init)", function () {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $(".smal-nav").children('.init').html($(this).html());
+        allOptions.slideUp('fast');
+    });
+    $(".smal-nav").click(function (e) {
+        e.stopPropagation();
+    });
+    $(document).click(function () {
+        $(".smal-nav").children('li:not(.init)').slideUp('fast');
+    });
+</script>
+
+<script type="text/javascript">
+    //    $(".smal-nav").on("click", ".init", function () {
+    //        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    //    });
+    //
+    //    var allOptions = $(".smal-nav").children('li:not(.init)');
+    //    $(".smal-nav").on("click", "li:not(.init)", function () {
+    //        allOptions.removeClass('selected');
+    //        $(this).addClass('selected');
+    //        $(".smal-nav").children('.init').html($(this).html());
+    //        allOptions.slideUp();
+    //    });
+
+    var mouse_is_inside = false;
+    $(document).ready(function () {
+        $('.popup_in').hover(function () {
+            mouse_is_inside = true;
+        }, function () {
+            mouse_is_inside = false;
+        });
+
+        $("body").mouseup(function () {
+            if (!mouse_is_inside) $('.popup_in').hide();
+        });
+    });
+
+    $(".become_d").click(function () {
+        $.ajax({
+            url: '/home/become_driver',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+            }
+        });
+    });
+
+    $(".sign_up").click(function () {
+        $.ajax({
+            url: '/sign_up',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+            }
+        });
+    });
+
+
+</script>
+

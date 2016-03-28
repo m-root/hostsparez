@@ -1,0 +1,121 @@
+<section class="z_content3">
+  <div class="container">
+    <div class="z_msg_hed z_100">
+      <div class="bord"><h2>Messages</h2>
+
+        <div class="z_msg_srch">
+          <label>Search Messages</label>
+          <input type="text" placeholder="Title or Package ID #" id="filter_input">
+        </div>
+        <!--z_msg_srch-->
+      </div>
+      <!--bord-->
+    </div>
+    <!--z_msg_hed-->
+    <% unless @messages.blank? %>
+        <div class="z_statement_hold">
+          <div class="z_s_holder">
+
+            <div class="z_rmsg_hold">
+
+              <div id="message_detail">
+
+              </div>
+              <div class="back_close">
+                <% if @all_messages.size > 5 %>
+                    <div class="pagination_container"  id="bk">
+                      <i class="fa fa-angle-left z_b_icon"></i>
+                      <%#= will_paginate  @messages, :prev_label => "<<" ,:next_label => ">>", :separator=>"|" %>
+                      <%= will_paginate @messages, :page_links => false, :next_label => 'Next', :previous_label => 'Back |' %>
+                      <i class="fa fa-angle-right"></i>
+                    </div>
+                <% end %>
+                <div class="z_cloze" id="close_message"><a href="javascript:void(0);">Close</a></div>
+              </div>
+              <div id="message_reply">
+
+              </div>
+
+
+              <!--<div class="next_back"><i class="fa fa-angle-left"></i> <a href="#">Back </a> |-->
+              <!--<a href="#"> Next</a>-->
+              <!--<i class="fa fa-angle-right"></i></div>-->
+              <!--z_msg_list-->
+              <div id="list_to_filter">
+                <%= render :partial => "customer/messages/message_list" %>
+              </div>
+            </div>
+            <!--z_rmsg_hold-->
+          </div>
+          <!--z_s_holder-->
+        </div>
+        <!--z_statement_hold-->
+    <% end %>
+  </div>
+  <!--container-->
+</section>
+<script type="text/javascript">
+
+
+    function reply_message(id) {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/customer/messages/reply?id=' + id,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#message_reply").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    }
+
+//    $(".report_in_msg").click(function () {
+//        $("#ajax_loader").show();
+//        $(".shadow").show();
+//        var id = $(this).attr("id")
+//        $.ajax({
+//            url: '/customer/messages/get_message?id=' + id,
+//            type: 'get',
+//            dataType: 'html',
+//            processData: false,
+//            success: function (data) {
+//                $("#message_detail").html(data);
+//                $("#message_reply").html("");
+//                $("#close_message").show();
+//                $(".back_close").css("margin-top", "-30px");
+//                $("#ajax_loader").hide();
+//                $(".shadow").hide();
+//            }
+//        });
+//    })
+
+
+    $(document).ready(function () {
+//        $("#close_message").hide();
+//        $('#filter_input').fastLiveFilter('#list_to_filter');
+    });
+    $('#filter_input').autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            var page_url = "/customer/messages/search_messages?term=" + $("#filter_input").val() + "&page=" + 1;
+            $.ajax({
+                url: page_url,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
+                success: function (data) {
+                    $("#list_to_filter").html(data);
+                    $(".shadow").hide();
+                    $("#ajax_loader").hide();
+                }
+            });
+        },
+        search: function (event, ui) {
+            $("#ajax_loader").show();
+        }
+    });
+</script>

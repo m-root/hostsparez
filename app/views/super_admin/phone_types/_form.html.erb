@@ -1,0 +1,9 @@
+<div class="row" id="errors"></div>
+<div class="jb_fields">
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.text_field :name, :autofocus => true, :class => "input_full", :placeholder => "NAME" %>
+  <%= f.text_field :description, :class => "input_full", :placeholder => "DESCRIPTION" %>
+  <div class="login_button" id="save-btn">
+    <a href="javascript:void(0);">SAVE PHONE TYPE</a>
+  </div>
+</div>

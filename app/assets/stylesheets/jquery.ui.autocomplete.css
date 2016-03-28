@@ -1,0 +1,33 @@
+/*!
+ * jQuery UI Autocomplete 1.10.3
+ * http://jqueryui.com
+ *
+ * Copyright 2013 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Autocomplete#theming
+ */
+
+/*.ui-autocomplete {*/
+    /*background: #e5e5e5;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*cursor: default;*/
+/*}*/
+
+/*.ui-front {*/
+    /*z-index: 8090 !important;*/
+/*}*/
+
+/*.ui-autocomplete-loading {*/
+    /*background: #e5e5e5 url("/assets/ui-anim_basic_16x16.gif") right center no-repeat !important;*/
+    /*width: 100%;*/
+    /*height: 43px;*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*-ms-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+    /*border: none;*/
+/*}*/

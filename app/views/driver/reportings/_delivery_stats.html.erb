@@ -1,0 +1,25 @@
+<div class="z_report_hold">
+  <div class="report_in_msg" style="cursor: pointer">
+    <div class="z_msg_lft">Total Deliveries:</div>
+    <div class="z_msg_rit"><%= @deliveries_count %></div>
+
+  </div>
+  <div class="report_in_msg" style="cursor: pointer">
+    <div class="z_msg_lft">Total Revenue:</div>
+    <div class="z_msg_rit">$<%= "%.2f" % @total_revenue %></div>
+
+  </div>
+
+  <div class="report_in_msg" style="cursor: pointer">
+    <div class="z_msg_lft">Ziply Fee:</div>
+    <div class="z_msg_rit">$<%= "%.2f" % @ziply_revenue %></div>
+
+  </div>
+
+  <div class="report_in_msg" style="cursor: pointer">
+    <div class="z_msg_lft">Earnings:</div>
+    <div class="z_msg_rit">$<%= "%.2f" % @driver_earning %></div>
+
+  </div>
+
+</div>

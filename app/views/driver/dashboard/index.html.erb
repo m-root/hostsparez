@@ -1,0 +1,43 @@
+<section class="z_content3">
+  <div class="container">
+    <div class="z_msg_hed z_100">
+      <div class="bord"><h2>Shipments</h2>
+
+        <div class="z_msg_srch">
+          <label>Search Shipments</label>
+          <input id="filter_input" type="text" placeholder="Package ID #">
+        </div>
+        <!--z_msg_srch-->
+      </div>
+      <!--bord-->
+
+      <div id="shipment_history">
+        <%= render :partial => "customer/jobs/shipment_history" %>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+    $('#filter_input').autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            var page_url = "/customer/jobs/search_jobs?term=" + $("#filter_input").val() + "&page=" + 1;
+            $.ajax({
+                url: page_url,
+                type: 'get',
+                dataType: 'html',
+                processData: false,
+                success: function (data) {
+                    $("#shipment_history").html(data);
+                    $(".shadow").hide();
+                    $("#ajax_loader").hide();
+                }
+            });
+        },
+        search: function (event, ui) {
+            $("#ajax_loader").show();
+        }
+    });
+</script>

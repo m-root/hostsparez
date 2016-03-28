@@ -1,0 +1,295 @@
+<script type="text/javascript"
+        src="//maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+<%= javascript_include_tag "jquery.geocomplete" %>
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      Manage Drivers
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/merchants">Drivers</a>
+      </li>
+
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="row">
+  <div class="col-md-6 ">
+    <!-- BEGIN SAMPLE FORM PORTLET-->
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-gift"></i> Create Driver
+        </div>
+        <div class="tools">
+          <a class="collapse" href="">
+          </a>
+
+        </div>
+      </div>
+      <div class="portlet-body form">
+        <%#= form_for(@user, :url => super_admin_merchants_path) do |f| %>
+        <%= form_for(@user, :url => super_admin_drivers_path, :method => "post", :html => {:id => "edit_user",:onsubmit => "return false;"}) do |f| %>
+
+            <div class="form-body">
+              <div class="row" id="errors"></div>
+              <% f.object.profile ||= Profile.new %>
+              <%= f.fields_for :profile do |p| %>
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <div class="input-group">
+                      <%= f.text_field :email, :autofocus => true, :class => "form-control", :placeholder => "Email", :required => "required" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label>Vehicle</label>
+                    <div class="input-group">
+                      <%= p.select :vehicle_type_id, VehicleType.all.map { |vehicle_type| [vehicle_type.name, vehicle_type.id] }, {:include_blank => 'Select Vehicle'}, :class => "form-control"%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label>First Name</label>
+
+                    <div class="input-group">
+                      <%= f.text_field :first_name, :autofocus => true, :class => "form-control", :placeholder => "Email", :required => "required" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label>Last Name</label>
+
+                    <div class="input-group">
+                      <%= f.text_field :last_name, :autofocus => true, :class => "form-control", :placeholder => "First Name", :required => "required" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                  <div class="row">
+                    <div class="col-md-6 ">
+                      <div class="form-group">
+                        <label>Phone Number</label>
+
+                        <div class="input-group">
+                          <%= p.text_field :phone_number, :class => "form-control", :placeholder => "Phone Number" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 ">
+                      <div class="form-group">
+                        <label>Date of Birth</label>
+
+                        <div class="input-group">
+                          <%= f.text_field :date_of_birth, :value => @user.date_of_birth.blank? ? nil : @user.date_of_birth.strftime("%Y-%m-%d"), :class => "form-control date-picker", :placeholder => "Date of Birth *" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Address</label>
+
+                        <div class="input-group">
+                          <%= p.text_field :address, :autofocus => true, :class => "form-control", :placeholder => "Address *" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>City</label>
+
+                        <div class="input-group">
+                          <%= p.text_field :city, :class => "form-control", :placeholder => "City *" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>State</label>
+
+                        <div class="input-group">
+                          <%= subregion_select(nil, "user[profile_attributes][state]", "US", options={:include_blank => "Select State"}, :class => "form-control",:id => "state_re") %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Zip</label>
+
+                        <div class="input-group">
+                          <%= p.text_field :zip_code, :class => "form-control", :placeholder => "Zip *" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+              <% end %>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Password</label>
+
+                    <div class="input-group">
+                      <%= f.password_field :password, :class => "form-control", :placeholder => "Password *" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Confirm</label>
+
+                    <div class="input-group">
+                      <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm Password *" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-actions">
+              <div class="z_100" id="save-btn">
+                <a class="btn blue" href="javascript:void(0)">Save</a>
+              </div>
+              <!--<button class="btn blue" type="submit">Update</button>-->
+              <%#= f.submit "Save", :class => "btn blue" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- END SAMPLE FORM PORTLET-->
+
+  </div>
+</div>
+
+<div class="clearfix">
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    $("#edit_user").validate({
+        rules: {
+            "user[email]": {
+                required: true,
+                email: true
+            },
+            "user[first_name]": {
+                required: true
+            },
+            "user[last_name]": {
+                required: true
+            },
+            "user[profile_attributes][phone_number]": {
+                required: true
+            },
+            "user[profile_attributes][address]": {
+                required: true
+            },
+            "user[date_of_birth]": {
+                required: true
+            },
+            "user[profile_attributes][city]": {
+                required: true
+            },
+            "[user[profile_attributes][state]]": {
+                required: true
+            },
+            "user[profile_attributes][zip_code]": {
+                required: true
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        $("#state_re").val('<%=@user.profile.state%>');
+        $("#user_profile_attributes_phone_number").mask("999-999-9999");
+//        $(".datepicker").datepicker()
+        $('.date-picker').datepicker({
+            rtl: Metronic.isRTL(),
+            autoclose: true,
+            format: 'mm-dd-yyyy'
+        });
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+
+        $("#save-btn").children("a").click(function () {
+            if (!$("#edit_user").valid()) {
+                return false;
+            } else {
+                $("#ajax_loader").show();
+                $(".shadow").show();
+                $("#edit_user").ajaxSubmit({
+                    beforeSubmit: function (a, f, o) {
+                        o.dataType = 'json';
+                    },
+                    success: function (data) {
+                        console.log(data.success);
+                        if (data.success == true) {
+//                        window.location.reload();
+                            window.location.href = data.url
+                            if (data.role == "customer") {
+                                window.location.href = "/customer/jobs";
+                            } else if (data.role == "driver") {
+                                window.location.href = "/driver/jobs";
+                            } else if (data.role == "super_admin") {
+                                window.location.href = "/super_admin/dashboard";
+                            }//
+                        } else {
+                            $("#errors").html(data.html)
+                        }
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    },
+                    error: function (data) {
+//                    console.log(data.responseJSON.errors());
+                        var arr = data.responseText.split(":")[1];
+//                    arr =  arr[1].split("}')[0];
+                        $("#sign_in_errors").html(arr.substring(1, arr.length - 2));
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide()
+                    }
+                });
+            }
+        });
+
+    });
+
+
+</script>

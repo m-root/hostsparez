@@ -1,0 +1,1001 @@
+@media only screen and (max-width:1000px) {
+    .z_w_rit_2 {
+        float: left;
+        width: 100%;
+    }
+    .wwi {width: 100%!important}
+    .main-slider, .slider-wrapper, .slider-wrapper .bx-viewport, .slider-wrapper .bx-wrapper, .slider-wrapper li {
+        height: 975px !important;
+    }
+}
+@media only screen and (max-width:959px) {
+    .features li {
+        margin: 0 2% 20px;
+        width: 29.33%
+    }
+    .port-item {
+        width: 47.9%
+    }
+    .filter-menu {
+        margin-bottom: 40px
+    }
+    .filter-menu li {
+        display: block;
+        margin: 0 auto 10px;
+        width: 48%
+    }
+    .aside, .blog-main, .project>.container>.one-third, .project>.container>.two-thirds {
+        margin: 0;
+        width: 100%
+    }
+    .blog-main {
+        margin-bottom: 70px
+    }
+    .feature-imgs {
+        text-align: center;
+        display: block;
+        position: relative
+    }
+    .feature-imgs li {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        float: none;
+        width: 50%
+    }
+    .feature-imgs .middle {
+        margin-top: 0
+    }
+    .clients li {
+        margin: 0 1% 20px;
+        width: 30%;
+        overflow: hidden
+    }
+    .welcome .caption-title {
+        font-size: 60px
+    }
+    .welcome .caption-subtitle {
+        font-size: 26px
+    }
+    /* my layout*/
+    .z_w_lft img {
+        width: 100%;
+        max-width: 60%;
+    }
+    .z_w_rit h1, .z_w_lftt h1, .app-store h1, .hw_wrk h2, .location_mail h2, .z_w_rit_2 h1 {
+        font-size: 28px;
+    }
+    .z_w_rit p, .z_w_lftt p, .z_testi_txt p, .z_driv_box p, .hw_wrk p, .z_mem p, .z_mem span, .about_content p, .mission p, .col_1 ul li a, .support p, #accordion p, .z_w_rit_2 p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .z_orngxbig_btn, .send_pkg .z_orngxbig_btn {
+        font-size: 18px;
+        padding: 8px 9px 9px;
+    }
+    .z_driv_box h2, .about_content h2, .location_mail h4, .support h2, .support h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .col_1 ul li {
+        margin-bottom: 0;
+    }
+    .about_box {
+        width: 200px;
+        height: 200px;
+        margin-left: 3.5%;
+    }
+    .contact_form label {
+        font-size: 15px;
+    }
+    .contact_form input[type='text'] {
+        font-size: 14px;
+    }
+    .mission h4 {
+        font-size: 14px;
+    }
+    .press_r_m {
+        width: 15%;
+        min-width: 93px;
+        font-size: 12px;
+        margin-top: 0;
+    }
+    .col_5 {
+        width: 80%;
+    }
+    .z_w_rit_2 h1 {
+        font-size: 30px;
+    }
+}
+@media only screen and (max-width:767px) {
+    .features li {
+        margin: 0 1% 20px;
+        width: 48%
+    }
+    .port-item {
+        padding: 0;
+        width: 100%
+    }
+    .clients li {
+        margin: 0 1% 20px;
+        width: 48%
+    }
+    .welcome .caption-title {
+        font-size: 40px
+    }
+    .welcome .caption-subtitle {
+        font-size: 20px
+    }
+    .tweet_text {
+        width: 100%
+    }
+    /* my layout*/
+    .z_w_rit h1, .z_w_lftt h1, .app-store h1, .hw_wrk h2, .location_mail h2, .z_w_rit_2 h1 {
+        font-size: 24px;
+    }
+    .z_w_rit p, .z_w_lftt p, .z_testi_txt p, .z_driv_box p, .hw_wrk p, .z_mem p, .z_mem span, .about_content p, .mission p, .support p, #accordion p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .z_orngxbig_btn {
+        font-size: 14px;
+        padding: 8px 9px 9px;
+    }
+    .z_driv_box h2, .location_mail h4, .support h2, .support h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    .mission p {
+        padding: 0;
+    }
+    .mission h2 {
+        font-size: 16px;
+        padding: 7px 0 7px 10px;
+        margin-bottom: 5px;
+    }
+    .about_box {
+        width: 150px;
+        height: 150px;
+        margin-left: 0;
+        margin-right: 13%;
+        padding-top: 62px;
+        font-size: 18px;
+    }
+    .about_box:last-child {
+        margin-right: 0;
+    }
+    #accordion h3, .contact_btn h2 {
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width:479px) {
+    .feature-imgs li, .filter-menu li {
+        width: 100%
+    }
+    #accordion h3, .contact_btn h2 {
+        font-size: 14px;
+        padding: 8px 0 7px 8px;
+    }
+}
+@media only screen and (max-width:240px) {
+    .header .logo {
+        display: none
+    }
+}
+@media only screen and (max-width:959px), screen and (max-height:600px) {
+    .main_menu {
+        display: none
+    }
+    .header .container {
+        width: 100%
+    }
+    .selectnav {
+        display: none;
+        float: right
+    }
+    .smal-nav {
+        display: block;
+    }
+    .header {
+        background: #555;
+        padding: 20px;
+        height: 70px
+    }
+    .page {
+        padding-top: 120px
+    }
+}
+
+/*@media all and (min-width: 2000px) {*/
+/*.z-bg {*/
+/*background-size: cover;*/
+/*}*/
+
+/*.z-bg2 {*/
+/*background-size: cover;*/
+/*}*/
+
+/*.z-bg3 {*/
+/*background-size: cover;*/
+/*}*/
+
+/*.z-bg4 {*/
+/*background-size: cover;*/
+/*}*/
+/*}*/
+
+@media only screen and (max-width: 1024px) {
+    .z-bg {
+        background-size: auto;
+        background-position: 80% 80px !important;
+    }
+    .z-bg2 {
+        background-size: auto;
+        background-position: 80% 80px !important;
+    }
+    .z-bg3 {
+        background-size: auto;
+        background-position: 80% 80px !important;
+    }
+    .z-bg4 {
+        background-size: auto;
+        background-position: 80% 80px !important;
+    }
+    .z_card_lft, .z_card_rit {
+        width: 100%;
+    }
+    .z_card_lft {
+        padding: 15px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .z_w_lft img {
+        max-width: 60%;
+    }
+    .z_sml_envlp:last-child { padding: 12px 4% 15px 4%;}
+    .spoz {
+        position: absolute;
+        top: 175px;
+        width: 100%;
+        z-index: 999;
+        left: 0;
+        margin-left: 0;
+    }
+    .z_input_hold {
+        width: 50%;
+        height: auto;
+        margin: 25px auto 10px auto;
+    }
+    .z_input_hold2 {
+        width: 50%;
+        height: auto;
+        margin: 25px auto 10px auto;
+    }
+    .z_field_block, .z_field_block1, .z_field_loctn, .z_field_loctn {
+        margin: 0 0 10px 0;
+    }
+    .z_field_block2 {
+        margin: 0 0 10px 0;
+    }
+    .z_field_time {
+        margin: 0 0 10px 0;
+    }
+    .z_orngbig_btn {
+        width: 100%;
+    }
+    .z_field_img {
+        background: url(/assets/calendar.png) no-repeat 97% center;
+    }
+    .z_w_lft {
+        float: left;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .z_w_rit {
+        float: left;
+        text-align: center;
+    }
+    .z_clients img {
+        width: 98%;
+        margin: 0 auto;
+    }
+    .fill_1-3, .fill_1-1, .fill_1-0, .fill_1-2, .z_field_time, .z_field_block, .z_field_loctn, .z_field_block1, .z_w_lft, .z_w_rit, .z_hed2, .z_mem_text, .z_field_block2, .z_nrev {
+        width: 100%;
+    }
+    .z_v1, .z_v2 {
+        float: left;
+        width:100%;
+    }
+    .z_hed2 {
+        padding: 13px 13px 14px;
+        line-height: 18px;
+        -webkit-border-radius: 5px 5px 0 0;
+        border-radius: 5px 5px 0 0;
+        -moz-border-radius: 5px 5px 0 0;
+    }
+    .z_member {
+        width: 96%;
+    }
+    .pickup {
+        width: 225px;
+        margin: 15px 0 0 7%;
+        float: left;
+    }
+    .z_mem_pricing {
+        border: none;
+        margin-bottom: 15px;
+        float: left;
+        width: 52%;
+    }
+    .z_mem_pricing h2 {
+        float: right;
+    }
+    .z_mem_text {
+        text-align: center;
+    }
+    .box_hold {
+        width: 95%;
+        margin: 0 auto 0 auto;
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+    .z_fbbig_btn {
+        margin-top: 10px;
+        width: 100%;
+    }
+    .z_dp_img2 {
+        margin: 0 auto 30px auto;
+        float: none;
+    }
+    .z_s_adres {
+        width: 75%;
+        margin-right: 2%;
+    }
+    .z_apt {
+        width: 23%;
+    }
+    .z_aptt {
+        width: 23%;
+    }
+    .z_s_city {
+        width: 46%;
+        margin-right: 2%;
+    }
+    .z_state {
+        width: 27%;
+        margin-right: 2%;
+    }
+    .z_bd_in {
+        width: 84.5%;
+    }
+    .zd100 {
+        width: 100%;
+    }
+    .contact_method {
+        margin-bottom: 15px;
+    }
+    .z_sml_envlp {
+        padding: 12px 4% 15px 4%;
+        width:50%;
+    }
+}
+@media only screen and (max-width: 920px) {
+    .z_nme_img {
+        float: left;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .z_sml_envlp { width: 100%; border: none;}
+    .z_dp_img {
+        display: inline-block;
+    }
+    .z_testi_txt {
+        width: 100%;
+    }
+    .z_testi_txt img {
+        display: inline;
+        float: none;
+    }
+    .z_testi_txt p {
+        display: inline;
+        float: none;
+    }
+    .z_v1, .z_v2 {
+        float: left;
+        width: 100%;
+    }
+    .z_lrg_envlp, .z_last_envlp, .box_lft, .feldz, .z_trck_list h1, .soclz_hold, .z_driv_in {
+        width: 100%;
+    }
+    .z_last_envlp {
+        background: #fff;
+    }
+    .bx_brd {
+        border: none;
+    }
+    .box_rit {
+        padding-left: 0;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .z_trck_list {
+        padding: 10px 15px 10px 15px;
+    }
+    .soclz_hold {
+        margin: 0 0 18px 0;
+    }
+    .z_card_rit {
+        margin-top: 15px;
+    }
+    .orgn_det, .destnatn_det, .orgn_det_h, .destnatn_det_h {
+        width: 86%;
+    }
+    .z_bd_in {
+        width: 81%;
+    }
+    .z_d_verified {
+        float: none;
+        text-align: center;
+        margin: 20px auto 0 auto;
+        display: inline-block;
+        width: 100%;
+    }
+    .resp-tabs-list li {
+        float: none !important;
+    }
+    #z_testimonial_3 .bx-viewport {
+        height: 273px !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .z_input_hold {
+        width: 80%;
+    }
+    .z_input_hold2 {
+        width: 80%;
+    }
+    .fot1 {
+        width: 50%;
+        text-align: left;
+        margin-bottom: 25px;
+    }
+    .fot4 {
+        width: 50%;
+        text-align: left;
+        margin-bottom: 25px;
+    }
+    .z_det_sliding {
+        width: 100%;
+    }
+    .z_det_sliding img {
+        width: 90%;
+    }
+    .z_det_sliding p {
+        font-size: 14px;
+    }
+    .z_mem_pricing {
+        width: 100%;
+    }
+    .pickup {
+        float: none;
+        margin: 0 auto;
+        width: 80%;
+    }
+    .z_tab {
+        font-size: 18px !important;
+        padding: 7px 30px;
+    }
+    .z_scard_info {
+        width: 95%;
+    }
+    .z_msg_rit, .z_msg_mid, .z_msg_lft {
+        width: 100%;
+        text-align: left;
+    }
+    .z_shpmnt_det p {
+        width: 40%;
+    }
+    .z_orgn, .z_destnatn, .z_orgn_h, .z_destnatn_h, .z_bd_in {
+        width: 100%;
+    }
+    .z_orgn_time h3, .z_destnatn_time h3, .z_orgn_time_h h3, .z_destnatn_time_h h3 {
+        width: 99%;
+    }
+    .orgn_det, .destnatn_det, .orgn_det_h, .destnatn_det_h, .z_n_list p {
+        width: 100%;
+        border: none;
+        text-align: center;
+    }
+    .am_pm_r, .am_pm, .am_pm_h {
+        top: 20px;
+        right: 20px;
+    }
+    .am_pm_r p, .am_pm p, .am_pm_h p {
+        font-size: 12px;
+    }
+    .z_b_drivr_img {
+        margin: 0 auto 20px auto;
+        float: none;
+    }
+    .z_fot_lft {
+        float: left;
+        width: 100%;
+    }
+    #z_footer {
+        padding: 30px 0;
+        text-align: center;
+    }
+    ul.fotLinks li {
+        display: inline-block;
+        float: none;
+    }
+    .z_fot_copyright {
+        text-align: center;
+    }
+    .z_fot_copyright p {
+        float: none;
+        display: inline-block;
+    }
+    .z_fot_copyright ul {
+        float: none;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+    .z_fot_rit {
+        width: 100%;
+        text-align: center;
+    }
+    .z_fot_rit a {
+        margin: 15px 15px 0;
+    }
+    .fot-link {
+        line-height: 22px;
+        font-size: 12px;
+        text-align: left;
+    }
+    .resp-tabs-list li, .resp-tabs-containe {
+        font-size: 18px;
+    }
+    .resp-tabs-container {
+        padding: 22px 0 0 22px;
+    }
+    .resp-tabs-container p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .resp-tabs-container h3 {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 660px) {
+    .main-slider, .slider-wrapper, .slider-wrapper .bx-viewport, .slider-wrapper .bx-wrapper, .slider-wrapper li {
+        height: 1140px !important;
+    }
+    .z_header {
+        height: auto
+    }
+    .spoz1 {top:250px}
+    .z_input_hold_2 { max-width: 80%; width: 80%;}
+    .spoz {
+        top: 255px;
+    }
+    .logo {
+        float: none;
+        margin: 18px auto 0 auto;
+    }
+    .z_tp_rit {
+        float: none;
+    }
+    .z_buttons {
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+        display: inline-block;
+    }
+    .smal-nav {
+        float: none;
+        margin: 0 auto 10px auto;
+        width: 185px;
+        background: url("/assets/down_aro.png") no-repeat 159px 12px #F2F2F2;
+    }
+    .smal-nav li {
+        width: 100% !important;
+    }
+    .a_sep {
+        background: none;
+        margin: 0 5px 0;
+        display: none;
+    }
+    .a-simple {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    .small-orange-btn {
+        width: 100%;
+    }
+    .small-green-btn {
+        width: 100%;
+    }
+    .z-bg {
+        background-position: center top !important;
+    }
+    .z-bg2 {
+        background-position: center top !important;
+    }
+    .z-bg3 {
+        background-position: 80% 192px !important;
+    }
+    .z-bg4 {
+        background-position: 80% 192px !important;
+    }
+    /*.main-slider, .slider-wrapper, .slider-wrapper .bx-viewport, .slider-wrapper .bx-wrapper, .slider-wrapper li {*/
+        /*height: 757px !important;*/
+    /*}*/
+    .z_loged {
+        margin: 0 auto;
+        display: inline-block;
+        float: none;
+        width: 100%;
+    }
+    .a_sepr {
+        display: none;
+    }
+    .z_butons {
+        display: inline-block;
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+        width: 186px;
+    }
+    .z_dp_nme {
+        float: none;
+        display: inline-block;
+    }
+    .z_dp {
+        float: none;
+        display: inline-block;
+        margin: 0;
+    }
+    .z_content {
+        padding-top: 250px;
+    }
+    .z_content2 {
+        padding-top: 215px;
+    }
+    .z_content3 {
+        padding-top: 240px;
+        padding-bottom: 25px;
+    }
+    .z_tab {
+        font-size: 15px !important;
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-right: 5px;
+    }
+    .z_gray_btn {
+        margin: 15px 0;
+        width: 100%;
+    }
+    .z_contnt {
+        padding-top: 245px;
+    }
+    .z_check {
+        margin: 16px 2% 0 0;
+        width: 3%;
+    }
+    .box_hold_sep {
+        width: 95%;
+        margin: 0 auto 0 auto;
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+    .about_sec {
+        margin-top: 245px;
+    }
+    .col_1, .col_2, .col_3, .col_4, .col_5 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .all_tags {
+        width: 100%;
+    }
+    .press_r_m {
+        width: 100%;
+        margin-top: 19px;
+    }
+    .contact_form {
+        margin-bottom: 0px;
+    }
+    .col_1 ul li {
+        width: auto;
+        margin-right: 15px;
+    }
+    .mission {
+        width: 46%;
+    }
+    .mission:last-child {
+        float: right;
+    }
+    .about_crcl {
+        padding: 30px 0;
+    }
+    .about_box {
+        display: inline-block;
+        width: 100%;
+        height: 150px;
+        max-width: 150px;
+        margin-right: 6%;
+    }
+    .about_box:last-child {
+        margin: 35px auto;
+    }
+    .send_mail input[type='text'] {
+        font-size: 14px;
+        padding: 12px 13px;
+        box-sizing: border-box;
+    }
+    .send_mail input[type='submit'] {
+        font-size: 14px;
+        padding: 11px 0;
+    }
+    .ui-state-default .ui-icon {
+        background-size: 12px;
+    }
+    .ui-state-active .ui-icon {
+        background-size: 12px;
+    }
+    .about_box {
+        display: block;
+        width: 100%;
+        height: 150px;
+        max-width: 150px;
+        margin: 35px auto;
+    }
+}
+@media only screen and (max-width: 568px) {
+    .z-get-started h1, .z_pckg_det h1 {
+        font-size: 35px;
+    }
+    .z_w_lftt {
+        width: 100%;
+    }
+    .z_testi_txt p {
+        font-size: 14px;
+    }
+    .fieldz input, .feldz input {
+        font-size: 14px;
+        padding: 12px;
+    }
+    .box_lft h1, .box_rit h1 {
+        font-size: 16px;
+    }
+    .b_span {
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .box_butns {
+        margin-top: 10px;
+    }
+    .z_tab {
+        margin-right: 0px;
+        width: 110px;
+    }
+    .z_crd_input_exp, .z_crd_input_cvc, .z_s_adres, .z_apt, .z_aptt, .z_s_city, .z_state, .orgn_det, .destnatn_det, .orgn_det_h, .destnatn_det_h {
+        width: 100%;
+    }
+    .z_crd_input_exp, .z_crd_input_cvc, .z_s_adres, .z_aptt, .z_state {
+        margin: 0 0 20px 0;
+    }
+    .z_s_city, .z_crd_input_cvc {
+        margin: 30px 0 20px 0;
+    }
+    .z_aptt {
+        margin: 0px 0 35px 0;
+    }
+    .z_aptt {
+        margin: 30px 0 35px 0;
+    }
+    .z_shiping_det h1 {
+        font-size: 19px;
+    }
+    .z_crd_input_cvc input {
+        background: url(/assets/info.png) no-repeat 96% 15px
+    }
+    .box_hold_new {
+        width: 96%;
+        left: 2%;
+        margin: 0;
+        top: 15%;
+    }
+    .box_hold_new_1 {
+        width: 96%;
+        left: 2%;
+        margin: 0;
+        top: 15%;
+    }
+    .z_s_holder, .z_shipments {
+        padding: 15px;
+    }
+    .z_shpmnt_det p {
+        width: 90%;
+    }
+    .z_feldz_half {
+        width: 100%;
+    }
+    .z_feldz_half_sel {
+        width: 100%
+    }
+    .z_driv_box {
+        float: left;
+        width: 100% !important;
+        margin-right: 0px !important;
+        text-align: center;
+    }
+    .zone_col {
+        float: left;
+        width: 50%;
+        margin-right: 0;
+    }
+    .press_post {
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+    .posted, .all_tags ul li a {
+        font-size: 12px;
+    }
+    .resp-tabs-list li {
+        font-size: 16px;
+        padding: 5px 14px 18px 17px;
+        margin-right: 0;
+        box-sizing: border-box !important;
+    }
+    #z_testimonial_3 .bx-viewport {
+        height: 351px !important;
+    }
+    .resp-tabs-container h3 {
+        font-size: 16px;
+    }
+    .bot_footr {
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .z_field_in, .z_field_img {
+        font-size: 13px;
+    }
+    .z_sml_envlp {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #bfbfbf;
+    }
+    .z_sml_envlp h2 { width: 100%;}
+    .card_txt_det span, .card_no p, .z_sch_delv p, .z_sch_delv a {
+        font-size: 14px;
+    }
+    .z_w_lft img {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .fot1, .fot4 {
+        width: 100%;
+        text-align: center;
+    }
+    .z_v1, .z_v2, .z_msg_srch, .z_msg_srch input {
+        float: left;
+        width: 100%;
+    }
+    .pickup {
+        width: 80%;
+    }
+    .z_track_det {
+        padding: 15px;
+    }
+    .z_suces h2 {
+        font-size: 120px;
+    }
+    .z_tab {
+        width: 85px;
+        font-size: 13px !important;
+    }
+    .z_route_det {
+        padding: 20px 15px;
+    }
+    .z_route2_det {
+        padding: 20px 15px;
+    }
+    .z_nam_rev {
+        width: 100%;
+    }
+    .zrev_star {
+        width: 100%;
+        text-align: center;
+        margin: 5px auto 0 auto;
+    }
+    .zrev {
+        width: 100%;
+        text-align: center;
+        margin: 10px auto 0 auto;
+    }
+    .z_nam_rev a {
+        width: 97%;
+        text-align: right;
+    }
+    .z_card_lft {
+        padding: 10px 0;
+    }
+    .card_no p {
+        margin: 5px 0 0 0;
+    }
+    .z_msg_srch label, .z_msg_srch input {
+        float: left;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .orgn_det img, .destnatn_det img, .orgn_det_h img, .destnatn_det_h img {
+        float: none;
+    }
+    .z_drivr_info {
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+    ul.fotLinks li a {
+        line-height: 30px;
+    }
+    .mission {
+        width: 100%;
+        margin-bottom: 0;
+    }
+}
+@media only screen and (max-width:400px) {
+    .one-fourth {
+        width: 100% !important;
+    }
+    .one-fourth:nth-child(1), .one-fourth:nth-child(2), .one-fourth:nth-child(3) {
+        padding: 0;
+    }
+    .evlp_txt_size { float:left; width:100%; margin: 20px 0 0 0;}
+    .z_sml_envlp img { float: none;}
+    .socl {
+        float: left;
+    }
+    .socl ul li {
+        float: left;
+        margin-right: 10px;
+    }
+    .resp-tabs-container h3 {
+        font-size: 14px;
+    }
+    .resp-tabs-container p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .bot_footr {
+        font-size: 8px;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .z_mem p {
+        font-size: 13px;
+    }
+    .z_mem span {
+        font-size: 13px;
+    }
+    .z_mem_pricing p {
+        background: none;
+    }
+    .z_scard_info {
+        width: 93%;
+    }
+    .z_check {
+        margin: 16px 4% 0 0;
+        width: 3%;
+    }
+    .z_year {
+        width: 70px;
+    }
+}

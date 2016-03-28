@@ -1,0 +1,23 @@
+<% [:alert, :notice].select { |type| !flash[type].blank? }.each do |type| %>
+    <div class="flash_notices" id="flash_notices">
+      <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <%= image_tag ("Tick-Icon.png") %>
+            <p><%= flash[type] %></p>
+          </div>
+      <% elsif  flash[:alert] %>
+          <div class="alert alert-error">
+            <%= image_tag ("crossss.png") %>
+            <p><%= flash[type] %></p>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#flash_notices").fadeOut(5000);
+    })
+</script>
+
+

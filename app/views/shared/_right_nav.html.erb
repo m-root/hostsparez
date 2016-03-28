@@ -1,0 +1,48 @@
+<div class="tbl_rit">
+  <div class="display_image">
+    <div class="dp_img"><%= current_user.profile.blank? ? "" : current_user.profile.asset.blank? ? "" : image_tag(current_user.profile.asset.avatar.url(:thumb)) %></div>
+    <div class="dp_txt_det">
+      <p><%= current_user.full_name if current_user %></p>
+      <!--<a href="#">Edit Password</a>-->
+
+      <a class="my-fancy-box" href="/change_password">Edit Password</a>
+
+
+      <a class="my-fancy-box" href="/customer/customers/profile">Edit Profile Photo</a>
+
+      <!--<a href="#">Edit Profile Photo</a>-->
+    </div>
+  </div>
+  <%= link_to(new_customer_location_path) do %>
+      <div class="acordian_list active">
+        QUICK LINKS
+        <div class="nav_right_icon">
+          <i class="icon-angle-right"></i>
+        </div>
+      </div>
+  <% end %>
+  <%= link_to(new_customer_job_path) do %>
+      <div class="acordian_list">
+        SEND A PACKAGE
+        <div class="nav_right_icon">
+          <i class="icon-angle-right"></i>
+        </div>
+      </div>
+  <% end %>
+  <%= link_to(customer_jobs_path) do %>
+      <div class="acordian_list">
+        TRACK A PACKAGE
+        <div class="nav_right_icon">
+          <i class="icon-angle-right"></i>
+        </div>
+      </div>
+  <% end %>
+  <%= link_to(customer_jobs_path) do %>
+      <div class="acordian_list">
+        FILE A CLAIM
+        <div class="nav_right_icon">
+          <i class="icon-angle-right"></i>
+        </div>
+      </div>
+  <% end %>
+</div>

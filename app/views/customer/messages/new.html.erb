@@ -1,0 +1,105 @@
+<section class="z_content3 brd_bottom">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>Send Message</h2></div>
+    <!--z_s_hed-->
+    <%= form_for(@message, :url => customer_messages_path, :method => "post") do |f| %>
+        <%= f.hidden_field :job_id, :value => @job.id %>
+        <%= f.hidden_field :status, :value => "close" %>
+        <%= f.hidden_field :subject, :value => "#{@job.job_code}" %>
+        <%= f.hidden_field :sender_id, :value => current_user.id %>
+        <%= f.hidden_field :sender_type, :value => "User" %>
+        <%= f.hidden_field :receiver_id, :value => @job.driver.id %>
+        <%= f.hidden_field :receiver_type, :value => "User" %>
+        <div id="errors"></div>
+        <div class="z_statement_hold">
+          <div class="z_s_holder">
+            <div class="z_loc_p_hed">
+              <h3>Write your Message</h3>
+            </div>
+            <div class="z_rate_drbvr z_100">
+              <div class="z_h_nm z_100">
+                <div class="z_ns_list z_100"><p>To: <span> <%= @job.driver.full_name %></span></p></div>
+                <!--z_ns_list-->
+                <div class="z_ns_list z_100"><p>Subject: <span> Package #<%= @job.job_code %></span></p></div>
+                <!--z_ns_list-->
+              </div>
+              <!--z_h_nm-->
+              <div class="z_r_deet">
+                <div style="position: relative">
+                  <label></label>
+                  <%= f.text_area :description, :placeholder => "Type your message here..." %>
+                </div>
+              </div>
+              <!--z_r_deet-->
+              <div class="z_rate_ur_drvr z_100" id="save-btn">
+                <a href="javascript:void(0);" class="z_orngsmal_btn f-r">Send Message</a>
+              </div>
+              <!--z_rate_ur_drvr-->
+            </div>
+            <!--z_rate_drbvr-->
+          </div>
+          <!--z_s_holder-->
+        </div>
+    <% end %>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+</section>
+
+<script type="text/javascript">
+    $("#new_message").validate({
+        rules: {
+            "message[description]": {
+                required: true
+            }
+        },
+        messages: {
+            "message[description]": {
+                required: "Please provide message"
+            }
+        }
+    });
+    $(document).ready(function () {
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+        $("#save-btn").children("a").click(function () {
+            if (!$("#new_message").valid()) {
+                return false;
+            } else {
+                $("#ajax_loader").show();
+                $(".shadow").show();
+                $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                    if (response.success) {
+                        $.ajax({
+                            url: '/customer/messages/message_sent',
+                            type: 'get',
+                            dataType: 'html',
+                            processData: false,
+                            success: function (data) {
+                                $("#pop_up_div").html(data);
+                                $("#ajax_loader").hide();
+                                $(".shadow").hide();
+                            }
+                        });
+                    } else {
+                        $("#errors").html(response.html);
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    }
+
+                }), "json");
+                return false;
+            }
+
+        });
+    });
+
+</script>

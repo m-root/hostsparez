@@ -1,0 +1,178 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      File Claims
+      <small>Edit , View and More</small>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/file_cliams">All File Claims</a>
+        <!--<i class="fa fa-angle-right"></i>-->
+      </li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div id="driver_list">
+  <%= render :partial => "/super_admin/file_claims/list" %>
+</div>
+
+
+<!-- END PAGE CONTENT-->
+</div>
+
+
+
+<script>
+
+    function claim_file(id) {
+
+        apprise("Are you sure you want to claim the file", {'confirm': true}, function (r) {
+            if (r) {
+                $('.shadow').show();
+                $('.ajax_loader').show();
+                $.ajax({
+                    url: '/super_admin/file_claims/claim_file?id=' + id,
+                    type: 'get',
+                    dataType: 'JSON',
+                    processData: false,
+                    success: function (data) {
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                        if(data.success == true) {
+                            hudMsg("success", "File successfully claimed");
+                            document.location.href = data.url;
+                        } else {
+                            hudMsg("error", "File not claimed");
+                        }
+                    }
+                });
+            }
+        });
+    }
+    jQuery(document).ready(function () {
+        TableManaged.init();
+        initialize_table();
+    });
+
+    function initialize_table() {
+        var active_table = $('#active_jobs');
+
+        // begin first table
+        active_table.dataTable({
+            "columns": [
+                {
+                    "orderable": false
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": false
+                }
+
+            ],
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 5,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "lengthMenu": "_MENU_ records",
+                "paginate": {
+                    "previous": "Prev",
+                    "next": "Next",
+                    "last": "Last",
+                    "first": "First"
+                }
+            },
+            "columnDefs": [
+                {  // set default column settings
+                    'orderable': false,
+                    'targets': [0]
+                },
+                {
+                    "searchable": false,
+                    "targets": [0]
+                }
+            ],
+            "order": [
+                [1, "asc"]
+            ] // set first column as a default sort by asc
+        });
+
+        var driver_request = $('#jobs_history');
+
+        // begin first table
+        driver_request.dataTable({
+            "columns": [
+                {
+                    "orderable": false
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+
+            ],
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 5,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "lengthMenu": "_MENU_ records",
+                "paginate": {
+                    "previous": "Prev",
+                    "next": "Next",
+                    "last": "Last",
+                    "first": "First"
+                }
+            },
+            "columnDefs": [
+                {  // set default column settings
+                    'orderable': false,
+                    'targets': [0]
+                },
+                {
+                    "searchable": false,
+                    "targets": [0]
+                }
+            ],
+            "order": [
+                [1, "asc"]
+            ] // set first column as a default sort by asc
+        });
+    }
+
+
+</script>

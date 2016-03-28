@@ -1,0 +1,61 @@
+
+
+<footer id="z_footer">
+  <div class="container">
+    <div class="one-fourth">
+      <a class="fot-link" href="/customer/jobs/new">Send A Package</a>
+      <a class="fot-link" href="/track-package">Track</a>
+      <a class="fot-link" href="/confirmed-driver">Become A Driver</a>
+    </div><!--one-fourth-->
+    <div class="one-fourth">
+      <a class="fot-link" href="/about-us">About Us</a>
+      <!--      <a class="fot-link" href="/locations">Locations</a>-->
+      <a class="fot-link" href="/contact-us">Contact Us</a>
+    </div><!--one-fourth-->
+    <div class="one-fourth">
+      <a class="fot-link" href="/support">Support</a>
+      <a class="fot-link" href="/blogs">Blog</a>
+      <a class="fot-link" href="/">Press</a>
+    </div><!--one-fourth-->
+    <div class="socl">
+      <ul>
+        <li><a href=" https://www.facebook.com/goziply" target="_blank"><img src="/assets/facebook.png"></a></li>
+
+        <li><a href="https://twitter.com/goziply" target="_blank"><img src="/assets/twitter.png"></a></li>
+
+        <li><a href="http://instagram.com/goziply" target="_blank"><img src="/assets/insta.png"></a></li>
+      </ul>
+    </div>
+  </div><!--container-->
+</footer><!--z_footer-->
+
+<div class="bot_footr">
+  <div class="footr_content">
+    <p>© Copyright 2015</p>
+    <ul>
+      <li><a href="#">– Ziply Network Inc,</a></li>
+      <li>– <a href="/privacy">Privacy</a></li>
+      <li>– <a href="/terms">Terms & Conditions</a></li>
+    </ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(".become_d").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/home/become_driver',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                $("html, body").animate({ scrollTop: 100 }, "slow");
+            }
+        });
+    });
+</script>
+

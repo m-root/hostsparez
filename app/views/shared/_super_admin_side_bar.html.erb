@@ -1,0 +1,116 @@
+<div class="page-sidebar-wrapper">
+  <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+  <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+  <div class="page-sidebar navbar-collapse collapse">
+    <!-- BEGIN SIDEBAR MENU -->
+    <ul data-slide-speed="200" data-auto-scroll="true" class="page-sidebar-menu">
+      <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+      <li class="sidebar-toggler-wrapper">
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="sidebar-toggler">
+        </div>
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+      </li>
+      <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+
+      <li class="start <%= params[:controller].include?('super_admin/dashboard') ? 'active' : '' %>">
+        <a href="/super_admin/dashboard">
+          <i class="icon-home"></i>
+          <span class="title">Dashboard</span>
+          <span class="selected"></span>
+        </a>
+      </li>
+      <!--<li class="<%#= params[:controller].include?('super_admin/customers') ? 'active' : '' %>">-->
+      <!--<a href="javascript:;">-->
+      <!--<i class="icon-user"></i>-->
+      <!--<span class="title">Customers</span>-->
+      <!--<span class="arrow "></span>-->
+      <!--</a>-->
+      <!--<ul class="sub-menu">-->
+      <!--<li>-->
+      <!--<a href="/super_admin/customers">-->
+      <!--<i class="icon-home"></i>-->
+      <!--All Customers</a>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<a href="/super_admin/customers/new">-->
+      <!--<i class="icon-basket"></i>-->
+      <!--Create Customers</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+      <!--</li>-->
+      <li class="<%= params[:controller].include?('super_admin/drivers') ? 'active' : '' %>">
+        <a href="javascript:;">
+          <i class="icon-user"></i>
+          <span class="title">Drivers</span>
+          <span class="arrow "></span>
+        </a>
+        <ul class="sub-menu">
+          <li>
+            <a href="/super_admin/drivers">
+              <i class="icon-home"></i>
+              All Drivers</a>
+          </li>
+          <li>
+            <a href="/super_admin/drivers/new">
+              <i class="icon-basket"></i>
+              Create Driver</a>
+          </li>
+        </ul>
+      </li>
+      <!--<li class="<%#= params[:controller].include?('super_admin/payment_methods') ? 'active' : '' %>">-->
+      <!--<a href="javascript:;">-->
+      <!--<i class="icon-rocket"></i>-->
+      <!--<span class="title">Payment Methods</span>-->
+      <!--<span class="arrow "></span>-->
+      <!--</a>-->
+      <!--<ul class="sub-menu">-->
+      <!--<li>-->
+      <!--<a href="/super_admin/payment_methods">-->
+      <!--<i class="icon-home"></i>-->
+      <!--All Payment Methods</a>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<a href="/super_admin/payment_methods/new">-->
+      <!--<i class="icon-basket"></i>-->
+      <!--Create Payment Method</a>-->
+      <!--</li>-->
+      <!--</ul>-->
+      <!--</li>-->
+      <!--<li class="<%#= params[:controller].include?('super_admin/jobs') ? 'active' : '' %>">-->
+      <!--<a href="/super_admin/jobs">-->
+      <!--<i class="icon-rocket"></i>-->
+      <!--<span class="title">Shipments</span>-->
+      <!--<span class="arrow "></span>-->
+      <!--</a>-->
+      <!--</li>-->
+
+      <!--<li class="<%#= params[:controller].include?('super_admin/file_claims') ? 'active' : '' %>">-->
+      <!--<a href="/super_admin/file_claims">-->
+      <!--<i class="icon-rocket"></i>-->
+      <!--<span class="title">File Claims</span>-->
+      <!--<span class="arrow "></span>-->
+      <!--</a>-->
+      <!--</li>-->
+
+      <!--<li class="<%#= params[:controller].include?('super_admin/blogs') ? 'active' : '' %>">-->
+      <!--<a href="/super_admin/blogs">-->
+      <!--<i class="icon-rocket"></i>-->
+      <!--<span class="title">Blogs</span>-->
+      <!--<span class="arrow "></span>-->
+      <!--</a>-->
+      <!--</li>-->
+
+      <!--<li class="<%#= params[:controller].include?('super_admin/coupon_codes') ? 'active' : '' %>">-->
+      <!--<a href="/super_admin/coupon_codes">-->
+      <!--<i class="icon-rocket"></i>-->
+      <!--<span class="title">Coupon Codes</span>-->
+      <!--<span class="arrow "></span>-->
+      <!--</a>-->
+      <!--</li>-->
+
+
+    </ul>
+    <!-- END SIDEBAR MENU -->
+  </div>
+</div>

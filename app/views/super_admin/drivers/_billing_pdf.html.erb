@@ -1,0 +1,22 @@
+<table class="table table-striped table-bordered table-hover" id="customer_table">
+  <thead>
+  <tr>
+    <th>
+      File Name
+    </th>
+  </tr>
+  </thead>
+  <% unless @user.blank? %>
+      <tbody>
+      <% unless @user.billings.blank? %>
+          <% @user.billings.each_with_index do |billing, index| %>
+              <tr class="odd gradeX">
+                <td>
+                  <%= link_to billing.document_file_name, billing.document.url %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+      <% end %>
+  <% end %>
+</table>

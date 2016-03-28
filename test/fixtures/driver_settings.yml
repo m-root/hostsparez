@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_job_push: false
+  is_rating_push: false
+  is_message_push: false
+
+two:
+  is_job_push: false
+  is_rating_push: false
+  is_message_push: false

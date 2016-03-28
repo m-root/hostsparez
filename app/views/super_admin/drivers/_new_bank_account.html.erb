@@ -1,0 +1,150 @@
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i> Create New Bank Account
+    </div>
+    <div class="tools">
+      <a class="collapse" href="javascript:;">
+      </a>
+      <a class="config" data-toggle="modal" href="#portlet-config">
+      </a>
+      <a class="reload" href="javascript:;">
+      </a>
+      <a class="remove" href="javascript:;">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <%= form_for(:bank_account, :url => "/super_admin/drivers/create_bank_account", :method => "post") do |f| %>
+        <%= hidden_field_tag :driver_id, @user.id %>
+        <div id="errors"></div>
+        <div class="form-body">
+          <div class="row">
+            <div class="col-md-3 ">
+              <div class="form-group">
+                <label>Account Number</label>
+                <%= text_field_tag :account_number, nil, :class => "form-control", :placeholder => "Account Number *" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Routing Number</label>
+                <%= text_field_tag :routing_number, nil, :class => "form-control", :placeholder => "Routing Number *" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Phone</label>
+                <%= text_field_tag :phone, nil, :class => "form-control", :placeholder => "Phone *" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!--/span-->
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <%= text_field_tag :date_of_birth, nil, :class => "form-control form-control-inline input-medium date-picker", :placeholder => "Date of Birth *" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Street Address</label>
+                <%= text_field_tag :street_address, nil, :class => "form-control", :placeholder => "Street Address*" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>House #</label>
+                <%= text_field_tag :house_no, nil, :class => "form-control", :placeholder => "Apt#*" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!--/span-->
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>City</label>
+                <%= text_field_tag :city, nil, :class => "form-control", :placeholder => "City*" %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>State</label>
+                <%= subregion_select(nil, "state", "US", options={:include_blank => "Select State"}, :class => "form-control") %>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Zip #</label>
+                <%= text_field_tag :zip_code, nil, :class => "form-control", :placeholder => "Ex. 90001*" %>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="form-actions right">
+
+          <div class="z_100" id="save-btn">
+            <a class="btn blue" href="#">Save Bank Account</a>
+          </div>
+
+          <!--<button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>-->
+        </div>
+    <% end %>
+    <!-- END FORM-->
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.date-picker').datepicker({
+            rtl: Metronic.isRTL(),
+            autoclose: true,
+            format:'mm-dd-yyyy'
+        });
+
+//        $(".chosen-select_n").chosen();
+//        $("html, body").animate({ scrollTop: 200 }, "slow");
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $(".shadow").show();
+            $("#ajax_loader").show();
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.reload();
+                } else {
+                    $("#errors").html(response.html);
+                    $(".shadow").hide();
+                    $("#ajax_loader").hide();
+                }
+
+            }), "json");
+            return false;
+
+        });
+
+    });
+
+//    $('#date_of_birth').datetimepicker({
+////            controlType: 'select',
+//        dateFormat: 'm-d-yy'
+//
+//    });
+
+
+</script>

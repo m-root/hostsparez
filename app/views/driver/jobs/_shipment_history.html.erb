@@ -1,0 +1,238 @@
+<div class="z_shipments">
+<h4 class="z_100">Active Shipments</h4>
+<% unless @active_jobs.blank? %>
+    <% @active_jobs.each_with_index do |job, index| %>
+        <div class="z_s_list z_100">
+          <div class="z_shpmnt_det z_100">
+            <p>Package ID: <span>#<%= job.job_code %></span></p>
+
+            <p>Driver: <span><%= job.driver.blank? ? "n/a" : job.driver.full_name %></span></p>
+
+            <p>Size: <span><%= job.package.name.capitalize if job.package %></span></p>
+
+            <p>Cost:
+              <span>$<%= job.transaction_history.blank? ? "%.2f" % 0 : job.transaction_history.amount.blank? ? "%.2f" % 0 : "%.2f" % job.transaction_history.amount %></span>
+            </p>
+            <%= link_to(driver_job_path(job), html_options = {:class => "f-r"}) do %>
+                View Details
+                <i class="fa fa-angle-right"></i>
+            <% end %>
+            <!--<a href="#" class="f-r">View Details <i class="fa fa-angle-right"></i></a>-->
+          </div>
+          <!--z_shpmnt_det-->
+          <div class="z_shpmnt_hold z_100">
+            <div class="z_shpmnt_orgn z_100">
+              <div class="z_orgn">
+                <h2>Pickup</h2>
+
+                <div class="z_orgn_time">
+                  <h3><%= job.pick_up_time.strftime("%I:%M: %p")[0...job.pick_up_time.strftime("%I:%M: %p").length - 4] %></h3>
+
+                  <div class="am_pm">
+
+
+                    <% if job.pick_up_time.strftime("%p") == "AM" %>
+                        <p>AM</p>
+
+                        <p class="active">PM</p>
+                    <% elsif job.pick_up_time.strftime("%p") == "PM" %>
+                        <p class="active">AM</p>
+
+                        <p>PM</p>
+                    <% end %>
+                  </div>
+                  <!--am_pm-->
+                </div>
+                <!--z_orgn_time-->
+                <span><%= job.pick_up_time.strftime("%m/%d/%y") %></span>
+              </div>
+              <!--z_orgn-->
+              <div class="orgn_det"><img src="/assets/orign_icon.png">
+
+                <p>Origin: <span><%= job.pick_up_address %></span></p></div>
+              <!--orgn_det-->
+            </div>
+            <!--z_shpmnt_orgn-->
+            <div class="z_shpmnt_destnatn z_100">
+              <div class="z_destnatn">
+                <h2>Est. Deliver</h2>
+
+                <div class="z_destnatn_time">
+                  <h3><%= (job.pick_up_time + job.time_value.minute).strftime("%I:%M: %p")[0...job.pick_up_time.strftime("%I:%M: %p").length - 4] %></h3>
+
+
+                  <div class="am_pm_r">
+                    <% if (job.pick_up_time + job.time_value.minute).strftime("%p") == "AM" %>
+                        <p class="active">AM</p>
+
+                        <p>PM</p>
+                    <% elsif (job.pick_up_time + job.time_value.minute).strftime("%p") == "PM" %>
+                        <p class="active">AM</p>
+
+                        <p>PM</p>
+                    <% end %>
+                  </div>
+                  <!--am_pm-->
+                </div>
+                <!--z_destnatn_time-->
+                <span><%= (job.pick_up_time + job.time_value.minute).strftime("%m/%d/%y") %></span>
+              </div>
+              <!--z_destnatn-->
+              <div class="destnatn_det"><img src="/assets/destination_icon.png">
+
+                <p>Destination: <span><%= job.destination_address %></span></p></div>
+              <!--orgn_det-->
+            </div>
+            <!--z_shpmnt_orgn-->
+          </div>
+          <!--z_shpmnt_hold-->
+        </div>
+    <% end %>
+<% else %>
+    No Active shipment at this time
+<% end %>
+
+
+<div class="z_shipments_in">
+  <h4 class="z_100">Shipments History</h4>
+  <% unless @recent_jobs.blank? %>
+      <% @recent_jobs.each_with_index do |job, index| %>
+          <div class="z_s_list z_100">
+            <div class="z_shpmnt_det z_100">
+              <p>Package ID: <span>#<%= job.job_code %></span></p>
+
+
+              <p>Driver: <span><%= job.driver.blank? ? "n/a" : job.driver.full_name %></span></p>
+
+
+              <p>Size: <span><%= job.package.name.capitalize if job.package %></span></p>
+
+
+              <p>Cost:
+                <span>$<%= job.transaction_history.blank? ? "%.2f" % 0 : job.transaction_history.amount.blank? ? "%.2f" % 0 : "%.2f" % job.transaction_history.amount %></span>
+              </p>
+
+
+              <%= link_to(driver_job_path(job), html_options = {:class => "f-r"}) do %>
+
+                  View Details
+
+                  <i class="fa fa-angle-right"></i>
+
+              <% end %>
+            </div>
+            <div class="z_shpmnt_hold z_100">
+              <div class="z_shpmnt_orgn_h z_100">
+
+                <div class="z_orgn_h">
+
+                  <h2>Pickup</h2>
+
+
+                  <div class="z_orgn_time_h">
+
+                    <h3><%= job.pick_up_time.strftime("%H:%M") %></h3>
+
+
+                    <div class="am_pm_h">
+
+                      <% if job.pick_up_time.strftime("%p") == "AM" %>
+
+                          <p>AM</p>
+
+
+                          <p class="active">PM</p>
+
+                      <% elsif job.pick_up_time.strftime("%p") == "PM" %>
+
+                          <p class="active">AM</p>
+
+
+                          <p>PM</p>
+
+                      <% end %>
+
+                    </div>
+
+                    <!--am_pm_h-->
+
+                  </div>
+
+                  <!--z_orgn_time_h-->
+
+                  <span><%= job.pick_up_time.strftime("%m/%d/%y") %></span>
+
+                </div>
+
+                <!--z_orgn_h-->
+
+                <div class="orgn_det_h"><img src="/assets/orign_icon2.png">
+
+
+                  <p>Origin: <span><%= job.pick_up_address %></span></p></div>
+
+                <!--orgn_det-->
+
+              </div>
+              <div class="z_shpmnt_destnatn_h z_100">
+                <div class="z_destnatn_h">
+                  <h2>Deliver</h2>
+
+                  <div class="z_destnatn_time_h">
+
+                    <h3><%= (job.pick_up_time + job.time_value.minute).strftime("%I:%M: %p")[0...job.pick_up_time.strftime("%I:%M: %p").length - 4] %></h3>
+
+                    <div class="am_pm_h">
+                      <% if (job.pick_up_time + job.time_value.minute).strftime("%p") == "AM" %>
+                          <p class="active">AM</p>
+
+                          <p>PM</p>
+                      <% else %>
+                          <p>AM</p>
+
+                          <p class="active">PM</p>
+                      <% end %>
+                    </div>
+                    <!--am_pm_h-->
+                  </div>
+                  <!--z_destnatn_time_h-->
+                  <span><%= (job.pick_up_time + job.time_value.minute).strftime("%m/%d/%y") %></span>
+                </div>
+                <!--z_destnatn_h-->
+                <div class="destnatn_det_h"><img src="/assets/destination_icon2.png">
+
+                  <p>Destination: <span><%= job.destination_address %></span></p></div>
+                <!--destnatn_det_h-->
+              </div>
+
+
+            </div>
+          </div>
+      <% end %>
+  <% else %>
+      You have not shipped any item yet
+  <% end %>
+
+  <!--z_s_list-->
+  <% if @recent_jobs.size > 3 %>
+      <div class="page_main">
+        <div class="page_left">
+          <div class="pagination_container">
+            <%= will_paginate @recent_jobs, :page_links => true, :separator => '|', :next_label => "", :previous_label => "" %>
+          </div>
+        </div>
+        <div class="page_right">
+          <div class="pagination_container">
+            <i class="fa fa-angle-left z_b_icon"></i>
+            <%= will_paginate @recent_jobs, :page_links => false, :separator => '|', :next_label => 'NEXT', :previous_label => 'Back |' %>
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>
+
+
+<!--z_s_list-->
+</div>

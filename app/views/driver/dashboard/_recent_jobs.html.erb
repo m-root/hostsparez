@@ -1,0 +1,65 @@
+<div class="jb_title">
+  RECENT HISTORY
+  <% unless @recent_jobs.blank? %>
+      <div class="location_add_link">
+        <%= link_to(customer_jobs_path) do %>
+            VIEW ALL
+            <div class="v_all_icon">
+              <i class="icon-angle-right"></i>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+<% unless @recent_jobs.blank? %>
+    <div class="msgs_list">
+      <% @recent_jobs.each_with_index do |job, index| %>
+          <% if index%2 == 0 %>
+              <% c_name = "msg" %>
+          <% else %>
+              <% c_name = "msg evn" %>
+          <% end %>
+          <div class="<%= c_name %>">
+            <div class="msgsdet_list">
+              <div class="job_l_up">
+                <div class="msg_repet">
+                  <p>ORIGIN:</p>
+                  <span><%= job.pick_up_address%></span>
+                </div>
+                <div class="msg_repet">
+                  <p>DESTINATION:</p>
+                  <span><%= job.destination_address%></span>
+                </div>
+                <div class="msg_repet">
+                  <p>SIZE:</p>
+                  <span><%= job.package.name if job.package %></span>
+                </div>
+              </div>
+              <div class="job_l_up">
+                <div class="msg_repet">
+                  <p>PICK UP:</p>
+                  <span><%= strtime(job.pick_up_time) %></span>
+                </div>
+                <div class="msg_repet">
+                  <p>EST.DELIVERY:</p>
+                  <span><%= strtime(job.pick_up_time) %></span>
+                </div>
+                <div class="msg_repet">
+                  <p>DRIVER:</p>
+                  <span><%= job.driver.full_name if  job.driver %></span>
+                </div>
+              </div>
+              <%= link_to(customer_job_path(job)) do %>
+                  <div class="rite_icon">
+                    <i class="icon-angle-right"></i>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% else %>
+    <div class="no_rec">
+      NO RECENT HISTORY FOUND
+    </div>
+<% end %>

@@ -1,0 +1,38 @@
+<div class="z_light_box">
+</div>
+<div class="box_hold_new">
+  <h1 class="z_100">File a Claim</h1>
+
+  <div class="z_claim_txt z_100">
+    <h4>Your Claim has been Submitted.</h4>
+    <span>Please allow up to 48 hours for a response.</span>
+    <span>If you need immediate assistance,<br> contact support@ziply.com</span>
+
+    <p>Thank you, Ziply.</p>
+  </div>
+  <!--z_claim_txt-->
+  <div class="z_100">
+    <div class="z_100">
+      <a class="z_orngbig_btn zset_pad z_100" href="javascript:void(0);" onclick="close_pop_up();">Close Window</a><!--z_orngbig_btn-->
+    </div>
+    <!--box_butns-->
+  </div>
+  <!--z_100-->
+  <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+</div>
+<!--box_hold_new-->
+
+
+<script type="text/javascript">
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+</script>

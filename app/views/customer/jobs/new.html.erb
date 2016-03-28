@@ -1,0 +1,979 @@
+<%- title "Send a Package - Goziply" %>
+<%#= javascript_include_tag "tooltip" %>
+<%- title "Send A Packages - Goziply" %>
+<section class="z_content">
+  <div class="homeSlider">
+    <div class="slide">
+
+
+      <%= form_for(@job, :url => customer_jobs_path, :method => "post") do |f| %>
+          <%= f.hidden_field :amount %>
+          <%= f.hidden_field :dest_latitude %>
+          <%= f.hidden_field :dest_longitude %>
+          <%= f.hidden_field :latitude %>
+          <%= f.hidden_field :longitude %>
+          <%= f.hidden_field :package_id %>
+          <%= f.hidden_field :sender_location_type, :value => "Location" %>
+          <%= f.hidden_field :receiver_location_type, :value => "Location" %>
+          <%= f.hidden_field :customer_id, :value => current_user.blank? ? "" : current_user.id %>
+          <%= f.hidden_field :customer_type, :value => "User" %>
+          <%= f.hidden_field :distance_text %>
+          <%= f.hidden_field :distance_value %>
+          <%= f.hidden_field :time_text %>
+          <%= f.hidden_field :time_value %>
+          <%= f.hidden_field :sender_location_id %>
+          <%= f.hidden_field :receiver_location_id %>
+          <!--<div class="z_slider_home">-->
+          <div class="container">
+            <div class="z_pckg_det">
+              <h1>Send a Package</h1>
+
+              <div class="z_det_sliding">
+                <img src="/assets/bar0.png">
+
+                <div class="z_100">
+                  <p class="f-l">Enter Details</p>
+
+                  <p class="f-r">Submit Payment</p>
+                </div>
+                <!--z_100-->
+              </div>
+              <!--z_det_sliding-->
+              <div id="errors"></div>
+              <div class="z_hold z_100">
+                <div class="z_hed">Pickup Location
+                  <% unless @sender_locations.blank? %>
+                      <div id="pic_loc_drop" class="z_my_loc_dropdown">
+                        <div class="z_drp_in">
+                          <a href="#">My Locations <i class="fa fa-angle-down"></i></a>
+
+                          <div id="pic_loc_drop_list" style="display:none;" class="z_dropdown">
+                            <i class="fa fa-caret-up img55"></i>
+
+                            <div class="z_drp_list">
+                              <% @sender_locations.each do |sender_location| %>
+                                  <div class="p_l tbl-row" id="pl_<%= "#{sender_location.id}" %>">
+                                    <p class="f-l"><%= sender_location.nick_name %>
+                                    </p>
+                                    <span class="f-r"><%= sender_location.address %></span>
+                                  </div>
+                              <% end %>
+                            </div>
+                            <!--z_drp_list-->
+                          </div>
+
+                          <!--z_dropdown-->
+                        </div>
+                        <!--z_drp_in-->
+                      </div>
+                  <% end %>
+                  <!--z_my_loc_dropdown-->
+                </div>
+                <!--z_hed-->
+                <div id="sender_location_form">
+                  <%= render :partial => "customer/jobs/sender_location_form" %>
+                </div>
+                <!--z_fieldz-->
+              </div>
+              <!--z_hold z_100-->
+              <div class="z_hold_nw z_100">
+                <div class="z_hed">Package Destination
+                  <% unless @sender_locations.blank? %>
+                      <div id="drop_loc_drop" class="z_my_loc_dropdown">
+                        <div class="z_drp_in">
+                          <a href="#">My Locations <i class="fa fa-angle-down"></i></a>
+
+                          <div id="drop_loc_drop_list" style="display:none;" class="z_dropdown">
+                            <i class="fa fa-caret-up img55"></i>
+
+                            <div class="z_drp_list">
+                              <% @sender_locations.each do |receiver_location| %>
+                                  <div class="d_l tbl-row" id="dl_<%= "#{receiver_location.id}" %>">
+                                    <p class="f-l"><%= receiver_location.nick_name %></p>
+                                    <span class="f-r"><%= receiver_location.address %></span>
+                                  </div>
+                              <% end %>
+                            </div>
+                            <!--z_drp_list-->
+                          </div>
+
+                          <!--z_dropdown-->
+                        </div>
+                        <!--z_drp_in-->
+                      </div>
+                  <% end %>
+                  <!--z_my_loc_dropdown-->
+                </div>
+                <!--z_hed-->
+                <div id="receiver_location_form">
+                  <%= render :partial => "customer/jobs/receiver_location_form" %>
+                </div>
+
+              </div>
+              <!--z_hold z_100-->
+              <div class="z_hold z_100">
+                <div class="z_hed2">Package Size</div>
+                <!--z_hed2-->
+                <div class="z_v1">
+
+                  <% Package.limit(4).order("id asc").each_with_index do |package, index| %>
+                      <% if index == 0 %>
+                          <% url = "car_imgg.png" %>
+                      <% elsif index == 1 %>
+                          <% url = "pickup-truck.png" %>
+                      <% end %>
+                      <div class="z_sml_envlp jb_box" id="pack_<%= package.id %>">
+                        <h2 class="pkgsize"><%= package.name.capitalize %></h2>
+                        <%= image_tag(url) %>
+                        <div class="evlp_txt_size">
+                          <p id="am_<%= package.id %>"></p><span><%= package.description %></span></div>
+                        <!--evlp_txt_size-->
+                      </div>
+                  <% end %>
+
+                  <!--z_sml_envlp-->
+                  <!--<div class="z_last_envlp">-->
+                  <!--<i class="mssg_b_packg"></i>-->
+
+                  <!--<div class="evlp_txt_size"><p>Large Package<span>11x14</span></p></div>-->
+                  <!--&lt;!&ndash;evlp_txt_size&ndash;&gt;-->
+                  <!--</div>-->
+                  <!--z_last_envlp-->
+                </div>
+                <!--z_v2-->
+              </div>
+              <!--z_hold z_100-->
+            </div>
+            <!--z_pckg_det-->
+          </div>
+          <!--container-->
+          <div class="z_member">
+            <div class="z_mem_text">
+              <p>Already a Ziply member?<span> Sign in to use your saved locations and billing info.</span></p>
+            </div>
+            <!--z_mem_text-->
+            <div class="z_mem_pricing">
+              <p>Your Pricing</p>
+
+              <h2>$0</h2>
+            </div>
+            <!--z_mem_pricing-->
+            <div class="pickup">
+              <a href="javascript:void(0);" id="save-btn" class="z_orngbig_btn">Schedule Pickup
+                <i class="fa fa-caret-right rte_aro"></i></a></div>
+            <!--pickup ends-->
+          </div>
+          </div>
+          </div>
+      <% end %>
+
+      <!--z_slider_home-->
+
+      </section>
+
+<section class="z_map" id="map-canvas">
+  <!--<iframe width="100%" scrolling="no" height="650" frameborder="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=Downtown,+Los+Angeles,+CA,+United+States&amp;daddr=&amp;hl=en&amp;geocode=&amp;aq=0&amp;oq=Down&amp;sll=34.047504,-118.232889&amp;sspn=0.035452,0.07154&amp;dirflg=w&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=34.047504,-118.232889&amp;spn=0.035452,0.07154&amp;output=embed" marginwidth="0" marginheight="0"></iframe>-->
+</section>
+<script type="text/javascript"
+        src="//maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript">
+
+
+    function formatDate(date, format, utc) {
+        var MMMM = ["\x00", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var MMM = ["\x01", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var dddd = ["\x02", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var ddd = ["\x03", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        function ii(i, len) {
+            var s = i + "";
+            len = len || 2;
+            while (s.length < len) s = "0" + s;
+            return s;
+        }
+
+        var y = utc ? date.getUTCFullYear() : date.getFullYear();
+        format = format.replace(/(^|[^\\])yyyy+/g, "$1" + y);
+        format = format.replace(/(^|[^\\])yy/g, "$1" + y.toString().substr(2, 2));
+        format = format.replace(/(^|[^\\])y/g, "$1" + y);
+
+        var M = (utc ? date.getUTCMonth() : date.getMonth()) + 1;
+        format = format.replace(/(^|[^\\])MMMM+/g, "$1" + MMMM[0]);
+        format = format.replace(/(^|[^\\])MMM/g, "$1" + MMM[0]);
+        format = format.replace(/(^|[^\\])MM/g, "$1" + ii(M));
+        format = format.replace(/(^|[^\\])M/g, "$1" + M);
+
+        var d = utc ? date.getUTCDate() : date.getDate();
+        format = format.replace(/(^|[^\\])dddd+/g, "$1" + dddd[0]);
+        format = format.replace(/(^|[^\\])ddd/g, "$1" + ddd[0]);
+        format = format.replace(/(^|[^\\])dd/g, "$1" + ii(d));
+        format = format.replace(/(^|[^\\])d/g, "$1" + d);
+
+        var H = utc ? date.getUTCHours() : date.getHours();
+        format = format.replace(/(^|[^\\])HH+/g, "$1" + ii(H));
+        format = format.replace(/(^|[^\\])H/g, "$1" + H);
+
+        var h = H > 12 ? H - 12 : H == 0 ? 12 : H;
+        format = format.replace(/(^|[^\\])hh+/g, "$1" + ii(h));
+        format = format.replace(/(^|[^\\])h/g, "$1" + h);
+
+        var m = utc ? date.getUTCMinutes() : date.getMinutes();
+        format = format.replace(/(^|[^\\])mm+/g, "$1" + ii(m));
+        format = format.replace(/(^|[^\\])m/g, "$1" + m);
+
+        var s = utc ? date.getUTCSeconds() : date.getSeconds();
+        format = format.replace(/(^|[^\\])ss+/g, "$1" + ii(s));
+        format = format.replace(/(^|[^\\])s/g, "$1" + s);
+
+        var f = utc ? date.getUTCMilliseconds() : date.getMilliseconds();
+        format = format.replace(/(^|[^\\])fff+/g, "$1" + ii(f, 3));
+        f = Math.round(f / 10);
+        format = format.replace(/(^|[^\\])ff/g, "$1" + ii(f));
+        f = Math.round(f / 10);
+        format = format.replace(/(^|[^\\])f/g, "$1" + f);
+
+        var T = H < 12 ? "AM" : "PM";
+        format = format.replace(/(^|[^\\])TT+/g, "$1" + T);
+        format = format.replace(/(^|[^\\])T/g, "$1" + T.charAt(0));
+
+        var t = T.toLowerCase();
+        format = format.replace(/(^|[^\\])tt+/g, "$1" + t);
+        format = format.replace(/(^|[^\\])t/g, "$1" + t.charAt(0));
+
+        var tz = -date.getTimezoneOffset();
+        var K = utc || !tz ? "Z" : tz > 0 ? "+" : "-";
+        if (!utc) {
+            tz = Math.abs(tz);
+            var tzHrs = Math.floor(tz / 60);
+            var tzMin = tz % 60;
+            K += ii(tzHrs) + ":" + ii(tzMin);
+        }
+        format = format.replace(/(^|[^\\])K/g, "$1" + K);
+
+        var day = (utc ? date.getUTCDay() : date.getDay()) + 1;
+        format = format.replace(new RegExp(dddd[0], "g"), dddd[day]);
+        format = format.replace(new RegExp(ddd[0], "g"), ddd[day]);
+
+        format = format.replace(new RegExp(MMMM[0], "g"), MMMM[M]);
+        format = format.replace(new RegExp(MMM[0], "g"), MMM[M]);
+
+        format = format.replace(/\\(.)/g, "$1");
+
+        return format;
+    }
+    ;
+
+    $(".smal-nav").on("click", ".init", function () {
+        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    });
+
+    var allOptions = $(".smal-nav").children('li:not(.init)');
+    $(".smal-nav").on("click", "li:not(.init)", function () {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $(".smal-nav").children('.init').html($(this).html());
+        allOptions.slideUp();
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#pic_loc_drop').click(function () {
+            $('#pic_loc_drop_list').slideToggle('fast');
+            return false;
+        });
+        $('#drop_loc_drop').click(function () {
+            $('#drop_loc_drop_list').slideToggle('fast');
+            return false;
+
+        });
+    });
+
+    $("#pic_loc_drop_list").click(function (e) {
+        e.stopPropagation();
+    });
+
+    $("#drop_loc_drop_list").click(function (e) {
+        e.stopPropagation();
+    });
+
+    $(document).click(function () {
+        $('#pic_loc_drop_list').hide();
+        $('#drop_loc_drop_list').hide();
+    });
+</script>
+
+
+<!--Job Mail Script-->
+
+<script type="text/javascript">
+
+    $(".p_l").click(function () {
+        $('#pic_loc_drop_list').slideUp('fast');
+        var id = $(this).attr("id").split("_")[1];
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            type: "GET",
+            url: "/customer/jobs/get_location?id=" + id,
+            dataType: "JSON",
+            success: function (response) {
+                $("#sender_location_address").val(response.address);
+                $("#sender_location_comments").val(response.comments);
+                $("#sender_location_contact_phone").val(response.contact_phone);
+                $("#sender_location_contact_email").val(response.contact_email);
+                $("#sender_location_house_no").val(response.house_no);
+                $("#p_l_t").html(response.nick_name);
+                if (id != "" && id != undefined) {
+                    $("#job_sender_location_id").val(id);
+                } else {
+                    $("#job_sender_location_id").val("");
+                }
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                location_change();
+            }
+        });
+    });
+
+
+    $(".d_l").click(function () {
+        $('#drop_loc_drop_list').slideUp('fast');
+        var id = $(this).attr("id").split("_")[1];
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            type: "GET",
+            url: "/customer/jobs/get_location?id=" + id,
+            dataType: "JSON",
+            success: function (response) {
+                $("#receiver_location_address").val(response.address);
+                $("#receiver_location_contact_person").val(response.contact_person);
+                $("#receiver_location_contact_phone").val(response.contact_phone);
+                $("#receiver_location_contact_email").val(response.contact_email);
+                $("#receiver_location_comments").val(response.comments);
+                $("#receiver_location_house_no").val(response.house_no);
+                $("#d_l_t").html(response.nick_name);
+                if (id != "" && id != undefined) {
+                    $("#job_receiver_location_id").val(id);
+                } else {
+                    $("#job_receiver_location_id").val("");
+                }
+                $("#drop_loc_drop_val").hide();
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                location_change();
+            }
+        });
+    });
+
+    $(".jb_box").click(function () {
+        pick_location = $("#sender_location_address").val();
+        dest_location = $("#receiver_location_address").val();
+        if (pick_location == "" && dest_location == "") {
+            hudMsg("error", "Pick Location or Dest location missing")
+            return false;
+        }
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $(".jb_box").removeClass("pack_size_active");
+        $(this).addClass("pack_size_active");
+        var id = $(this).attr("id").split("_")[1];
+        if (id != "" && id != undefined) {
+            $.ajax({
+                type: "GET",
+                url: "/customer/jobs/get_package?id=" + id + "&lat1=" + $("#job_latitude").val() + "&lon1=" + $("#job_longitude").val() + "&lat2=" + $("#job_dest_latitude").val() + "&lon2=" + $("#job_dest_longitude").val(),
+                dataType: "JSON",
+                success: function (response) {
+                    if (response.success == "true") {
+                        $("#job_package_id").val(response.id);
+                        $("#job_amount").val(response.amount);
+//                    $("#"+yourDivId + " > h2").html(
+                        $(".z_mem_pricing h2").html('$' + response.amount);
+
+                    } else {
+                        hudMsg("error", response.message);
+                    }
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                }
+            });
+        }
+    });
+
+    var infoWindow = new google.maps.InfoWindow({minWidth: 500, maxHeight: 200});
+    var pick_location_lat_long = "";
+    var dest_location_lat_long = "";
+    var info_count = 0;
+    var rendererOptions = {
+        //        draggable: true
+    };
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+    var map;
+    var australia = new google.maps.LatLng(37.4419, -122.1419);
+
+    $(document).ready(function () {
+
+        $("#sender_location_contact_phone").mask("999-999-9999");
+        $("#receiver_location_contact_phone").mask("999-999-9999");
+
+//        $('#landing-content').mousemove(function (e) {
+//            var x = -(e.pageX + this.offsetLeft) / 20;
+//            var y = -(e.pageY + this.offsetTop) / 20;
+//            $(this).css('background-position', x + 'px ' + y + 'px');
+//        });
+//        if ($("#receiver_location_contact_method_type").val() == 1) {
+//            $("#receiver_location_contact_phone").mask("999-999-9999");
+//        } else {
+//            $("#receiver_location_contact_phone").unmask("999-999-9999");
+//        }
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+//        $("#sender_location_contact_phone").mask("999-999-9999");
+//        $("#receiver_location_contact_phone").mask("999-999-9999");
+
+
+//        $('#new_job input[type="text"]').tooltipster({
+//            trigger: 'custom',
+//            onlyOne: false,
+//            position: 'top'
+//        });
+
+        $("#cancel-btn").click(function () {
+            $.fancybox.close();
+        });
+
+//        $('#job_pick_up_time').datetimepicker({
+//            format: 'Y-m-d H:i',
+//            lang: 'en'
+//        });
+//        $('#s_date_icon').click(function () {
+//            $('#job_pick_up_time').datetimepicker('show');
+//        });
+
+
+        var d = new Date(); // today!
+        var x = 1; // go back 5 days!
+        d.setDate(d.getDate() + 1);
+//        $('#job_pick_up_time').datetimepicker({
+////            controlType: 'select',
+//            dateFormat: 'm-d-yy',
+//            timeFormat: 'hh:mm tt',
+//            minDate: new Date(),
+////            defaultValue: new Date(),
+//            maxDate: d,
+//            minTime: Date($.now())
+//        });
+
+//
+//        $("#receiver_location_contact_method_type").change(function () {
+//            if ($(this).val() == 1) {
+//                $("#receiver_location_contact_phone").mask("999-999-9999");
+//                $("#receiver_location_contact_phone").val("");
+//                $("#receiver_location_contact_phone").attr('placeholder', 'Phone (with dashes, e.g., 999-999-9999)');
+//            } else {
+//                $("#receiver_location_contact_phone").val("");
+//                $("#receiver_location_contact_phone").attr('placeholder', 'Email (e.g., abc@abc.com)');
+//                $("#receiver_location_contact_phone").unmask("999-999-9999");
+//            }
+//        });
+
+        function IsEmail(email) {
+            $("#phone_error").text("");
+            var contact_method = $("#receiver_location_contact_method_type").val();
+            if (contact_method == 1) {
+                var regex = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
+                return regex.test(email);
+            } else {
+                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                return regex.test(email);
+            }
+        }
+
+//        $("#receiver_location_contact_phone").keyup(function () {
+//            var contact_method = $("#receiver_location_contact_method_type").val();
+//            if ($("#receiver_location_contact_phone").val().length > 0) {
+//                if (contact_method == 1) {
+//                    if (IsEmail($("#receiver_location_contact_phone").val())) {
+//                        $("#phone_error").text("");
+//                    } else {
+//                        $("#phone_error").text("Enter a valid phone number");
+//                        return false;
+//                    }
+//                } else {
+//                    if (IsEmail($("#receiver_location_contact_phone").val())) {
+//                        $("#phone_error").text("");
+//                    } else {
+//                        $("#phone_error").text("Enter a valid email address");
+//                        return false;
+//                    }
+//                }
+//            }
+//        });
+
+        $('#save-btn').click(function () {
+            $("#phone_error").text("");
+//            var contact_method = $("#receiver_location_contact_method_type").val();
+//            if ($("#receiver_location_contact_phone").val().length > 0) {
+//                if (contact_method == 1) {
+//                    if (IsEmail($("#receiver_location_contact_phone").val())) {
+//                        $("#phone_error").text("");
+//                    } else {
+//                        $("#phone_error").text("Enter a valid phone number");
+//                        return false;
+//                    }
+//                } else {
+//                    if (IsEmail($("#receiver_location_contact_phone").val())) {
+//                        $("#phone_error").text("");
+//                    } else {
+//                        $("#phone_error").text("Enter a valid email address");
+//                        return false;
+//                    }
+//                }
+//            }
+            if (!$("#new_job").valid()) {
+                $("html, body").animate({ scrollTop: 200 }, "slow");
+                return false;
+            }
+            else {
+                if ($("#job_customer_id").val() == "") {
+                    $("#ajax_loader").show();
+                    $(".shadow").show();
+                    $.ajax({
+                        url: '/customer/jobs/sign_in_pop_up',
+                        type: 'get',
+                        dataType: 'html',
+                        processData: false,
+                        success: function (data) {
+                            $("#pop_up_div").html(data);
+                            $("#ajax_loader").hide();
+                            $(".shadow").hide();
+                        }
+                    });
+                } else {
+                    $("#ajax_loader").show();
+                    $(".shadow").show();
+                    $.post($("#new_job").attr("action"), $("#new_job").serialize(), (function (response) {
+                        if (response.success) {
+                            fbq('track', 'AddToCart');
+                            window.location.href = response.url
+                        } else {
+                            if (response.err == "loc") {
+                                apprise("Sorry, but your pickup location is out of range!")
+                            }
+                            $("#errors").html(response.html);
+                            $("html, body").animate({ scrollTop: 200 }, "slow");
+                        }
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    }), "json");
+                    return false;
+                }
+            }
+        });
+
+        $("#sender_location_address").geocomplete({
+            details: "form",
+            types: ["geocode", "establishment"],
+            select: function (event, ui) {
+                if (ui.item.value != '') {
+                    $("#sender_location_address").trigger("geocode");
+                }
+            }
+        });
+        $("#receiver_location_address").geocomplete({
+            details: "form",
+            types: ["geocode", "establishment"],
+            select: function (event, ui) {
+                if (ui.item.value != '') {
+                    $("#receiver_location_address").trigger("geocode");
+                }
+            }
+        });
+        load_map_main();
+    });
+
+    // Location Drop Down Change Events
+
+    $("#job_sender_location_id").change(function () {
+        if ($(this).val() != "" && $(this).val() != undefined) {
+            $.ajax({
+                type: "GET",
+                url: "/customer/jobs/get_location?id=" + $(this).val(),
+                dataType: "JSON",
+                success: function (response) {
+                    $("#sender_location_address").val(response.address);
+                    $("#sender_location_contact_phone").val(response.contact_phone);
+                    $("#sender_location_comments").val(response.comments);
+                    $("#sender_location_house_no").val(response.house_no);
+                    location_change();
+                }
+            });
+        }
+    });
+
+    $("#job_receiver_location_id").change(function () {
+        if ($(this).val() != "" && $(this).val() != undefined) {
+
+            $.ajax({
+                type: "GET",
+                url: "/customer/jobs/get_location?id=" + $(this).val(),
+                dataType: "JSON",
+                success: function (response) {
+                    $("#receiver_location_address").val(response.address);
+                    $("#receiver_location_contact_person").val(response.contact_person);
+                    $("#receiver_location_contact_phone").val(response.contact_phone);
+                    $("#receiver_location_comments").val(response.comments);
+                    $("#receiver_location_house_no").val(response.house_no);
+                    location_change();
+                }
+            });
+        }
+    });
+
+    jQuery.validator.addMethod("notEqualTo",
+            function (value, element, param) {
+                var notEqual = true;
+                value = $.trim(value);
+                for (i = 0; i < param.length; i++) {
+                    if (value == $.trim($(param[i]).val())) {
+                        notEqual = false;
+                    }
+                }
+                return this.optional(element) || notEqual;
+            },
+            "Pick location and destination cannot be same"
+    );
+
+    $("#new_job").validate({
+        rules: {
+            "sender_location[address]": {
+                required: true
+            },
+            "sender_location[contact_phone]": {
+                required: true
+            },
+            "sender_location[contact_email]": {
+                required: true,
+                email: true
+            },
+            "receiver_location[contact_phone]": {
+                required: true
+            },
+            "receiver_location[contact_email]": {
+//                required: true,
+                email: true
+            },
+            "job[pick_up_time]": {
+                required: true
+            },
+            "receiver_location[address]": {
+                required: true,
+                notEqualTo: ['#sender_location_address']
+            },
+            "receiver_location[contact_person]": {
+                required: true
+            }
+        },
+        messages: {
+            "sender_location[address]": {
+                required: "Pickup location required"
+            },
+            "sender_location[contact_phone]": {
+                required: "Sender phone required"
+            },
+            "job[pick_up_time]": {
+                required: "Pick up time required"
+            },
+            "receiver_location[address]": {
+                required: "Package destination required"
+            },
+            "receiver_location[contact_person]": {
+                required: "Receiver Name required"
+            }
+        }
+    });
+
+    //    $("#new_job").validate({
+    //        errorPlacement: function (error, element) {
+    //            if (error.text() == "") {
+    //                console.log("eee");
+    //                $(element).tooltipster('hide');
+    //            } else {
+    //                $(element).tooltipster('update', $(error).text());
+    //                $(element).tooltipster('show');
+    //            }
+    //        },
+    //        success: function (label, element) {
+    //            $("#new_job").find('.valid').removeClass("invalid");
+    //        },
+    //        , submitHandler: function (form) { // for demo
+    //            return false;
+    //        }
+    //    });
+
+
+    function load_map_main() {
+        var abc = formatDate(new Date(), "MM-dd-yyyy h:mm tt");
+        $("#job_pick_up_time").val(abc);
+        <%if @pick_location.blank? and @dest_location.blank?%>
+        var pick_time = '<%=@pick_time%>';
+        if (pick_time != "") {
+            $("#job_pick_up_time").val(pick_time);
+        }
+
+        var myLatlng = new google.maps.LatLng(37.4419, -122.1419);
+        var mapOptions = {
+            zoom: 4,
+            center: myLatlng,
+            scrollwheel: false,
+            navigationControl: false,
+            mapTypeControl: false,
+            scaleControl: false
+        }
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map
+        });
+        <%else%>
+        var home_cookie_string = $.getCookie("home_cookie_string");
+        var pick_location = '<%=@pick_location%>';
+        var dest_location = '<%=@dest_location%>';
+        var pick_time = '<%=@pick_time%>';
+        $("#sender_location_address").val(pick_location);
+        $("#receiver_location_address").val(dest_location);
+        if (pick_time != "") {
+            $("#job_pick_up_time").val(pick_time);
+        }
+        if (pick_location != "" && pick_location != undefined && dest_location != "" && dest_location != undefined) {
+            load_map(pick_location, dest_location);
+        }
+        <%end%>
+    }
+
+
+    function location_change() {
+        setTimeout(function () {
+            var pick_location = $("#sender_location_address").val();
+            var dest_location = $("#receiver_location_address").val();
+            if (pick_location != "" && pick_location != undefined && dest_location != "" && dest_location != undefined) {
+                console.log(pick_location);
+                console.log(dest_location);
+                load_map(pick_location, dest_location);
+            }
+        }, 1000);
+
+    }
+
+    function clear_fields() {
+        $("#sender_location_zip_code").val("");
+        $("#sender_location_country").val("");
+        $("#sender_location_state").val("");
+        $("#sender_location_city").val("");
+        $("#receiver_location_zip_code").val("");
+        $("#receiver_location_country").val("");
+        $("#receiver_location_state").val("");
+        $("#receiver_location_city").val("");
+        $("#job_distance_text").val("");
+        $("#job_distance_value").val("");
+        $("#job_time_text").val("");
+        $("#job_time_value").val("");
+    }
+
+    function clear_lat_long() {
+        $(".jb_box").removeClass("pack_size_active");
+        $("#job_package_id").val("");
+        $("#job_amount").val("");
+        $("#job_distance_text").val("");
+        $("#job_distance_value").val("");
+        $("#job_time_text").val("");
+        $("#job_time_value").val("");
+        $("#job_distance_text").val("");
+        $("#job_latitude").val("");
+        $("#job_longitude").val("");
+        $("#job_dest_latitude").val("");
+        $("#job_dest_longitude").val("");
+        $(".z_mem_pricing h2").html('$' + 0);
+    }
+
+    function load_map(pick_location, dest_location) {
+        clear_lat_long();
+        var geo = new google.maps.Geocoder;
+        geo.geocode({ 'address': pick_location}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                // loop through to get address, city, state, zip
+                $.each(results[0].address_components, function () {
+//                    console.log(results[0]);
+                    switch (this.types[0]) {
+                        case "postal_code":
+                            $("#sender_location_zip_code").val(this.short_name);
+                            break;
+                        case "country":
+                            $("#sender_location_country").val(this.short_name);
+                            break;
+                        case "administrative_area_level_1":
+                            $("#sender_location_state").val(this.short_name);
+                            break;
+                        case "locality":
+                            $("#sender_location_city").val(this.short_name);
+                            break;
+                    }
+                });
+            } else {
+                hudMsg("error", "Pickup Location is Invalid: ");
+                return false
+            }
+        });
+        geo.geocode({ 'address': dest_location}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                // loop through to get address, city, state, zip
+                $.each(results[0].address_components, function () {
+//                    console.log(results[0]);
+                    switch (this.types[0]) {
+                        case "postal_code":
+                            $("#receiver_location_zip_code").val(this.short_name);
+                            break;
+                        case "country":
+                            $("#receiver_location_country").val(this.short_name);
+                            break;
+                        case "administrative_area_level_1":
+                            $("#receiver_location_state").val(this.short_name);
+                            break;
+                        case "locality":
+                            $("#receiver_location_city").val(this.short_name);
+                            break;
+                    }
+                });
+            } else {
+                hudMsg("error", "Destination location is Invalid: ");
+                return false
+            }
+        });
+
+        initialize(pick_location, dest_location);
+    }
+
+    function initialize(pick_location, dest_location) {
+        var mapOptions = {
+            zoom: 5,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: australia,
+            draggable: true,
+            scrollwheel: false,
+            navigationControl: false,
+            mapTypeControl: false,
+            scaleControl: false
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        directionsDisplay.setMap(map);
+//        directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+        google.maps.event.addListener(directionsDisplay, 'directions_changed', function () {
+            computeTotalDistance(directionsDisplay.directions, map);
+            info_count = 1;
+//            $("#sender_location_address").val(directionsDisplay.directions.routes[0].legs[0].start_address);
+//            $("#receiver_location_address").val(directionsDisplay.directions.routes[0].legs[0].end_address);
+//            console.log(directionsDisplay.directions);
+        });
+        calcRoute(map, pick_location, dest_location);
+    }
+
+    function calcRoute(map, pick_location, dest_location) {
+        var request = {
+            origin: pick_location,
+            destination: dest_location,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                computeTotalDistance(response, map);
+            } else {
+                clear_lat_long();
+                hudMsg("error", "There is problem with locations you have entered: ");
+//                return false;
+                directionsDisplay.setDirections({routes: []});
+            }
+        });
+    }
+
+    function computeTotalDistance(result, map) {
+//        console.log(result);
+        var distance_txt = "";
+        var duration_txt = "";
+        var distance_km = result.routes[0].legs[0].distance.value / 1609.34;
+        var duration_hours = result.routes[0].legs[0].duration.value / 60;
+        distance_txt = result.routes[0].legs[0].distance.text;
+        duration_txt = result.routes[0].legs[0].duration.text;
+        var lat1 = result.routes[0].legs[0].start_location.lat();
+        var lat2 = result.routes[0].legs[0].end_location.lat();
+        var lon1 = result.routes[0].legs[0].start_location.lng();
+        var lon2 = result.routes[0].legs[0].end_location.lng();
+//        var content_str = "<div style='width:320px;height:90px;'><h1 style='font-size:18px; color:#148ebb; font-weight:400; border-bottom:1px solid #ccc; padding:15px 0 10px 0;'>ESTIMATED DELIVERY:</h1>" + "<p style='width:45%;margin:0 10px 0 0;float: left; font-size:14px; color:#000; font-weight:400; margin-right:10px;'>Distance: " + "<span style='display:inline-block; color:#b3b3b3; font-weight:400;'>" + distance_txt + "</span>" + "<p style='width:51%;float: left;margin:0; font-size:14px; color:#000; font-weight:400;'>Time: " + "<span style='display:inline-block;color:#b3b3b3; font-weight:400;'>" + duration_txt + "</span>" + "</p></div>";
+        var content_str = "<div style='width:320px;height:90px;'><h1 style='font-size:18px; color:#148ebb; font-weight:400; border-bottom:1px solid #ccc; padding:15px 0 10px 0;'>ESTIMATED DELIVERY:</h1>" + "<p style='width:48%;margin:0 10px 0 0;float: left; font-size:12px; color:#000; text-align: left; font-weight:400; margin-right:10px;'>Distance:" + "<span style='display:inline-block; color:#b3b3b3;text-align: left; font-weight:400;'>" + distance_txt + "</span>" + "<p style='width:48%;float: left;margin:0; font-size:12px;text-align: left; color:#000; font-weight:400;'>Time:" + "<span style='display:inline-block;color:#b3b3b3;text-align: left; font-weight:400;'>" + duration_txt + "</span></p>" + "<p style='width:48%;margin:0 10px 0 0;float: left; font-size:12px;text-align: left; color:#000; font-weight:400; margin-right:10px;'>Pickup Location:" + "<span style='display:inline-block; color:#b3b3b3; font-weight:400;'>" + $("#sender_location_address").val() + "</span>" + "<p style='width:48%;float: left;text-align: left;margin:0; font-size:12px; color:#000; font-weight:400;'>Drop of Location:" + "<span style='display:inline-block;color:#b3b3b3;text-align: left; font-weight:400;'>" + $("#receiver_location_address").val() + "</span></p>" + "</div>";
+        infoWindow.setContent(content_str)
+        infoWindow.setPosition(new google.maps.LatLng(lat1, lon1));
+        infoWindow.open(map);
+        $(".gm-style-iw").parent().addClass("abc")
+        $("#job_distance_text").val(distance_txt);
+        $("#job_distance_value").val(distance_km);
+        $("#job_time_text").val(duration_txt);
+        $("#job_time_value").val(duration_hours);
+        $("#job_distance_text").val(distance_txt);
+        $("#job_latitude").val(lat1);
+        $("#job_longitude").val(lon1);
+        $("#job_dest_latitude").val(lat2);
+        $("#job_dest_longitude").val(lon2);
+        pick_location = $("#sender_location_address").val();
+        dest_location = $("#receiver_location_address").val();
+        if (pick_location == "" && dest_location == "") {
+            hudMsg("error", "Pick Location or Dest location missing")
+            return false;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/customer/jobs/get_package_sizes?lat1=" + lat1 + "&lon1=" + lon1 + "&lat2=" + lat2 + "&lon2=" + lon2,
+            dataType: "JSON",
+            success: function (response) {
+                if (response.success == "true") {
+                    $("#am_1").html("$" + response.pack1_amount);
+                    $("#am_2").html("$" + response.pack2_amount);
+                } else {
+                    hudMsg("error", response.message);
+                }
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    }
+
+    //MOUSE MOVE, INVERT BACKGROUND POSITION
+    jQuery('.homeSlider').mousemove(function (move) {
+        var moveMouse = (move.pageX * -0.05 / 3);
+        $(".slide").css('background-position', moveMouse + 'px ' + '100%');
+//        jQuery('.homeSlider .slide').css({
+//            'background-position-x': moveMouse + 'px'
+//        });
+    });
+    //MOUSE LEAVE, ANIMATE BACKGROUND TO START POSITION
+    jQuery('.homeSlider').mouseleave(function () {
+        jQuery('.homeSlider .slide').animate({
+            'background-position-x': '0'
+        });
+    });
+
+    // ViewContent
+    // Track key page views (ex: product page, landing page or article)
+    fbq('track', 'ViewContent');
+
+</script>

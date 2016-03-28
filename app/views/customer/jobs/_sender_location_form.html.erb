@@ -1,0 +1,43 @@
+<div class="z_fieldz z_100" id="sender_location_fields">
+  <%= fields_for :sender_location do |ra| %>
+      <%= ra.hidden_field :city %>
+      <%= ra.hidden_field :state %>
+      <%= ra.hidden_field :zip_code %>
+      <%= ra.hidden_field :country %>
+      <%= ra.hidden_field :nick_name, :value => "N/A" %>
+      <%= ra.hidden_field :user_id, :value => current_user.blank? ? "" : current_user.id %>
+      <div class="z_100 fieldz">
+        <!--<div class="zd100 fill_1-3 f-l">-->
+        <div class="zd100 fill_1-0">
+          <%= ra.text_field :address, :class => "z_100", :placeholder => "836 Stanford Ave, Los Angeles, CA 90001", :onblur => "location_change();" %>
+        </div>
+        <div class="zd100 f-r fill_1-1">
+          <%= text_field_tag "job[pick_up_time]", nil, :class => "z_100 z_field_img", :placeholder => "Select Pickup Time", :style => "display:none"%>
+        </div>
+      </div>
+      <div class="z_100 fieldz">
+        <div class="zd100 f-l fill_1-1">
+          <!--<div class="contact_method">-->
+            <%#= ra.select :contact_method_type, options_for_select([["Recipient's Phone", "1"], ["Recipient's Email", "2"]]), {}, :class => "chosen-select_n", :style => "" %>
+            <%= ra.text_field :contact_phone, :class => "f-r z_100", :placeholder => "Phone (ex. 555-123-4567)" %>
+          <!--</div>-->
+        </div>
+        <div class="zd100 f-r fill_1-3">
+          <p id="phone_error"></p>
+          <%= ra.text_field :contact_email, :class => "f-r z_100", :placeholder => "Contact Email (ex. john@gmail.com)" %>
+        </div>
+        <div class="zd100 fill_1-3">
+          <%= ra.text_field :comments, :value => @pick_comments, :class => "z_100", :placeholder => "Comments for Pickup (ring bell, third floor, etc.)" %>
+        </div>
+        <div class="zd100 fill_1-1 f-r">
+          <%= ra.text_field :house_no, :class => "z_100", :placeholder => "Suite, Building #" %>
+        </div>
+      </div>
+      <div class="z_100 check_field">
+        <%= ra.check_box :is_active %>
+        <p>Save to My Locations</p>
+      </div>
+  <% end %>
+</div>
+
+

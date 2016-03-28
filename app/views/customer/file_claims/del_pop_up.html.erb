@@ -1,0 +1,52 @@
+<div class="z_light_box">
+</div>
+<div class="box_hold_new">
+  <div class="z_expression z_100 zbrd0">
+    <h5>Are you sure you want to<br> delete this Claim?</h5>
+  </div>
+  <!--z_expression-->
+  <div class="z_100">
+    <div class="z_100">
+      <%= link_to "Yes, Delete Claim", "javascript:;", :class => "z_xdel_btn zset_pad z_100", :onclick => "delete_claim(#{@file_claim.id});" %>
+    </div>
+    <!--box_butns-->
+  </div>
+  <!--z_100-->
+  <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+</div>
+<!--box_hold_new-->
+
+<script>
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+    function delete_claim(id) {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/customer/file_claims/delete_claim?id=' + id,
+            type: 'get',
+            dataType: 'json',
+            processData: false,
+            success: function (data) {
+                if (data.success == true) {
+                    $("#pop_up_div").html("");
+                    $("#pop_up_div").html(data.html);
+                } else {
+                    hudMsg("error", "Failed to delete Claim");
+                }
+
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    }
+
+</script>

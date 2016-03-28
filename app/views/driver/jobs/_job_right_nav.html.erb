@@ -1,0 +1,50 @@
+<div class="z_shiping_det z_100">
+  <% unless @job.blank? %>
+      <h1 class="raidus_2">Shipping Costs</h1>
+
+      <div class="z_h_det z_100">
+        <div class="z_h_list z_100"><p>Subtotal</p><span>$<%= "%.2f" % @job.amount %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Tax</p><span>$<%= "%.2f" % @job_tax %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Your Total</p><span>$<%= "%.2f" % (@job.amount + @job_tax) %></span></div>
+        <!--z_h_list-->
+      </div>
+      <!--z_h_det-->
+      <h1>Pickup Location</h1>
+
+      <div class="z_h_det z_100">
+        <div class="z_h_list z_100"><p>Address</p><span><%= @job.pick_up_address %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Pickup Time</p><span>
+          <%= @job.pick_up_time.strftime("%m/%d/%y at %I:%M %p") %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Contact #</p>
+          <span><%= @job.customer.profile.blank? ? "" : @job.customer.profile.phone_number %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Package Size</p><span><%= @job.package.name if @job.package %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Comments</p><span><%= @job.pick_up_comment %></span>
+        </div>
+        <!--z_h_list-->
+      </div>
+      <!--z_h_det-->
+      <h1>Package Destination</h1>
+
+      <div class="z_h_det z_100">
+        <div class="z_h_list z_100"><p>Address</p><span><%= @job.destination_address %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Est. Delivery</p>
+          <span><%= @job.pick_up_time.strftime("%m/%d/%y at %I:%M %p") %></span>
+        </div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Recipient</p><span><%= @job.recipient_name %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Contact #</p><span><%= @job.recipient_phone %></span></div>
+        <!--z_h_list-->
+        <div class="z_h_list z_100"><p>Comments</p><span><%= @job.recipient_comment %></span></div>
+        <!--z_h_list-->
+      </div>
+  <% end %>
+  <!--z_h_det-->
+</div>

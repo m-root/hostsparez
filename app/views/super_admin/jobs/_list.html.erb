@@ -1,0 +1,211 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>Active Shipments
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="#portlet-config" data-toggle="modal" class="config">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+
+        <table class="table table-striped table-bordered table-hover" id="active_jobs">
+          <thead>
+          <tr>
+            <th style="display: none">
+              ID
+            </th>
+            <th>
+              Package ID
+            </th>
+            <th>
+              Driver
+            </th>
+            <th>
+              Size
+            </th>
+            <th>
+              From
+            </th>
+            <th>
+              Cost
+            </th>
+            <th style="width: 135px">
+              Pickup
+            </th>
+            <th>
+              Origin
+            </th>
+            <th style="width: 135px">
+              Deliver
+            </th>
+            <th>
+              Destination
+            </th>
+            <th style="width: 100px">
+              Action
+            </th>
+          </tr>
+          </thead>
+          <% unless @active_jobs.blank? %>
+              <tbody>
+              <% @active_jobs.each_with_index do |job, index| %>
+                  <tr class="odd gradeX">
+                    <td style="display: none">
+                      <%= job.id %>
+                    </td>
+                    <td>
+                      #<%= job.job_code %>
+                    </td>
+                    <td>
+                      <%= job.driver.blank? ? "n/a" : job.driver.full_name %> </a>
+                    </td>
+                    <td>
+                      <%= job.package.name.capitalize if job.package %>
+                    </td>
+                    <td>
+                      <%= job.is_web ? "WEB" : "IOS" %>
+                    </td>
+                    <td>
+                      $<%= job.transaction_history.blank? ? "%.2f" % 0 : job.transaction_history.amount.blank? ? "%.2f" % 0 : "%.2f" % job.transaction_history.amount %>
+                    </td>
+                    <td>
+                      <%= job.pick_up_time.strftime("%m/%d/%y,%H:%M %p") %>
+                      <%=(job.status == "picked" or job.status == "accepted") ? job.pick_up_time.in_time_zone(current_user.time_zone).strftime("%m/%d/%y,%l:%M %p") : "TBD" %>
+                    </td>
+                    <td>
+                      <%= job.pick_up_address %>
+                    </td>
+                    <td>
+                      <%= job.status == "picked" ? job.delivery_time.in_time_zone(current_user.time_zone).strftime("%m/%d/%y,%l:%M %p") : "TBD"%>
+                    </td>
+                    <td>
+                      <%= job.destination_address %>
+                    </td>
+                    <td>
+                      <%= link_to "Package Detail", super_admin_job_path(job.id), :style => "text-decoration:none", :class => "label label-sm label-success" %>
+                  </tr>
+              <% end %>
+              </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>Shipments history
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="#portlet-config" data-toggle="modal" class="config">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <table class="table table-striped table-bordered table-hover" id="jobs_history">
+          <thead>
+          <tr>
+            <th style="display: none">
+              ID
+            </th>
+            <th >
+              Package ID
+            </th>
+            <th>
+              Driver
+            </th>
+            <th>
+              Size
+            </th>
+            <th>
+              From
+            </th>
+            <th>
+              Cost
+            </th>
+            <th style="width: 135px">
+              Pickup
+            </th>
+            <th>
+              Origin
+            </th>
+            <th style="width: 135px">
+              Delivered
+            </th>
+            <th>
+              Destination
+            </th>
+            <th style="width: 100px">
+              Action
+            </th>
+          </tr>
+          </thead>
+          <% unless @recent_jobs.blank? %>
+              <tbody>
+              <% @recent_jobs.each_with_index do |job, index| %>
+                  <tr class="odd gradeX">
+                    <td style="display: none">
+                      <%= job.id %>
+                    </td>
+                    <td>
+                      #<%= job.job_code %>
+                    </td>
+                    <td>
+                      <%= job.driver.blank? ? "n/a" : job.driver.full_name %> </a>
+                    </td>
+                    <td>
+                      <%= job.package.name.capitalize if job.package %>
+                    </td>
+                    <td>
+                      <%= job.is_web ? "WEB" : "IOS" %>
+                    </td>
+                    <td>
+                      $<%= job.transaction_history.blank? ? "%.2f" % 0 : job.transaction_history.amount.blank? ? "%.2f" % 0 : "%.2f" % job.transaction_history.amount %>
+                    </td>
+                    <td>
+                      <%=job.pick_up_time.in_time_zone(current_user.time_zone).strftime("%m/%d/%y,%l:%M %p")%>
+                    </td>
+                    <td>
+                      <%= job.pick_up_address %>
+                    </td>
+                    <td>
+                      <%= job.delivered_date.in_time_zone(current_user.time_zone).strftime("%m/%d/%y,%l:%M %p") %>
+                    </td>
+                    <td>
+                      <%= job.destination_address %>
+                    </td>
+                    <td>
+                      <%= link_to "Package Detail", super_admin_job_path(job.id), :style => "text-decoration:none", :class => "label label-sm label-success" %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>

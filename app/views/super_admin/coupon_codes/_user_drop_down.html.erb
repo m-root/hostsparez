@@ -1,0 +1,6 @@
+<div class="col-md-2">
+  <div class="form-group">
+    <label class="control-label">User Name</label>
+    <%= select_tag("coupon_code[promotion_code_user_id]", options_for_select(["All", ""] + @users.all.map { |user| [user.full_name, user.id] }), :class => "form-control") %>
+  </div>
+</div>

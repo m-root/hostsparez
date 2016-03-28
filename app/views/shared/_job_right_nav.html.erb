@@ -1,0 +1,29 @@
+<div class="tbl_rit">
+  <div class="small_map" id="map-canvas"></div>
+  <div class="div_hold">
+    <div class="div_hold2">
+      <div class="div_headng">SHIPPING CAST</div>
+      <% unless @job.blank? %>
+          <div class="text_list2"><p>SUB TOTAL</p><span>$<%= @job.amount %></span></div>
+          <div class="text_list2"><p>TAX</p><span>$<%= @job_tax %></span></div>
+          <div class="text_list2"><p>YOUR TOTAL:</p><h6>$<%= @job.amount + 4 %></h6></div>
+      <% end %>
+    </div>
+    <div class="div_headng">PICKUP LOCATION</div>
+    <div class="text_list"><p>Address</p><span><%= @job.pick_up_address %></span></div>
+    <div class="text_list"><p>pickup time</p><span><%= @job.pick_up_time.strftime("%m/%d/%y at %H %p") %></span>
+    </div>
+    <div class="text_list"><p>contact #</p><span><%= @job.pick_up_phone %></span></div>
+    <div class="text_list"><p>package size</p><span><%= @job.package.name if @job.package %></span></div>
+    <div class="text_list"><p>comments:</p><span><%= @job.pick_up_comment %></span></div>
+  </div>
+  <div class="div_hold">
+    <div class="div_headng">PACKAGE LOCATIONS</div>
+    <div class="text_list"><p>Address</p><span><%= @job.destination_address %></span></div>
+    <div class="text_list"><p>Est Delivery</p>
+      <span><%= (@job.pick_up_time + @job.time_value.minutes).strftime("%m/%d/%y at %H %p") %></span></div>
+    <div class="text_list"><p>Recipient </p><span><%= @job.recipient_name %></span></div>
+    <div class="text_list"><p>Contact#</p><span><%= @job.recipient_phone %></span></div>
+    <div class="text_list"><p>comments:</p><span><%= @job.recipient_comment %></span></div>
+  </div>
+</div>

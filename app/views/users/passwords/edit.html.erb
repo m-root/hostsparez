@@ -1,0 +1,18 @@
+<%#= render "users/shared/links" %>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $.fancybox('<%= escape_javascript(render(:partial => 'users/passwords/edit_form'))%>',
+                {
+                    openEffect: "fade",
+                    closeEffect: "fade",
+                    autoSize: true,
+                    minWidth: 480,
+                    scrolling: 'auto'
+                });
+    });
+
+</script>
+

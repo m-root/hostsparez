@@ -1,0 +1,168 @@
+<div class="z_light_box">
+</div>
+<div class="box_hold_sep" id="sign_in_pop_up">
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:id => "log_in_form", :onsubmit => "return false;"}) do |f| %>
+      <%= f.hidden_field :time_zone%>
+      <div class="box_rit">
+        <h1>Sign In</h1>
+
+        <div class="sign_in_error" id="sign_in_errors" style="width: 80%;color: red"></div>
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.email_field :email, :autofocus => true, :class => "fill_1-0", :placeholder => "Email Address *" %>
+          </div>
+        </div>
+        <!--feldz-->
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.password_field :password, :class => "fill_1-0", :placeholder => "Password *" %>
+          </div>
+          <div class="forgot_pass">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "Forgot Your Password?", new_password_path(resource_name), :class => "my-fancy-box b_span" %>
+                <p class="f-r b_p_sep">Don't have an
+                  account? <%= link_to "Sign up", "/sign_up", :class => "my-fancy-box b_span" %></p>
+            <% end -%>
+          </div>
+
+          <div class="box_butns_sep">
+            <a class="z_orngbig_btn zset_pad" href="javascript:void(0);" id="login_and_continue">Log in</a><!--z_orngbig_btn-->
+            <!--<input class="login_button" type="submit" value="Login" id="login_and_continue">-->
+            <!--<a class="z_fbbig_btn" href="#"><i class="fa fa-facebook zfb"></i> Login With Facebook</a>-->
+            <a class="z_fbbig_btn" href="/users/auth/facebook"><i class="fa fa-facebook zfb"></i>Log in with
+              Facebook</a>
+            <!--z_fbbig_btn-->
+          </div>
+          <!--box_butns-->
+        </div>
+        <!--feldz-->
+      </div>
+  <% end %>
+  <!--box_rit-->
+  <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+</div>
+
+
+<script type="text/javascript">
+    var placeholder = " ";
+    $("input[type=text],input[type=email],input[type=password]").focus(function () {
+        placeholder = $(this).attr("placeholder");
+        return $(this).attr("placeholder", " ");
+    });
+    $("input[type=text],input[type=email],input[type=password]").blur(function () {
+        if ($(this).val() === "") {
+            return $(this).attr("placeholder", placeholder);
+        }
+    });
+
+    $(document).ready(function () {
+        $('#user_time_zone').set_timezone();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $('.my-fancy-box').bind('click', function (e) {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: $(this).attr('href'),
+                error: function (jqXHR, textStatus) {
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                    hudMsg("error", "Something went wrong please try later");
+
+                },
+                success: function (response) {
+                    $("#pop_up_div").html(response).fadeIn('slow');
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                }
+            });
+        });
+        $("#log_in_form").validate({
+            rules: {
+                "user[email]": {
+                    required: true,
+                    email: true
+                },
+                "user[password]": {
+                    required: true,
+                    minlength: 8
+                }
+            },
+            messages: {
+                "user[email]": {
+                    required: "Please enter your email",
+                    email: "Please enter valid email"
+                },
+                "user[password]": {
+                    required: "Please enter your password",
+                    minlength: "Your password must be at least 8 characters long"
+                }
+            }
+        });
+    });
+
+    $("#login_and_continue").click(function () {
+        if (!$("#log_in_form").valid()) {
+            return false;
+        } else {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $("#log_in_form").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    console.log(data.success);
+                    if (data.success == true) {
+//                        window.location.reload();
+                        window.location.href = data.url
+                        if (data.role == "customer") {
+                            window.location.href = "/customer/jobs";
+                        } else if (data.role == "driver") {
+                            window.location.href = "/driver/jobs";
+                        } else if (data.role == "super_admin") {
+                            window.location.href = "/super_admin/dashboard";
+                        }//
+                    } else {
+                        $("#sign_in_errors").html(data.errors)
+                    }
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                },
+                error: function (data) {
+//                    console.log(data.responseJSON.errors());
+                    var arr = data.responseText.split(":")[1];
+//                    arr =  arr[1].split("}')[0];
+                    $("#sign_in_errors").html(arr.substring(1, arr.length - 2));
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide()
+                }
+            });
+        }
+    });
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_sep").hide();
+    }
+    //    $(".z_light_box").click(function () {
+    //        alert("dsad");
+    //        $(".z_light_box").hide();
+    //    });
+
+    //    $("body").click(function (event) {
+    //        var $target = $(event.target);
+    //        console.log($target);
+    //        if (!$target.is(".box_hold_sep")) {
+    //            $(".z_light_box").hide();
+    //            $(".box_hold_sep").hide();
+    //        }
+    //    });
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_sep").hide();
+    });
+</script>

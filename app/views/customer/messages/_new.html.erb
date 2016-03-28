@@ -1,0 +1,80 @@
+<%= stylesheet_link_tag "style3" %>
+<div class="wrapper">
+  <div class="tbl_left">
+    <div class="j_b_form">
+      <p>MESSAGES<span> >SEND MESSAGE</span></p>
+    </div>
+    <%= form_for(@message, :url => customer_messages_path, :method => "post") do |f| %>
+        <%= f.hidden_field :job_id, :value => @job.id %>
+        <%= f.hidden_field :status, :value => "close" %>
+        <%= f.hidden_field :subject, :value => "#{@job.job_code}" %>
+        <%= f.hidden_field :sender_id, :value => current_user.id %>
+        <%= f.hidden_field :sender_type, :value => "User" %>
+        <%= f.hidden_field :receiver_id, :value => @job.driver.id %>
+        <%= f.hidden_field :receiver_type, :value => "User" %>
+        <div class="message_hold">
+          <div class="jb_title">
+            SEND MESSAGE
+          </div>
+          <div class="row" id="errors"></div>
+          <div class="message_hold_in">
+            <p>TO:<span><%= @job.driver.full_name %></span></p>
+
+            <p>SUBJECT:<span>PACKAGE#<%= @job.job_code %></span></p>
+          </div>
+          <div class="jb_fields">
+            <%= f.text_area :description, :class => "input_text_area", :placeholder => "Select pick up time" %>
+            <div class="send_msg" id="save-btn">
+              <a href="javascript:void(0);">SEND MESSAGE</a>
+            </div>
+            <!--<div class="send_msg"><a href="/jobs/new">SEND MESSAGE</a></div>-->
+          </div>
+
+        </div>
+    <% end %>
+  </div>
+  <div id="right_nav">
+    <%= render :partial => "shared/right_nav" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ratelinks li a').click(function () {
+            $('#current-rating').css({'width': 20 * $(this).text() + '%'})
+            $('#review_rating').val($(this).text());
+        });
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+//                    window.location.href = response.url
+                    hudMsg("success", "Message Successfully Sent");
+                } else {
+                    $("#errors").html(response.html);
+                }
+
+            }), "json");
+            return false;
+
+        });
+
+        $("#cancel-btn").click(function () {
+            $.fancybox.close();
+        });
+
+    });
+
+</script>
+
+

@@ -1,0 +1,133 @@
+<%- title "About Us - Goziply" %>
+<section class="about_sec" id="margin_bot">
+  <div class="container01">
+    <div class="col_1">
+      <ul>
+        <li><a href="about_us.html" class="activ_blue">About Us -</a></li>
+	<!--        <li><a href="/locations">Locations</a></li>-->
+        <li><a href="/contact-us">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="col_2">
+      <div class="about_content">
+        <h2>Who we are</h2>
+        <p>Ziply is an on-demand mobile and web platform transforming the way local goods are transported by facilitating immediate to same-day delivery.</p>
+        <!--<p>Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>-->
+      </div>
+    </div>
+    <div class="col_3">
+      <div class="mission">
+        <h2>Mission</h2>
+        <p>We simplify everyday shipping and delivery for consumers and businesses alike by using the most efficient and cost-effective method. We will pick up and deliver at any time at your home, office or anywhere in between. We will always pick up and deliver with care.
+        </p>
+      </div>
+      <div class="mission">
+        <h2>Vision</h2>
+        <p>Become the main delivery infrastructure in every major city around the world.
+        </p>
+      </div>
+    </div>
+  </div>
+</section><!-- About -->
+<section class="aobut_flow">
+  <div class="container">
+    <div class="flow_img"><img src="/assets/about_flow.png" ></div>
+  </div>
+</section>
+<section class="about_crcl">
+  <div class="container">
+    <div class="demo">
+      <div id="horizontalTab">
+        <ul class="resp-tabs-list">
+          <li>Business</li>
+          <li>Retail</li>
+          <li>Personal</li>
+        </ul>
+        <div class="resp-tabs-container">
+          <div>
+            <h3>Use Ziply for Business Shipping</h3>
+            <p>Need something sent quickly? We got you covered. Whether it’s a presentation, a sample or even a box of vases, we understand the importance of quickness. Our Zipsters get your items delivered as fast as we can while giving you the lowest costs. You also know where your items are at anytime by simply looking at your phone and tracking where the package is in real time. Furthermore, you can communicate directly with your Zipster for the most transparency.
+
+              We aim to serve the largest firms to the smallest family-owned businesses. Our platform is affordable and easy to use.</p>
+          </div>
+          <div>
+            <h3>Use Ziply for Retail Shipping</h3>
+	    <p>Your customers can now get same-day delivery, fulfilled by Ziply. Forget standard shipping, use Ziply to get your products into the hands of your customers for the same cost!</p>
+          </div>
+          <div>
+            <h3>Use Ziply for Personal Shipping</h3>
+            <p>Did your friend leave their backpack in your car? No problem, call a Zipster to pick it up and drop it off to your friend. We understand that you’re a busy person and that sometimes you need things done for you immediately. Simply call a Zipster to have them pick up and drop off whatever you need. With Ziply, you can get more done!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="z_testimonial_3" class="testi-bg P_0">
+  <div class="container">
+    <div class="z_testi" id="test_container">
+      <div class="testimonial">
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+            <p>I have used many couriers in the past. None of them are as friendly, professional and timely as Ziply. The website is simple to use and their system is highly efficient.</p>
+            <p>Samantha K, Business owner</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div><!--z_testi_txt-->
+        </div><!--z_repet-->
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+            <p>My husband and I recently moved to a new house. We used Ziply to pick up all of our large shopping items we couldn't fit in our car. Nothing got damaged and everything was delivered quickly and safely!</p>
+            <p>Suzy Q, Homemaker</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div><!--z_testi_txt-->
+        </div><!--z_repet-->
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+            <p>I have a ton of confidential legal documents that I need delivered to my clients in a timely manner. Ziply never lets me down, and I highly recommend their on-demand service to all of my clients and colleagues.</p>
+            <p>Eddie D, Lawyer</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div><!--z_testi_txt-->
+        </div><!--z_repet-->
+
+      </div><!--testimonial-->
+    </div><!--z_testi-->
+  </div><!--container ends-->
+</section><!--z_testimonial-->
+
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#horizontalTab').easyResponsiveTabs({
+                    type: 'default', //Types: default, vertical, accordion
+                    width: 'auto', //auto or any width like 600px
+                    fit: true,   // 100% fit in a container
+                    closed: 'accordion', // Start closed if in accordion view
+                    activate: function(event) { // Callback function if tab is switched
+                        var $tab = $(this);
+                        var $info = $('#tabInfo');
+                        var $name = $('span', $info);
+
+                        $name.text($tab.text());
+
+                        $info.show();
+                    }
+                });
+
+                $('#verticalTab').easyResponsiveTabs({
+                    type: 'vertical',
+                    width: 'auto',
+                    fit: true
+                });
+//                $('#fileinput').trigger('click');
+
+            });
+
+
+    </script>

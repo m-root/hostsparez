@@ -1,0 +1,116 @@
+<%- title "Contact Us - Goziply" %>
+<section class="about_sec">
+  <div class="container01">
+    <div class="col_1">
+      <ul>
+        <li><a href="/about-us">About Us</a></li>
+
+        <!--<li><a href="/locations">Locations</a></li>-->
+	<!--        <li><a href="/locations">Locations</a></li>-->
+        <li><a href="/contact-us" class="activ_blue">Contact Us -</a></li>
+      </ul>
+    </div>
+    <div class="col_2">
+      <div class="about_content">
+        <h2>Have a Question?</h2>
+
+	<p>We are expanding fast and we’d love to hear from you. 
+	<br />
+	<br />
+	Tell us how we might be of service to you by filling out the form below.
+	</p>
+
+          <%= form_for(:contact, :url => "home/contact_us_message", :method => "post", :html =>{ :class => "contact_form", :id => "contact_us_frm"}) do |f| %>
+          <label>Full Name</label>
+          <input name="contact[name]" type="text" placeholder="Ex. John Smith" >
+          <label>Email Address</label>
+          <input name="contact[email]" type="text" placeholder="Ex. john.smith@gmail.com" >
+          <label>Subject</label>
+          <input name="contact[subject]" type="text" placeholder="What would you like to talk about?" >
+          <label>Message</label>
+          <textarea name="contact[message]" placeholder="Write your question here..."></textarea>
+          <a id="contact_us_btn" href="javascript:void(0);" class="z_orngbig_btn" style="margin: 20px 0 0 0">Contact Us</a>
+          <%end%>
+
+
+      </div>
+    </div>
+    <div class="col_3">
+      <div class="mission_1">
+        <h3>Phone:</h3>
+        <h4>
+          Prefer to talk on the phone? Call us at (888) 288-1511 and we’ll be happy to answer your questions! Our support team can be reached 24/7.
+        </h4>
+      </div>
+      <div class="mission_1">
+        <h3>Email:</h3>
+        <h4>
+          Email us at <a href="mailto:support@goziply.com">support@goziply.com</a> and we’ll get back to you as soon as possible. If you’re an existing customer, be sure to include your account name and any tracking numbers or invoice numbers relevant to your question. Thank you!
+
+        </h4>
+      </div>
+      <!--<div class="mission_1">-->
+        <!--<h3>Address:</h3>-->
+	<!--<h4>2356 B Sierra Street, Suite E <br />Los Angeles, CA 89563</h4>-->
+      <!--</div>-->
+
+    </div>
+
+  </div>
+</section><!-- About -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#contact_us_frm").validate({
+            rules: {
+                "contact[name]": {
+                    required: true
+
+                },
+                "contact[email]": {
+                    required: true,
+                    email: true
+                },
+                "contact[subject]": {
+                    required: true
+                } ,
+
+            "contact[message]": {
+                required: true
+            }
+            }
+        });
+
+        $("#contact_us_btn").click(function () {
+            if (!$("#contact_us_frm").valid()) {
+                return false;
+            } else {
+                $("#ajax_loader").show();
+                $(".shadow").show();
+                $("#contact_us_frm").ajaxSubmit({
+                    beforeSubmit: function (a, f, o) {
+                        o.dataType = 'json';
+                    },
+                    success: function (data) {
+                        console.log(data.success);
+                        if (data.success == true) {
+                        $("#pop_up_div").html('<%= escape_javascript(render(:partial => '/home/message_sent.html'))%>')
+                        } else {
+                            $("#sign_in_errors").html(data.errors)
+                        }
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    },
+                    error: function (data) {
+//                    console.log(data.responseJSON.errors());
+                        var arr = data.responseText.split(":")[1];
+//                    arr =  arr[1].split("}')[0];
+                        $("#sign_in_errors").html(arr.substring(1, arr.length - 2));
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide()
+                    }
+                });
+            }
+        });
+    });
+</script>

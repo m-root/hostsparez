@@ -1,0 +1,113 @@
+<div class="portlet box blue">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-gift"></i>Driver
+    </div>
+    <div class="tools">
+      <a class="collapse" href="javascript:;">
+      </a>
+      <a class="config" data-toggle="modal" href="#portlet-config">
+      </a>
+      <a class="reload" href="javascript:;">
+      </a>
+      <a class="remove" href="javascript:;">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <!-- BEGIN FORM-->
+    <form role="form" class="form-horizontal">
+      <% if @job.status == "picked" or @job.status == "delivered" or @job.status == "accepted" or @job.status == "canceled"%>
+          <div class="form-body">
+
+            <h3 class="form-section">Driver</h3>
+
+            <!--<div class="row">-->
+              <!--<div class="col-md-6">-->
+                <!--<div class="form-group">-->
+                  <!--<label class="control-label col-md-3">Address:</label>-->
+
+                  <!--<div class="col-md-9">-->
+                    <!--<p class="form-control-static">-->
+                      <%#= @job.driver.blank? ? "" : @job.driver.profile.blank? ? "" : @job.driver.profile.asset.blank? ? "" : image_tag(@job.driver.profile.asset.avatar.url(:thumb)) %>
+                    <!--</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--/row-->
+            <% unless @job.driver.blank? %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label col-md-3">Name:</label>
+
+                      <div class="col-md-9">
+                        <p class="form-control-static">
+                          <%= @job.driver.blank? ? "" : @job.driver.full_name %>
+                        </p>
+                      </div>
+                      <!--/span-->
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label col-md-3">Location:</label>
+
+                          <div class="col-md-9">
+                            <p class="form-control-static">
+                              <%=@location %>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--/span-->
+                    </div>
+                  </div>
+                  <!--/span-->
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label col-md-3">Location:</label>
+
+                      <div class="col-md-9">
+                        <p class="form-control-static">
+                          <% @job.driver.locations.first.blank? ? "" : @job.driver.locations.first.address %>,
+                          <% @job.driver.locations.first.blank? ? "" : @job.driver.locations.first.state %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/span-->
+                </div>
+                <!--/row-->
+            <% end %>
+          </div>
+      <% elsif @job.status == "accepted" %>
+          <div class="waiting_pickup z_100">
+            <h1>Package is awaiting pickup.</h1>
+
+            <p>Driver information will be available once the item is picked up.</p>
+          </div>
+      <% elsif @job.status == "available" %>
+          <div class="waiting_pickup z_100">
+            <h1>Package is awaiting Accept.</h1>
+
+            <p>Driver information will be available once the item is Accepted.</p>
+          </div>
+      <% end %>
+    </form>
+    <%if @job.driver.present?%>
+    <%if @job.driver.status == "inactive"%>
+            <a class="btn red" href="#">Already Canceled</a>
+    <%else%>
+    <div class="form-actions">
+      <div class="z_100" id="save-btn">
+        <a class="btn red" href="/super_admin/jobs/cancel_driver?id=<%=@job.id%>">Cancel Driver</a>
+      </div>
+      <!--<button class="btn blue" type="submit">Update</button>-->
+      <%#= f.submit "Save", :class => "btn blue" %>
+    </div>
+        <%end%>
+    <%end%>
+    <!-- END FORM-->
+  </div>
+
+</div>

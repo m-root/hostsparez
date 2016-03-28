@@ -1,0 +1,164 @@
+<%= javascript_include_tag "jqueryeasydropdown", "chosen.jquery" %>
+<%= stylesheet_link_tag "chosen" %>
+<div class="z_light_box">
+</div>
+<%= form_for(@user, :as => :user, :url => registration_path(@user), :html => {:id => "d_sign_up_form", :onsubmit => "return false;"}) do |f| %>
+    <%= hidden_field_tag :role, "driver" %>
+    <div class="box_hold_new">
+      <div class="z_expression z_100">
+        <h3>Cha-Ching</h3>
+        <h5>Full-time or on the side, start making money now.</h5>
+        <span>Complete the form below and a Ziply team member will contact you shortly.</span>
+      </div>
+      <div id="sign_up_errors"></div>
+      <!--z_expression-->
+      <div class="z_100">
+        <div class="z_feldz">
+          <%= f.text_field :first_name, :autofocus => true, :class => "fill_1-0", :placeholder => "John" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= f.text_field :last_name, :class => "fill_1-0", :placeholder => " Smith" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= f.text_field :email, :class => "fill_1-0", :placeholder => " jsmith@gmail.com" %>
+        </div>
+        <!--z_feldz-->
+        <% f.object.profile ||= Profile.new %>
+        <%= f.fields_for :profile do |p| %>
+            <div class="z_feldz">
+              <%= p.text_field :phone_number, :class => "fill_1-0", :placeholder => "Phone Number" %>
+            </div>
+            <!--z_feldz-->
+            <div class="z_feldz mrgbot bord_grey">
+              <%= p.select :phone_type_id, PhoneType.all.map { |phone_type| [phone_type.name, phone_type.id] }, {include_blank: 'Select Phone Type'}, :class => "chosen-select_phone_type" %>
+            </div>
+            <!--z_feldz-->
+            <div class="z_feldz mrgbot bord_grey">
+              <%= p.select :vehicle_type_id, VehicleType.all.map { |vehicle_type| [vehicle_type.name, vehicle_type.id] }, {include_blank: 'Select Vehicle Type'}, :class => "chosen-select_vehicle_type" %>
+            </div>
+        <% end %>
+        <!--z_feldz-->
+        <div class="z_100">
+          <a class="z_orngbig_btn zset_pad z_100 mrgbot" href="#" id="d_sign_up_btn">Become a Driver</a><!--z_orngbig_btn-->
+          <a class="z_xgray_btn z_100" href="javascript:void(0);" onclick="close_pop_up();">Not Right Now</a>
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div>
+<% end %>
+<!--box_hold_new-->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#user_profile_attributes_phone_number").mask("999-999-9999");
+        $(".fancybox-close").css("display", "none");
+        $(".chosen-select_phone_type").chosen({disable_search: true});
+        $(".chosen-select_vehicle_type").chosen({disable_search: true});
+//        var $selects = $('#user_profile_attributes_vehicle_type_id');
+//        $selects.easyDropDown({
+//            cutOff: 10,
+//            wrapperClass: 'dropdown driver_form_down',
+//            onChange: function (selected) {
+//                // do something
+//            }
+//        });
+//        var $selects = $('#user_profile_attributes_phone_type_id');
+//        $selects.easyDropDown({
+//            cutOff: 10,
+//            wrapperClass: 'dropdown driver_form_down',
+//            onChange: function (selected) {
+//                // do something
+//            }
+//        });
+    });
+    $("#d_sign_up_btn").click(function () {
+        if (!$("#d_sign_up_form").valid()) {
+            return false;
+        } else {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $("#d_sign_up_form").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide()
+                    console.log(data.success);
+                    if (data.success == true) {
+                        $('.z_light_box').hide();
+                        $("#ajax_loader").show();
+                        $(".shadow").show();
+                        $.ajax({
+                            url: '/home/driver_success',
+                            type: 'get',
+                            dataType: 'html',
+                            processData: false,
+                            success: function (data) {
+                                $("#pop_up_div").html(data);
+                                $("#ajax_loader").hide();
+                                $(".shadow").hide()
+                            }
+                        });
+                    }
+                    else if (data.success == false) {
+                        $("#sign_up_errors").html(data.html);
+                    }
+                },
+                error: function (data) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+
+    $("#d_sign_up_form").validate({
+        rules: {
+            "user[first_name]": {
+                required: true
+            },
+            "user[last_name]": {
+                required: true
+            },
+            "user[email]": {
+                required: true,
+                email: true
+            },
+            "user[profile_attributes][phone_number]": {
+                required: true
+            }
+        },
+        messages: {
+            "user[first_name]": {
+                required: "Please enter your first name"
+            },
+            "user[last_name]": {
+                required: "Please enter your last name"
+            },
+            "user[email]": {
+                required: "Please enter your email",
+                email: "Please enter valid email"
+            },
+            "user[profile_attributes][phone_number]": {
+                required: "Please enter your phone number"
+            }
+        }
+    });
+
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+</script>
+
+

@@ -1,0 +1,162 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      Payment Methods
+      <small>Edit , Block and More</small>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/payment_methods">All Payment Methods</a>
+        <!--<i class="fa fa-angle-right"></i>-->
+      </li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>Current Payment Methods
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="#portlet-config" data-toggle="modal" class="config">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="table-toolbar">
+          <div class="btn-group">
+            <%= link_to(new_super_admin_payment_method_path) do %>
+                <button id="sample_editable_1_new" class="btn green">
+                  Add New <i class="fa fa-plus"></i>
+                </button>
+            <% end %>
+          </div>
+
+        </div>
+        <div id="payment_method_list">
+          <%= render :partial => "super_admin/payment_methods/list" %>
+        </div>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>
+
+<!-- END PAGE CONTENT-->
+</div>
+</div>
+
+
+<script>
+    function delete_payment_method(id) {
+        apprise("Are you sure you want to Delete this payment method?", {'confirm': true}, function (r) {
+            if (r) {
+                $("#ajax_loader").show();
+                $(".shadow").show();
+                $.ajax({
+                    url: '/super_admin/payment_methods/delete_payment_method?id=' + id,
+                    type: 'get',
+                    dataType: 'json',
+                    processData: false,
+                    success: function (data) {
+                        if (data.success == true) {
+                            window.location.href = data.url
+                        } else {
+                            hudMsg("error", "Failed to delete payment method");
+                        }
+
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                    }
+                });
+            }
+        });
+    }
+
+    jQuery(document).ready(function () {
+        TableManaged.init();
+        initialize_table();
+    });
+
+    function initialize_table() {
+        var active_table = $('#super_payment_methods');
+
+        // begin first table
+        active_table.dataTable({
+            "columns": [
+                {
+                    "orderable": false
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": false
+                },
+                {
+                    "orderable": false
+                },
+                {
+                    "orderable": true
+                } ,
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                }
+
+            ],
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 5,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "lengthMenu": "_MENU_ records",
+                "paginate": {
+                    "previous": "Prev",
+                    "next": "Next",
+                    "last": "Last",
+                    "first": "First"
+                }
+            },
+            "columnDefs": [
+                {  // set default column settings
+                    'orderable': false,
+                    'targets': [0]
+                },
+                {
+                    "searchable": false,
+                    "targets": [0]
+                }
+            ],
+            "order": [
+                [1, "asc"]
+            ] // set first column as a default sort by asc
+        });
+
+    }
+</script>
+
+

@@ -1,0 +1,25 @@
+<script type="text/javascript"
+        src="//maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+<section class="z_content3">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>My Locations</h2></div>
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder">
+        <div class="z_loc_p_hed">
+          <h3>Saved Locations</h3>
+          <!--<a href="#" class="f-r">+ Add Location</a>-->
+          <%= link_to "+ Add Location", new_customer_location_path, :class => "my-fancy-box f-r" %>
+        </div>
+        <!--z_loc_p_hed-->
+        <div id="location_list">
+          <%= render :partial => "customer/locations/list" %>
+        </div>
+
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+</section>

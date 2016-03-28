@@ -1,0 +1,130 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "sign_in-form", :novalidate => "novalidate"}) do |f| %>
+    <!--<form method="post" action="index.html" class="login-form" novalidate="novalidate">-->
+    <%= f.hidden_field :time_zone%>
+    <h3 class="form-title">Log in to your account</h3>
+
+    <div class="alert alert-danger display-hide">
+      <button data-close="alert" class="close"></button>
+			<span>
+			Enter any username and password. </span>
+    </div>
+    <div class="form-group">
+      <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+      <label class="control-label visible-ie8 visible-ie9">Username</label>
+
+      <div class="input-icon">
+        <i class="fa fa-user"></i>
+        <!--<input type="text" name="username" placeholder="Username" autocomplete="off" class="form-control placeholder-no-fix">-->
+        <%= f.email_field :email, :autofocus => true, :class => "form-control placeholder-no-fix", :placeholder => "Email Address *" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label visible-ie8 visible-ie9">Password</label>
+
+      <div class="input-icon">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :password, :class => "form-control placeholder-no-fix", :placeholder => "Password *" %>
+        <!--<input type="password" name="password" placeholder="Password" autocomplete="off" class="form-control placeholder-no-fix">-->
+      </div>
+    </div>
+    <div class="form-actions">
+
+      <button class="btn green pull-right" type="submit" id="login_and_continue">
+        Log in <i class="m-icon-swapright m-icon-white"></i>
+      </button>
+    </div>
+<% end %>
+
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+      $('#user_time_zone').set_timezone();
+  });
+
+    $('.sign_in-form').validate({
+        errorElement: 'span', //default input error message container
+        errorClass: 'help-block', // default input error message class
+        focusInvalid: false, // do not focus the last invalid input
+        rules: {
+            "user[email]": {
+                required: true
+            },
+            "user[password]": {
+                required: true
+            },
+            remember: {
+                required: false
+            }
+        },
+
+        messages: {
+            "user[email]": {
+                required: "Email is required."
+            },
+            "user[password]": {
+                required: "Password is required."
+            }
+        },
+
+        invalidHandler: function (event, validator) { //display error alert on form submit
+            $('.alert-danger', $('.login-form')).show();
+        },
+
+        highlight: function (element) { // hightlight error inputs
+            $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+        },
+
+        success: function (label) {
+            label.closest('.form-group').removeClass('has-error');
+            label.remove();
+        },
+
+        errorPlacement: function (error, element) {
+            error.insertAfter(element.closest('.input-icon'));
+        }
+    });
+
+
+    $('.sign_in-form').keypress(function (e) {
+        if (e.which == 13) {
+            if ($('.sign_in-form').validate().form()) {
+                submit_form();
+            }
+            return false;
+        }
+    });
+
+    $("#login_and_continue").click(function () {
+        if ($('.sign_in-form').validate().form()) {
+            submit_form();
+        }
+        return false;
+    });
+
+    function submit_form() {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $(".sign_in-form").ajaxSubmit({
+            beforeSubmit: function (a, f, o) {
+                o.dataType = 'json';
+            },
+            success: function (data) {
+                console.log(data.success);
+                if (data.success == true) {
+                    window.location.href = "/super_admin/dashboard";
+                } else {
+                    $(".alert-danger").show();
+                    $(".alert-danger span").html(data.errors);
+                }
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            },
+            error: function (data) {
+                window.location.reload();
+            }
+        });
+    }
+</script>

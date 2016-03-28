@@ -1,0 +1,28 @@
+<% if  @file_claims.present? %>
+    <% @file_claims.each do |file_claim| %>
+        <div class="z_locaton_list z_100">
+          <div class="z_wpic_hed2">
+            <h3 class="f-l"><%= file_claim.job.job_code if file_claim.job%></h3>
+            <div class="next_back f-r">
+              <a class="my-fancy-box" href="/customer/file_claims/del_pop_up?id=<%= file_claim.id %>"><i class="fa fa-trash-o icon_colr"></i></a>
+            </div>
+          </div>
+          <!--z_wpic_hed2-->
+          <div class="z_loc_det z_100">
+            <div class="z_nme_addres">
+              <div class="z_n_list">
+
+                <p class="z_p_2">Claim: <span><%= file_claim.description %><span></span></span></p>
+                <p class="z_p_2">Status: <span><%= file_claim.description %><span></span></span></p>
+
+              </div>
+              <!--z_n_list-->
+
+              <!--z_n_list-->
+            </div>
+            <!--z_nme_addres-->
+          </div>
+          <!--z_loc_det-->
+        </div>
+    <% end %>
+<% end %>

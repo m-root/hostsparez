@@ -1,0 +1,192 @@
+<%- title "Messenger Service Los Angeles, Couriers Hollywood North & South - Goziply" %>
+<div id="getting_started">
+
+  <%= render :partial => "home/getting_started" %>
+  <!--z_slider-->
+</div>
+<section id="z_works">
+  <div class="container">
+    <div class="z_w_lft"><img src="/assets/how_it_works.png"></div><!--z_w_lft-->
+    <div class="z_w_rit">
+      <h1>How does Ziply work?</h1>
+      <p>Ziply operates as an on-demand shipping service, allowing customers to order couriers to deliver their parcels in a fast and efficient manner without having to leave their home or office. If you’ve got a package that’s ready to be shipped, all you need to do is log on to Ziply, select a destination and let a Zipster do the rest.</p>
+    </div><!--z_w_lft-->
+  </div><!--container ends-->
+</section><!--z_works-->
+<section id="z_why" class="why-bg">
+  <div class="container">
+    <div class="z_w_lftt">
+      <h1>Why choose Ziply?</h1>
+      <p>Ziply offers the most convenient on-demand shipping service around. From the touch of your cellphone, laptop or desktop, you can request a courier 24/7/365 for quick and reliable transportation of your packages, avoiding lines at the post office in the process.</p>
+      <div class="z_reg_btn"><a class="z_orngxbig_btn" href="/about-us">Learn More</a></div><!--z_reg_btn -->
+    </div><!--z_w_lft-->
+  </div><!--container-->
+</section><!--z_why-->
+<section id="z_testimonial" class="testi-bg">
+  <div class="container">
+    <div class="z_testi" id="test_container">
+      <div class="testimonial">
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+            <p>I have used many couriers in the past. None of them are as friendly, professional and timely as Ziply. The website is simple to use and their system is highly efficient.</p>
+            <p>Samantha K, Business owner</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div><!--z_testi_txt-->
+        </div><!--z_repet-->
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+            <p>My husband and I recently moved to a new house. We used Ziply to pick up all of our large shopping items we couldn't fit in our car. Nothing got damaged and everything was delivered quickly and safely!</p>
+            <p>Suzy Q, Homemaker</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div><!--z_testi_txt-->
+        </div><!--z_repet-->
+        <div class="z_repet">
+
+          <div class="z_testi_txt">
+            <img src="/assets/inverted.png">
+            <p>I have a ton of confidential legal documents that I need delivered to my clients in a timely manner. Ziply never lets me down, and I highly recommend their on-demand service to all of my clients and colleagues.</p>
+            <p>Eddie D, Lawyer</p>
+            <img class="f-r" src="/assets/inverted-2.png">
+          </div><!--z_testi_txt-->
+        </div><!--z_repet-->
+
+      </div><!--testimonial-->
+    </div><!--z_testi-->
+    <!--<div class="z_get_started" id="z_get_started"><a class="z_orngxbig_btn sign_up" href="javascript:void(0)">Get Started for Free</a></div>&lt;!&ndash;z_get_started &ndash;&gt;-->
+  </div><!--container ends-->
+
+</section><!--z_testimonial-->
+<div class="z_get_started" id="z_get_started" style="  margin: 0 0 50px 0;"><a class="z_orngxbig_btn sign_up" href="javascript:void(0)">Get Started for Free</a></div><!--z_get_started -->
+<section>
+  <div class="app-store">
+    <h1>Door-to-Door From Your Fingertips</h1>
+    <div class="app_btn"><a href="#"><img src="/assets/app_store_img.png"></a></div>
+  </div>
+</section>
+
+<script type="text/javascript"
+        src="//maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+
+<script type="text/javascript">
+    $(".smal-nav").on("click", ".init", function () {
+        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    });
+
+    var allOptions = $(".smal-nav").children('li:not(.init)');
+    $(".smal-nav").on("click", "li:not(.init)", function () {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $(".smal-nav").children('.init').html($(this).html());
+        allOptions.slideUp();
+    });
+
+    $("#get_started").click(function () {
+        var pick_location = $("#pick_location").val();
+        var dest_location = $("#dest_location").val();
+//        var pick_time = $("#pick_time").val();
+        var pick_time = "";
+//        var home_cookie_string = "";
+//        if (pick_location != "" && pick_location != undefined) {
+//            home_cookie_string = home_cookie_string + pick_location + "_"
+//        } else {
+//            apprise("Please Enter Pick Location");
+//            return false;
+//        }
+//        if (dest_location != "" && dest_location != undefined) {
+//            home_cookie_string = home_cookie_string + dest_location + "_"
+//        } else {
+//            apprise("Please Enter Destination Location");
+//            return false;
+//        }
+//        if (pick_time != "" && pick_time != undefined) {
+//            home_cookie_string = home_cookie_string + pick_time
+//        } else {
+//            apprise("Please Enter Destination Location");
+//            return false;
+//        }
+//        $.setCookie("home_cookie_string", home_cookie_string);
+//        document.location.href = "/jobs/new?pick_location=" + pick_location + "&dest_location=" + dest_location;
+        document.location.href = "/customer/jobs/new?pick_location=" + pick_location + "&dest_location=" + dest_location + "&pick_time=" + pick_time;
+    })
+
+    var currentdate = new Date();
+    var datetime = currentdate.getFullYear() + "-" + currentdate.getMonth()
+            + "-" + currentdate.getDay() + " "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes();
+
+    //    $('#pick_time').datetimepicker({
+    //        format: 'Y-m-d h:m TT',
+    //        hours12: true,
+    //        lang: 'en'
+    //    });
+    //    $('#s_date_icon').click(function () {
+    //        $('#pick_time').datetimepicker('show');
+    //    });
+
+    //    $('#pick_time').timepicker();
+    //    $('#pick_time').datetimepicker({
+    //        timeFormat: "hh:mm tt"
+    //    });
+
+    var d = new Date(); // today!
+    var x = 1; // go back 5 days!
+    d.setDate(d.getDate() + 1);
+//    $('#pick_time').datetimepicker({
+////        controlType: 'select',
+//        dateFormat: 'm-d-yy',
+//        timeFormat: 'hh:mm tt',
+//        minDate: new Date(),
+//        maxDate: d,
+//        minTime: Date($.now())
+//    });
+
+    //    $('#pick_time').datetimepicker({
+    //        language: 'pt-BR'
+    //    });
+    //    $('pick_time').datepicker();
+
+
+    $("#pick_location").geocomplete({
+        details: "form",
+        //            componentRestrictions: {country: 'UK'},
+        types: ["geocode", "establishment"], select: function (event, ui) {
+            if (ui.item.value != '') {
+                $("#pick_location").trigger("geocode");
+            }
+        }
+    });
+    $("#dest_location").geocomplete({
+        details: "form",
+        //            componentRestrictions: {country: 'UK'},
+        types: ["geocode", "establishment"],
+        select: function (event, ui) {
+            if (ui.item.value != '') {
+                $("#dest_location").trigger("geocode");
+            }
+        }
+    });
+
+    $(".sign_up").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/sign_up',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                $("html, body").animate({ scrollTop: 100 }, "slow");
+            }
+        });
+    });
+
+</script>
+

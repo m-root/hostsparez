@@ -1,0 +1,88 @@
+<div class="z_route_det z_100">
+  <% if @job.status == "picked" or @job.status == "delivered" or @job.status == "accepted" %>
+      <div class="z_rev_holder z_100">
+        <div class="z_dp_img2">
+          <%= @job.driver.blank? ? image_tag("default_image.png") : @job.driver.profile.blank? ? image_tag("default_image.png") : @job.driver.profile.asset.blank? ? image_tag("default_image.png") : image_tag(@job.driver.profile.asset.avatar.url(:thumb)) %>
+        </div>
+        <!--z_dp_img2-->
+        <% unless @job.driver.blank? %>
+            <div class="z_nrev">
+              <div class="z_review_det">
+                <div class="z_nam_rev f-l">
+                  <h2><%= @job.driver.blank? ? "" : @job.driver.full_name %></h2>
+                </div>
+                <!--z_nam_rev-->
+                <div class="z_nam_rev f-r">
+                  <div class="zrev"><%= link_to @job.driver.blank? ? 0 : "(#{@job.driver.driver_reviews.size} Reviews)", "/driver/reviews" %> </div>
+                  <!--zrev-->
+                  <%= render :partial => "customer/jobs/rating" %>
+
+                  <!--zrev_star-->
+                  <!--<a href="#">Rate</a>-->
+                  <%= link_to "Rate", new_customer_review_path(:id => @job.id) %>
+                </div>
+                <!--z_nam_rev-->
+              </div>
+              <!--z_review_det-->
+              <div class="z_review_det zbrd0 mrg0">
+                <div class="z_nam_rev f-l">
+                  <p>
+                    <% @job.driver.locations.first.blank? ? "" : "#{@job.driver.locations.first.address}" %>
+                    <% @job.driver.locations.first.blank? ? "" : ",#{@job.driver.locations.first.state}" %></p>
+                </div>
+                <!--z_nam_rev-->
+                <!--<a href="#" class="f-r colr_1">Send Driver Message</a>-->
+                <%= link_to "Send Customer Message", new_driver_message_path(:id => @job.id), :class => "f-r colr_1" %>
+              </div>
+              <!--z_review_det-->
+            </div>
+        <% end %>
+        <!--z_nrev-->
+      </div>
+  <% elsif @job.status == "accepted" %>
+      <div class="waiting_pickup z_100">
+        <h1>Package is awaiting pickup.</h1>
+
+        <p>Driver information will be available once the item is picked up.</p>
+      </div>
+  <% elsif @job.status == "available" %>
+      <div class="waiting_pickup z_100">
+        <h1>Package is awaiting Accept.</h1>
+
+        <p>Driver information will be available once the item is picked up.</p>
+      </div>
+  <% end %>
+  <!--z_rev_holder-->
+  <div class="z_100 v_rec">
+    <div class="z_stat_hed">
+      <h3>Recent Activity</h3>
+    </div>
+    <!--z_stat_hed-->
+    <div class="z_report_hold">
+      <% @job.activity_logs.each_with_index do |activity_log, index| %>
+          <% if index%2 == 0 %>
+              <div class="activity_in"><p><%= activity_log.note %></p>
+                <span><%= activity_log.created_at.strftime("%m/%d/%y %I:%M %p") %></span></div>
+          <% else %>
+              <div class="activity_in bgn"><p><%= activity_log.note %></p>
+                <span><%= activity_log.created_at.strftime("%m/%d/%y %I:%M %p") %></span></div>
+          <% end %>
+      <% end %>
+      <!--report_in-->
+    </div>
+    <!--z_report_hold-->
+  </div>
+  <!--v_rec ends-->
+</div>
+
+<div class="z_route2_det z_100 mrg_nbot">
+  <div class="z_rout_txt">
+    <p>Package: <span># <%= @job.job_code %></span></p>
+  </div>
+  <!--z_rout_txt-->
+  <div class="z_rout_txt">
+    <p>Status: <span># <%= @job.get_status %></span></p>
+  </div>
+  <!--z_rout_txt-->
+  <a href="#" class="z_gray_btn f-r">File a Claim</a>
+</div>

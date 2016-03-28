@@ -1,0 +1,60 @@
+<div class="z_light_box">
+</div>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :put}) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+    <div class="box_hold_new">
+      <h1 class="z_100">Change Password?</h1>
+
+      <div id="errors"></div>
+      <div class="z_100">
+        <div class="z_feldz">
+          <%= f.password_field :password, :autofocus => true, :class => "fill_1-0", :placeholder => "New password" %>
+        </div>
+        <div class="z_feldz">
+          <%= f.password_field :password_confirmation, :class => "fill_1-0", :placeholder => "Password Confirmation" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_100" id="save-btn">
+          <a class="z_orngbig_btn zset_pad z_100" href="#">SAVE PASSWORD</a><!--z_orngbig_btn-->
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div>
+<% end %>
+<!--box_hold_new-->
+
+
+<script type="text/javascript">
+    $("#save-btn").children("a").click(function () {
+        $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+            if (response.success) {
+                $.fancybox.close();
+//                hudMsg("success", "Password Successfully Changed");
+                if (response.role == "customer") {
+                    window.location.href = "/customer/jobs"
+                } else if (response.role == "driver") {
+                    window.location.href = "/driver/jobs"
+                } else {
+                    window.location.reload();
+                }
+            } else {
+                $("#errors").html(response.html);
+            }
+
+        }), "json");
+        return false;
+
+    });
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+</script>

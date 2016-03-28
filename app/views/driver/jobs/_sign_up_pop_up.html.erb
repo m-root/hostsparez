@@ -1,0 +1,176 @@
+<div class="z_light_box">
+</div>
+<div class="box_hold_sep" id="sign_in_pop_up">
+  <%= form_for(@user, :as => :user, :url => registration_path(@user), :html => {:id => "sign_up_form", :onsubmit => "return false;"}) do |f| %>
+      <div class="box_rit">
+        <h1>New to Ziply? Register and start sending!</h1>
+
+        <div id="sign_up_errors" style="width: 80%"></div>
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.text_field :first_name, :autofocus => true, :class => "fill_1-0", :placeholder => "First Name *" %>
+          </div>
+        </div>
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.text_field :last_name, :autofocus => true, :class => "fill_1-0", :placeholder => "Last Name *" %>
+          </div>
+        </div>
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.email_field :email, :autofocus => true, :class => "fill_1-0", :placeholder => "Email Address *" %>
+          </div>
+        </div>
+        <!--feldz-->
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.password_field :password, :class => "fill_1-0", :placeholder => "Create Password *" %>
+          </div>
+          <a href="#" class="b_span">I agree to the Terms Of Use and Privacy Statement</a>
+
+          <div class="box_butns_sep">
+            <a class="z_orngbig_btn zset_pad" href="#" id="sign_up_btn">Create Account</a><!--z_orngbig_btn-->
+            <a class="z_fbbig_btn face_con" href="/users/auth/facebook"><i class="fa fa-facebook zfb"></i> Register With
+              Facebook</a><!--z_fbbig_btn-->
+          </div>
+          <!--box_butns-->
+        </div>
+        <!--feldz-->
+      </div>
+  <% end %>
+  <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+</div>
+
+
+<script type="text/javascript">
+    var placeholder = " ";
+    $("input[type=text],input[type=email],input[type=password]").focus(function () {
+        placeholder = $(this).attr("placeholder");
+        return $(this).attr("placeholder", " ");
+    });
+    $("input[type=text],input[type=email],input[type=password]").blur(function () {
+        if ($(this).val() === "") {
+            return $(this).attr("placeholder", placeholder);
+        }
+    });
+
+    $(document).ready(function () {
+        $('.my-fancy-box').bind('click', function (e) {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: $(this).attr('href'),
+                error: function (jqXHR, textStatus) {
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                    hudMsg("error", "Something went wrong please try later");
+
+                },
+                success: function (response) {
+                    $("#pop_up_div").html(response).fadeIn('slow');
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                }
+            });
+        });
+        $("#sign_up_form").validate({
+            rules: {
+                "user[first_name]": {
+                    required: true
+                },
+                "user[last_name]": {
+                    required: true
+                },
+                "user[email]": {
+                    required: true,
+                    email: true
+                },
+                "user[password]": {
+                    required: true,
+                    minlength: 8
+                }
+            },
+            messages: {
+                "user[first_name]": {
+                    required: "Please enter your first name"
+                },
+                "user[last_name]": {
+                    required: "Please enter your last name"
+                },
+                "user[email]": {
+                    required: "Please enter your email",
+                    email: "Please enter valid email"
+                },
+                "user[password]": {
+                    required: "Please enter your password",
+                    minlength: "Your password must be at least 8 characters long"
+                }
+            }
+        });
+    });
+
+    $("#sign_up_btn").click(function () {
+        if (!$("#sign_up_form").valid()) {
+            return false;
+        } else {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $("#sign_up_form").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    console.log(data.success);
+                    if (data.success == true) {
+                        $.fancybox.close();
+                        $("#job_customer_id").val(data.user_id);
+                        $("#sender_location_user_id").val(data.user_id);
+                        $("#receiver_location_user_id").val(data.user_id);
+                        $("#pop_up_div").html("");
+                        $("#ajax_loader").show();
+                        $(".shadow").show();
+                        $.post($("#new_job").attr("action"), $("#new_job").serialize(), (function (response) {
+                            if (response.success) {
+                                $(".shadow").hide();
+                                $("#ajax_loader").hide();
+                                window.location.href = response.url
+                            } else {
+                                $(".shadow").hide();
+                                $("#ajax_loader").hide();
+                                $("#errors").html(response.html);
+                            }
+
+                        }), "json");
+                        return false;
+                    }
+                    else if (data.success == false) {
+                        $("#sign_up_errors").html(data.html);
+                        $(".shadow").hide();
+                        $("#ajax_loader").hide();
+                    }
+                },
+                error: function (data) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_sep").hide();
+    }
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_sep").hide();
+    });
+
+</script>

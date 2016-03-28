@@ -1,0 +1,36 @@
+<% if  @locations.present? %>
+    <% @locations.each do |location| %>
+        <div class="z_locaton_list z_100">
+          <div class="z_wpic_hed2">
+            <h3 class="f-l"><%= location.nick_name %></h3>
+
+            <div class="next_back f-r">
+              <a class="my-fancy-box" href="<%= edit_customer_location_path(location.id) %>"> Edit</a>
+              <!--<a href="#"><i class="fa fa-trash-o icon_colr"></i></a>-->
+              <a class="my-fancy-box" href="/customer/locations/del_pop_up?id=<%= location.id %>"><i class="fa fa-trash-o icon_colr"></i></a>
+            </div>
+          </div>
+          <!--z_wpic_hed2-->
+          <div class="z_loc_det z_100">
+            <div class="z_nme_addres">
+              <div class="z_n_list">
+                <p class="z_p_1"><%= location.contact_person %></p>
+
+                <p class="z_p_2">Address: <span><%= location.address %><span></span></span></p>
+
+                <p class="z_p_3">Contact: <span><%= location.contact_phone %><span></span></span></p>
+              </div>
+              <!--z_n_list-->
+              <div class="z_n_comnt">
+                <p>Comments:
+                  <span><%= location.comments %><span></span></span>
+                </p>
+              </div>
+              <!--z_n_list-->
+            </div>
+            <!--z_nme_addres-->
+          </div>
+          <!--z_loc_det-->
+        </div>
+    <% end %>
+<% end %>

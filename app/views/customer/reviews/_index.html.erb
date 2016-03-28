@@ -1,0 +1,163 @@
+<div class="job_form_c">
+  <div class="wrapper">
+    <div class="j_b_form">
+      <p>DRIVER<span> >REVIEWS</span></p>
+    </div>
+
+    <div class="d_reviews">
+      <div class="d_rev_1">
+        <div class="display_image2">
+          <div class="dp_img"><%= current_user.profile.blank? ? "" : current_user.profile.asset.blank? ? "" : image_tag(current_user.profile.asset.avatar.url(:thumb)) %></div>
+          <div class="jb_dp_txt_det">
+            <h1><%= current_user.full_name if current_user %></h1>
+
+            <p><%= current_user.full_name if current_user %></p>
+
+            <div class="reviews">
+              <div class="star"><i class="icon-star"></i></div>
+              <div class="star"><i class="icon-star"></i></div>
+              <div class="star"><i class="icon-star"></i></div>
+              <div class="star"><i class="icon-star"></i></div>
+              <div class="star"><i class="icon-star"></i></div>
+              <p style="margin: 5px 0 0 10px;">(22 Reviews)</p>
+            </div>
+          </div>
+          <div id="save-btn" class="sub_rev">
+            <!--<a href="javascript:void(0);">SUBMIT REVIEW</a>-->
+            <%= link_to "SUBMIT REVIEW", new_review_path(:id => @job.id) %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="jb_title">CUSTOMER REVIEWS</div>
+    <% unless @driver_reviews.blank? %>
+        <div class="rev_list">
+          <div class="d_reviews">
+            <% @driver_reviews.each do |driver_review| %>
+                <div class="d_rev_1">
+                  <div class="display_image29">
+                    <%puts "ff" ,driver_review.customer.inspect%>
+                    <div class="dp_img"><%#= driver_review.customer.blank? ? "" : driver_review.customer.profile.blank? ? "" : driver_review.customer.profile.asset.blank? ? "" : image_tag(driver_review.customer..profile.asset.avatar.url(:thumb)) %></div>
+                    <div class="revi_txt">
+                      <div class="revi_txt_in">
+                        <h1><%= driver_review.customer.full_name if driver_review.customer %></h1>
+
+                        <p><%= driver_review.subject %></p>
+                        <span><%= driver_review.description %> </span>
+                      </div>
+                      <div class="reviews_rit">
+                        <div class="reviews29">
+                          <ul class='star-rating'>
+                            <li id="current-rating1" class='current-rating' style='width:<%= (driver_review.rating * 25 ).to_i -%>px;'></li>
+                          </ul>
+                        </div>
+                        <p style="margin: 5px 0 0 10px;"><%= driver_review.created_at.strftime("%m/%d/%Y") %></p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            <% end %>
+            <!--<div class="d_rev_1 rev_bg">-->
+            <!--<div class="display_image29">-->
+            <!--<div class="dp_img"></div>-->
+            <!--<div class="revi_txt">-->
+            <!--<div class="revi_txt_in">-->
+            <!--<h1><%#= current_user.full_name if current_user %></h1>-->
+
+            <!--<p>Lorem ipsum dolor sit amet</p>-->
+            <!--<span>Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising </span>-->
+            <!--</div>-->
+            <!--<div class="reviews_rit">-->
+            <!--<div class="reviews29">-->
+            <!--<ul class='star-rating' style="float: right;">-->
+            <!--<li id="current-rating" class='current-rating' style='width:<%#= (0).to_i -%>px;'></li>-->
+            <!--<span id="ratelinks">-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="1 star out of 5" class="one-star">1</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="2 stars out of 5" class="two-stars">2</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="3 stars out of 5" class="three-stars">3</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="4 stars out of 5" class="four-stars">4</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="5 stars out of 5" class="five-stars">5</a>-->
+            <!--</li>-->
+            <!--</span>-->
+            <!--</ul>-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--<p style="margin: 5px 0 0 10px;">2/14/14</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="d_rev_1">-->
+            <!--<div class="display_image29">-->
+            <!--<div class="dp_img"></div>-->
+            <!--<div class="revi_txt">-->
+            <!--<div class="revi_txt_in">-->
+            <!--<h1><%#= current_user.full_name if current_user %></h1>-->
+
+            <!--<p>Lorem ipsum dolor sit amet</p>-->
+            <!--<span>Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising Lorem ipsum dolor sit amet adispising </span>-->
+            <!--</div>-->
+            <!--<div class="reviews_rit">-->
+            <!--<div class="reviews29">-->
+            <!--<ul class='star-rating' style="float: right;">-->
+            <!--<li id="current-rating" class='current-rating' style='width:<%#= (0).to_i -%>px;'></li>-->
+            <!--<span id="ratelinks">-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="1 star out of 5" class="one-star">1</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="2 stars out of 5" class="two-stars">2</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="3 stars out of 5" class="three-stars">3</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="4 stars out of 5" class="four-stars">4</a>-->
+            <!--</li>-->
+            <!--<li class="star2">-->
+            <!--<a href="javascript:void(0)" title="5 stars out of 5" class="five-stars">5</a>-->
+            <!--</li>-->
+            <!--</span>-->
+            <!--</ul>-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="star2"><i class="icon-star"></i></div>&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--<p style="margin: 5px 0 0 10px;">2/14/14</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+          </div>
+
+        </div>
+    <% else %>
+        <div class="no_rec">
+          NO REVIEW FOUND
+        </div>
+    <% end %>
+  </div>
+</div>
+

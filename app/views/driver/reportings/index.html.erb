@@ -1,0 +1,109 @@
+<%= stylesheet_link_tag "chosen" %>
+<%= javascript_include_tag "chosen.jquery" %>
+<section class="z_content3">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>Reports</h2></div>
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder_new">
+        <div class="z_stat_hed">
+          <h3>Driving Stats</h3>
+
+          <div style="width: 200px;float: right">
+            <!--<div class="z_drop">-->
+            <%#= subregion_select(:state, "dsad", "US", options={:include_blank => "Select State"},:class => "chosen-select_n") %>
+            <div style="font-size: 10px;border: 1px solid #cccccc">
+              <%= select_tag("date_crt", options_for_select([["All Time", "All Time"], ["Today", "Today"], ["This Week", "This Week"], ["This Month", "This Month"], ["Last Month", "Last Month"], ["Year to Date", "Year to Date"]]), :class => "chosen-select-crt", :style => "font-size:14px;float:right") %>
+            </div>
+
+          </div>
+          <!--year_dropdown-->
+        </div>
+        <div id="driver_stats">
+          <%#= render :partial => "driver/reportings/driver_stats" %>
+        </div>
+        <!--z_report_hold-->
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+  <div class="container">
+    <!--<div class="z_s_hed z_100"><h2>Deposit Statements</h2></div>-->
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder_new">
+        <div class="z_stat_hed">
+          <h3>Delivery Stats</h3>
+
+          <div style="width: 200px;float: right">
+            <!--<div class="z_drop">-->
+            <%#= subregion_select(:state, "dsad", "US", options={:include_blank => "Select State"},:class => "chosen-select_n") %>
+            <div style="font-size: 10px;border: 1px solid #cccccc">
+              <%= select_tag("date_crt_delivery", options_for_select([["All Time", "All Time"], ["Today", "today"], ["This Week", "This Week"], ["This Month", "This Month"], ["Last Month", "Last Month"], ["Year to Date", "Year to Date"]]), :class => "chosen-select-crt") %>
+            </div>
+          </div>
+          <!--year_dropdown-->
+        </div>
+        <div id="delivery_stats">
+
+        </div>
+        <!--z_report_hold-->
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+</section>
+<style>
+    .chosen-container-single .chosen-single {
+        font-size: 15px !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $("#date_crt").change(function () {
+        get_stats();
+    })
+    $("#date_crt_delivery").change(function () {
+        get_driver_delivery_stats();
+    })
+    $(document).ready(function () {
+        $(".chosen-select-crt").chosen();
+        get_stats();
+        get_driver_delivery_stats();
+    })
+    function get_stats() {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        var date_crt = $("#date_crt").val();
+        $.ajax({
+            url: '/driver/reportings/get_driver_stats?date_crt=' + date_crt,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#driver_stats").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    }
+    function get_driver_delivery_stats() {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        var date_crt = $("#date_crt_delivery").val();
+        $.ajax({
+            url: '/driver/reportings/get_driver_delivery_stats?date_crt=' + date_crt,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#delivery_stats").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    }
+</script>

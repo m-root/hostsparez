@@ -1,0 +1,44 @@
+<%= fields_for :billing_address do |ba| %>
+    <%= ba.hidden_field :user_id, :value => current_user.id %>
+    <div class="z_bilng_adres z_100">
+      <div class="z_s_adres">
+        <label>Street Address</label>
+        <%= ba.text_field :street_address, :placeholder => "Street Address" %>
+      </div>
+      <!--z_s_adres-->
+      <div class="z_apt">
+        <label>Apt #</label>
+        <%= ba.text_field :house_no, :placeholder => "Apt#" %>
+      </div>
+      <!--z_apt-->
+    </div>
+    <!--z_bilng_adres-->
+    <div class="z_bilng_adres z_100">
+      <div class="z_s_city">
+        <label>City</label>
+        <%= ba.text_field :city, :placeholder => "City" %>
+      </div>
+      <!--z_s_city-->
+      <div class="z_state">
+        <label>State</label>
+
+        <div class="z_crd_exp" style="padding: 0px 0">
+          <%= subregion_select("billing_address", "state", "US", options={:include_blank => "Select State"}, :class => "chosen-select_n", :style => "width:100%;height:45px") %>
+        </div>
+        <!--z_crd_exp-->
+      </div>
+      <!--z_apt-->
+      <div class="z_aptt">
+        <label>Zip Code</label>
+        <%= ba.text_field :zip_code, :placeholder => "Ex. 90001" %>
+      </div>
+      <!--z_aptt-->
+    </div>
+<% end %>
+<!--z_bilng_adres-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".chosen-select_n").chosen();
+    });
+</script>

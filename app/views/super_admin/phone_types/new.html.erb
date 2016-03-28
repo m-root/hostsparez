@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      Manage Phone Types
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/phone_types">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/phone_types">All Phone Types</a>
+        <!--<i class="fa fa-angle-right"></i>-->
+      </li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="row">
+  <div class="col-md-6 ">
+    <!-- BEGIN SAMPLE FORM PORTLET-->
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-gift"></i> Create Phone Types
+        </div>
+        <div class="tools">
+          <a class="collapse" href="">
+          </a>
+
+        </div>
+      </div>
+      <div class="portlet-body form">
+        <%= form_for(@phone_type, :url => super_admin_phone_types_path, :method => "post") do |f| %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <div id="errors"></div>
+            <div class="form-body">
+              <div class="form-group">
+                <label>Name</label>
+
+                <div class="input-group">
+                  <%= f.text_field :name, :autofocus => true, :class => "form-control", :placeholder => "Name" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+
+                <div class="input-group">
+                  <%= f.text_field :description, :autofocus => true, :class => "form-control", :placeholder => "Description" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <!--<button class="btn blue" type="submit">Update</button>-->
+              <%#= f.submit "Save", :class => "btn blue" %>
+              <div id="save-btn">
+                <a class="btn blue" href="javascript:void(0)">Save Phone Type</a>
+              </div>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+    <!-- END SAMPLE FORM PORTLET-->
+
+  </div>
+</div>
+
+<div class="clearfix">
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.href = response.url
+                } else {
+                    $("#errors").html(response.html);
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                }
+
+            }), "json");
+            return false;
+
+        });
+
+    });
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+    }
+
+</script>
+

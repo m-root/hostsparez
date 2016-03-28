@@ -1,0 +1,99 @@
+<div class="z_light_box">
+</div>
+  <%= form_for(current_user, :url => {:controller => "driver/drivers", :action => @profile.id.blank? ? "create" : "upload_photo"}, :method => @profile.id.blank? ? "post" : "put", :html => {:multipart => true}) do |f| %>
+      <% if @profile.id.blank? %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+      <% end %>
+      <div class="box_hold_new">
+        <h1 class="z_100">Edit Profile Photo</h1>
+
+        <div id="errors"></div>
+
+        <div class="z_100">
+          <div class="z_100">
+            <div class="z_100 mrgbot">
+              <div class="feldz z_100">
+                <div class="sign_in_frm_error_label">
+                  <label></label>
+                  <%= f.text_field :first_name, :autofocus => true, :class => "fill_1-0", :placeholder => "First Name *" %>
+                </div>
+              </div>
+              <div class="feldz z_100">
+                <div class="sign_in_frm_error_label">
+                  <label></label>
+                  <%= f.text_field :last_name, :autofocus => true, :class => "fill_1-0", :placeholder => "Last Name *" %>
+                </div>
+              </div>
+              <% f.object.profile ||= Profile.new %>
+              <%= f.fields_for :profile do |p| %>
+                  <% p.object.asset ||= Asset.new %>
+                  <%= p.fields_for :asset do |a| %>
+                      <input class="file_det" id="uploadFile" placeholder="Upload New Photo" disabled="disabled"/>
+
+                      <div class="fileUpload btn btn-primary">
+                        <span>Choose File</span>
+                        <%= a.file_field :avatar, :class => "upload", :id => "uploadBtn" %>
+                      </div>
+                  <% end %>
+              <% end %>
+            </div>
+            <%= f.submit "Upload Photo", :class => "z_orngbig_btn1 zset_pad z_100" %>
+            <!--<a href="#" class="z_orngbig_btn zset_pad z_100">Register and Continue</a>&lt;!&ndash;z_orngbig_btn&ndash;&gt;-->
+          </div>
+          <!--box_butns-->
+        </div>
+        <!--z_100-->
+        <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+      </div>
+  <% end %>
+
+
+  <!--box_hold_new-->
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#uploadBtn").change(function () {
+            $("#uploadFile").val($(this).val());
+        });
+
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+//              $("#save-btn").children("a").click(function () {
+//                  $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+//                      if (response.success) {
+//                          alert(response.success);
+//                          window.location.href = response.url
+//                      } else {
+//                          $("#errors").html(response.html);
+//                      }
+//
+//                  }), "json");
+//                  return false;
+//
+//              });
+    });
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+
+
+</script>

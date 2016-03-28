@@ -1,0 +1,90 @@
+<section class="z_content3">
+  <div class="container">
+    <div class="z_tabs_hold">
+      <a href="javascript:void(0);">
+        <div class="z_tab active" onclick="$('.active').removeClass('active');$(this).addClass('active');$('#tab-2').hide();$('#tab-3').hide();$('#tab-1').show()">Package
+          Route
+        </div>
+        <!--z_tab--></a>
+      <a href="javascript:void(0);">
+        <div class="z_tab" onclick="$('.active').removeClass('active');$(this).addClass('active');$('#tab-1').hide();$('#tab-3').hide();$('#tab-2').show()">Payment
+          Details
+        </div>
+        <!--z_tab--></a>
+      <a href="javascript:void(0);">
+        <div class="z_tab" onclick="$('.active').removeClass('active');$(this).addClass('active');$('#tab-1').hide();$('#tab-2').hide();$('#tab-3').show()">My
+          Info
+        </div>
+        <!--z_tab--></a>
+    </div>
+    <!--z_tabs_hold-->
+    <div id="tab-1">
+      <%= render :partial => "driver/jobs/package_route" %>
+    </div>
+
+    <div id="tab-2" style="display: none">
+      <%= render :partial => "driver/jobs/package_payment_detail" %>
+    </div>
+
+    <div id="tab-3" style="display: none">
+      <%= render :partial => "driver/jobs/package_driver" %>
+    </div>
+
+    <!--z_route_det-->
+  </div>
+  <!--container-->
+</section>
+<section class="z_map" id="map-canvas">
+
+</section>
+<script type="text/javascript"
+        src="//maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript">
+
+    var geocoder;
+    var map;
+
+    var marker;
+    var infoWindow = new google.maps.InfoWindow({maxWidth: 300 });
+
+    initialize();
+
+    function initialize() {
+        var latlng = new google.maps.LatLng(-33.897, 150.099);
+        var myOptions = {
+            zoom: 9,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        var rendererOptions = { map: map };
+        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+        var point1 = new google.maps.LatLng('<%=@job.latitude%>', '<%=@job.longitude%>');
+        var wps = [
+            { location: point1 }
+        ];
+
+        var org = new google.maps.LatLng('<%=@job.latitude%>', '<%=@job.longitude%>');
+        var dest = new google.maps.LatLng('<%=@job.dest_latitude%>', '<%=@job.dest_longitude%>');
+        var request = {
+            origin: org,
+            destination: dest,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                var time = '<%=@time%>';
+                var content_str = "<div style='width:320px;height:90px; text-align: center'><h1 style='font-size:18px; color:#148ebb; font-weight:400; border-bottom:1px solid #ccc; padding:15px 0 10px 0;'>Your Package is Here:</h1>" + "<p style='margin:0 10px 0 0;float: left; font-size:14px; color:#000; font-weight:400; margin-right:10px;'>Estimated Delivery Time:" + "<span style='display:inline-block; color:#b3b3b3; font-weight:400;'>" + time + "</span>" + "</div>";
+//                var content_str = "<h5 style='text-align: center'>ESTIMATED DELIVERY:</h5>" + "<p><b>Distance:</b> " + 20 + "   <b>Time:</b>" + 30 + "</p>";
+                infoWindow.setContent(content_str)
+                infoWindow.setPosition(new google.maps.LatLng('<%=@pack_lat%>', '<%=@pack_long%>'));
+                infoWindow.open(map);
+            }
+            else
+                alert('failed to get directions');
+        });
+    }
+
+</script>

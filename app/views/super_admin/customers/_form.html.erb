@@ -1,0 +1,52 @@
+<%= javascript_include_tag "jqueryeasydropdown" %>
+
+<div class="row" id="sign_up_errors"></div>
+<div class="jb_fields">
+  <%= f.text_field :first_name, :autofocus => true, :class => "input_full", :placeholder => "First Name" %>
+  <%= f.text_field :last_name, :autofocus => true, :class => "input_full", :placeholder => "Last Name" %>
+  <%= f.email_field :email, :autofocus => true, :class => "input_full", :placeholder => "Email" %>
+  <% f.object.profile ||= Profile.new %>
+  <%= f.fields_for :profile do |p| %>
+      <%= p.text_field :phone_number, :autofocus => true, :class => "input_full", :placeholder => "Phone Number" %>
+      <div style="position: relative;float: left">
+        <%= p.select :phone_type_id, PhoneType.all.map { |phone_type| [phone_type.name, phone_type.id] }, {include_blank: 'Select Phone Type', :class => "driver_form_down"} %>
+        <i class="icon-angle-down set_pos"></i>
+      </div>
+      <div style="position: relative;float: left">
+        <%= p.select :vehicle_type_id, VehicleType.all.map { |vehicle_type| [vehicle_type.name, vehicle_type.id] }, {include_blank: 'Select Vehicle Type'}, :class => "driver_form_down" %>
+        <i class="icon-angle-down set_pos"></i>
+      </div>
+
+  <% end %>
+  <%= f.check_box :status %>
+  <!--<input class="login_button" type="submit" value="BECOME A DRIVER" id="d_sign_up_btn">-->
+
+  <div class="login_button" id="save-btn">
+    <a href="javascript:void(0);">SAVE DRIEVR</a>
+  </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".fancybox-close").css("display", "none");
+        var $selects = $('#user_profile_attributes_vehicle_type_id');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown driver_form_down',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+        var $selects = $('#user_profile_attributes_phone_type_id');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown driver_form_down',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+    });
+</script>

@@ -1,0 +1,86 @@
+<% unless current_user.blank? %>
+    <%= render :partial => "shared/header_after_log_in" %>
+<% else %>
+    <%= render :partial => "shared/header_before_log_in" %>
+<% end %>
+
+<script type="text/javascript">
+    //    $(".smal-nav").on("click", ".init", function () {
+    //        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    //    });
+    //
+    //    var allOptions = $(".smal-nav").children('li:not(.init)');
+    //    $(".smal-nav").on("click", "li:not(.init)", function () {
+    //        allOptions.removeClass('selected');
+    //        $(this).addClass('selected');
+    //        $(".smal-nav").children('.init').html($(this).html());
+    //        allOptions.slideUp();
+    //    });
+
+    var mouse_is_inside = false;
+    $(document).ready(function () {
+        $('.popup_in').hover(function () {
+            mouse_is_inside = true;
+        }, function () {
+            mouse_is_inside = false;
+        });
+
+        $("body").mouseup(function () {
+            if (!mouse_is_inside) $('.popup_in').hide();
+        });
+    });
+
+    $(".become_d").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/home/become_driver',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+    });
+
+    $(".sign_up").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/sign_up',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+    });
+
+    $(".file_claim").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/customer/file_claims/new',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+    });
+
+
+</script>
+

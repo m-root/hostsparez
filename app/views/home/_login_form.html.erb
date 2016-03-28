@@ -1,0 +1,97 @@
+<% if current_user.blank? %>
+    <h4 class="logh">Returning applicant?</h4>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:id => "login_candidate"}) do |f| %>
+        <div class="logIn">
+          <img src="/images/careers/inLbg.gif" alt="" class="flt"/>
+          <%= f.text_field :username, :class => "flt", :value => "email address", :onfocus => "if(this.value=='email address'){this.value=''}", :onblur => "if(this.value==''){this.value='email address'}" %>
+        </div>
+        <div class="clr"></div>
+        <div class="logIn">
+          <img src="/images/careers/inLbg.gif" alt="" class="flt"/>
+          <%= f.password_field :password, :class => "flt", :value => "password", :onfocus => "if(this.value=='password'){this.value=''}", :onblur => "if(this.value==''){this.value='password'}" %>
+        </div>
+        <div class="clr"></div>
+        <div class="loginBtn">
+          <%= image_submit_tag "/images/careers/loginBtn.png", :style => "float: right;", :id => "candidate_submit" %>
+          <span><a href="/candidate_forget_password">Forgot password?</a></span>
+
+          <div class="clr"></div>
+        </div>
+    <% end %>
+<% else %>
+    <% if current_user.role == "candidate" %>
+        <h4>Your Profile:</h4>
+
+        <div class="userInfo"><span>Tel:</span>
+                <span>
+                  <% unless @candidate.blank? %>
+                      <%= @candidate.home_phone %>
+                  <% end %>
+                </span>
+        </div>
+        <% unless @home_phone.blank? %>
+            <div class="userInfo"><span>Home:</span>
+                <span>
+                      <%= @home_phone.value %>
+                </span>
+            </div>
+        <% end %>
+
+        <div class="userInfo"><span>Email:</span><span>
+                <% unless @candidate.blank? %>
+                    <%= @candidate.email_address %>
+                <% end %></span></div>
+        <div class="userInfo"><span>Address:</span>
+                <span>
+                  <% unless @candidate.blank? %>
+                      <% unless @candidate.address.blank? %>
+                          <%= @candidate.address.street_address %>
+                          <br/>
+                          <%= @candidate.address.city %>, <%= @candidate.address.state.code %>
+                          <%= @candidate.address.zip_code %>
+                      <% end %>
+                  <% end %>
+                </span>
+        </div>
+        <% unless @candidate.blank? %>
+            <% @candidate_resume = @candidate.documents.first(:asset_type => "resume") %>
+            <% unless @candidate_resume.blank? %>
+                <div class="userInfo"><span>Resume:</span>
+          <span class="on_file_link">
+            <%= link_to "On file", @candidate_resume.asset.url %>
+          </span>
+                </div>
+            <% end %>
+        <% end %>
+        <div class="userInfo">
+          <span>&nbsp;</span><span style="text-align:right;">
+      <% unless @candidate.blank? %>
+      <%= link_to image_tag("/images/careers/edit.png"), "/#{@candidate.id}/candidate_profile_edit" %>
+      <% end %>
+      </span>
+        </div>
+    <% else %>
+        <h4>Your Profile:</h4>
+        <br/><br/>
+        <span style="color: white;"> Please log-in with candidate account</span>
+        <br/><br/><br/><br/><br/>
+    <% end %>
+<% end %>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#login_candidate").validate({
+            rules: {
+                "user[username]": {
+                    required: true,
+                    email: true
+                },
+                "user[password]": {
+                    required: true
+                },
+                messages: {
+                    "user[password]": "Please enter a password"
+                }
+            }
+        });
+    });
+</script>

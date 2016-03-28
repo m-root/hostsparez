@@ -1,0 +1,54 @@
+<%- title "Track Packages - Goziply" %>
+<!--<div class="" style="float: left; width: 100%;"><%#=image_tag("bg-5.png", :class => "fixed_bg2")%></div>-->
+<div class="fullBG"></div>
+<section class="about_sec">
+  <div class="big_fixed">
+    <!-- main-slider -->
+    <div class="z-get-started ">
+      <h1>Track Packages</h1>
+      <div class="z_input_hold2" style="margin: 16px auto 0px auto;display: inline-block;">
+        <div class="z_field_block2 m-r-10">
+          <input type="text" placeholder="Enter Package ID #" class="z_field_in" id="package_id">
+        </div>
+        <!--z_field_block2-->
+        <a id="search_pack_btn" href="javascript:void(0);" class="z_orngbig_btn">Track Package</a><!--z_orngbig_btn-->
+      </div>
+      <!--z_input_hold2-->
+      <div class="z_mem"><span>Sign in to view your shipments and account info.</span></div>
+      <!--z_mem-->
+    </div>
+    <!--z-get-started ends-->
+  </div>
+  <!-- slider-wrapper -->
+</section>
+
+<script type="text/javascript">
+    $("#search_pack_btn").click(function () {
+        var package_id = $("#package_id").val();
+        if (package_id == "") {
+            apprise("Please enter package id");
+        } else {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $.ajax({
+                type: "GET",
+                url: "/home/search_package?id=" + package_id,
+                dataType: "JSON",
+                success: function (response) {
+                    if (response.success == true) {
+                        // Search
+                        // Track searches on your website (ex. product searches)
+//                        fbq('track', 'Search');
+                        document.location.href = "/track-package-result?id=" + response.id;
+                    } else {
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                        hudMsg("error", "No package found");
+                    }
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide();
+                }
+            });
+        }
+    });
+</script>

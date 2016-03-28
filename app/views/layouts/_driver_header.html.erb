@@ -1,0 +1,159 @@
+<% unless current_user.blank? %>
+    <section class="z_header">
+      <div class="container wid">
+        <!--<a class="logo" href="index.html"><img alt="Ziply" src="/assets/logo.png"></a>-->
+        <%= link_to image_tag("ziply_logo.png"), "/", :class => "logo" %>
+
+        <div class="z_loged">
+          <div class="a_sepr f-l"></div>
+          <!--a_sep-->
+          <div class="z_dp"><%= current_user.profile.blank? ? image_tag("default_image.png") : current_user.profile.asset.blank? ? image_tag("default_image.png") : image_tag(current_user.profile.asset.avatar.url(:thumb)) %></div>
+          <!--z_dp-->
+          <div class="z_dp_nme">
+            <p>
+              <%= current_user.email %></p>
+
+            <div class="z_drop">
+              <span id="z_list1">Account <i class="fa fa-sort-asc ar"></i></span>
+
+              <div style="display:none;" id="z_list2" class="z_open">
+                <i class="fa fa-caret-up arp"></i>
+                <ol class="drop_style">
+                  <li><%= link_to "My Deposit Info", driver_bank_accounts_path %></li>
+                  <li><%= link_to "My Rating", driver_reviews_path %></li>
+                  <li><%= link_to "Edit Password", "/change_password", :class => "my-fancy-box" %></li>
+                  <li><%= link_to "Edit Profile Photo", "/driver/drivers/profile", :class => "my-fancy-box" %></li>
+                  <li><a href="/sign_out">Logout</a></li>
+                </ol>
+              </div>
+              <!--z_open-->
+            </div>
+            <!--z_drop-->
+          </div>
+          <!--z_dp_nme-->
+        </div>
+        <!--z_loged-->
+        <div class="z_tp_rit">
+
+          <!--z_buttons-->
+          <ul class="main_menu" id="menu">
+            <li class="<%= params[:controller].include?('driver/jobs') ? 'active' : '' %>"><%= link_to "History", driver_jobs_path %></li>
+            <li class="<%= params[:controller].include?('driver/messages') ? 'active p-r' : 'p-r' %>"><%= link_to "Messages", driver_messages_path %>
+              <% if current_user.received_messages.where(:status => "close").size > 0 %>
+                  <div class="no_msgs"><%= current_user.received_messages.where(:status => "close").size %></div>
+              <% end %>
+              <!--no_msgs--></li>
+            <li class="<%= params[:controller].include?('driver/reportings') ? 'active' : '' %>"><%= link_to "Reports", driver_reportings_path %></li>
+
+
+          </ul>
+          <select class="selectnav">
+            <option value="">- Navigation -</option>
+            <option selected="" value="file:///home/rac-laptop/Desktop/Ziply-11-April-9_pgz/index.html">History</option>
+            <option value="file:///home/rac-laptop/Desktop/Ziply-11-April-9_pgz/success.html#">Messages</option>
+            <option value="file:///home/rac-laptop/Desktop/Ziply-11-April-9_pgz/success.html#">Reports</option>
+          </select><!-- main-menu -->
+          <ul class="smal-nav">
+            <li class="init">Select Page</li>
+            <li class="<%= params[:controller].include?('driver/jobs') ? 'active' : '' %>"><%= link_to "History", driver_jobs_path %></li>
+            <li class="<%= params[:controller].include?('driver/messages') ? 'active' : '' %>"><%= link_to "Messages", driver_messages_path %></li>
+            <li class="<%= params[:controller].include?('driver/reportings') ? 'active' : '' %>"><%= link_to "Reports", driver_reportings_path %></li>
+          </ul>
+          <!--smal-nav-->
+        </div>
+
+
+      </div>
+      <!-- container -->
+    </section>
+
+<% end %>
+
+<script type="text/javascript">
+
+    $(".smal-nav").on("click", ".init", function () {
+        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    });
+
+    var allOptions = $(".smal-nav").children('li:not(.init)');
+    $(".smal-nav").on("click", "li:not(.init)", function () {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $(".smal-nav").children('.init').html($(this).html());
+        allOptions.slideUp('fast');
+    });
+    $(".smal-nav").click(function (e) {
+        e.stopPropagation();
+    });
+    $(document).click(function () {
+        $(".smal-nav").children('li:not(.init)').slideUp('fast');
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    //    $(".smal-nav").on("click", ".init", function () {
+    //        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    //    });
+    //
+    //    var allOptions = $(".smal-nav").children('li:not(.init)');
+    //    $(".smal-nav").on("click", "li:not(.init)", function () {
+    //        allOptions.removeClass('selected');
+    //        $(this).addClass('selected');
+    //        $(".smal-nav").children('.init').html($(this).html());
+    //        allOptions.slideUp();
+    //    });
+
+    var mouse_is_inside = false;
+    $(document).ready(function () {
+        $('.popup_in').hover(function () {
+            mouse_is_inside = true;
+        }, function () {
+            mouse_is_inside = false;
+        });
+
+        $("body").mouseup(function () {
+            if (!mouse_is_inside) $('.popup_in').hide();
+        });
+    });
+
+    $(".become_d").click(function () {
+        $.ajax({
+            url: '/home/become_driver',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+            }
+        });
+    });
+
+    $(".sign_up").click(function () {
+        $.ajax({
+            url: '/sign_up',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+            }
+        });
+    });
+
+    $(".file_claim").click(function () {
+        $.ajax({
+            url: '/customer/file_claims/new',
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#pop_up_div").html(data);
+            }
+        });
+    });
+
+
+</script>
+

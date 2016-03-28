@@ -1,0 +1,11 @@
+<div class="z_report_hold">
+  <% unless @billings.blank? %>
+      <% @billings.each_with_index do |billing, index| %>
+          <% if index%2 == 0 %>
+              <div class="report_in"><%= link_to billing.document_file_name, billing.document.url %></div>
+          <% else %>
+              <div class="report_in bgn"><%= link_to billing.document_file_name, billing.document.url %></div>
+          <% end %>
+      <% end %>
+  <% end %>
+</div><!--z_report_hold-->

@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#tab_0">
+            Transactions</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab_0" class="tab-pane active">
+          <%= render :partial => "super_admin/customers/customer_transactions" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        TableManaged.init();
+        initialize_table();
+    });
+
+    function initialize_table() {
+        var active_table = $('#active_jobs');
+
+        // begin first table
+        active_table.dataTable({
+            "columns": [
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": false
+                }
+
+            ],
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 5,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "lengthMenu": "_MENU_ records",
+                "paginate": {
+                    "previous": "Prev",
+                    "next": "Next",
+                    "last": "Last",
+                    "first": "First"
+                }
+            },
+            "columnDefs": [
+                {  // set default column settings
+                    'orderable': false,
+                    'targets': [0]
+                },
+                {
+                    "searchable": false,
+                    "targets": [0]
+                }
+            ],
+            "order": [
+                [1, "asc"]
+            ] // set first column as a default sort by asc
+        });
+    }
+</script>
+
+

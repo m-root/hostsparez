@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ziply</title>
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  <!--<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">-->
+  <!--<script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>-->
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="main_content">
+  <div id="pop_up_div"></div>
+  <div class="tbl_row">
+    <%= render :partial => "layouts/driver_header" %>
+  </div>
+  <div class="tbl_row tbl_push">
+    <div id="page_content">
+      <div id="flash">
+        <%= render :partial => "layouts/flash", :object => flash %>
+      </div>
+      <div class="shadow" style="display: none !important;"></div>
+      <div id="ajax_loader" class="ajax_loader" style="display: none !important;"><%= image_tag("/assets/ajax_loader.gif", :width => 100) %></div>
+      <%= yield %>
+    </div>
+  </div>
+  <div class="tbl_row">
+    <%= render :partial => "shared/footer" %>
+  </div>
+</div>
+
+</body>
+</html>

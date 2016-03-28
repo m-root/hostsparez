@@ -1,0 +1,70 @@
+<section class="z_content3">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>Deposit info</h2></div>
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder">
+        <div class="z_stat_hed">
+          <h3>Bank Account</h3>
+        </div>
+        <!--z_stat_hed-->
+        <% if @account_number.present? %>
+            <div class="z_stat_hed2">
+              <h3 class="f-l"><%= @first_name %> <%= @last_name %></h3>
+              <!--<a href="#" class="f-r">Edit</a>-->
+              <%= link_to "Edit", "/driver/bank_accounts/edit_account", :class => "my-fancy-box f-r" %>
+            </div>
+            <!--z_stat_hed2-->
+            <div class="z_report_dposit">
+              <div class="depsit_info"><p>Account Number:</p><span>**** **** **** <%= @account_number %></span></div>
+              <!--depsit_info-->
+              <div class="depsit_info"><p>Routing Number:</p><span><%= @routing_number %></span></div>
+              <!--depsit_info-->
+            </div>
+        <% end %>
+        <!--z_report_dposit-->
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>Deposit Statements</h2></div>
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder">
+        <div class="z_stat_hed">
+          <h3>Statements</h3>
+
+          <!--<div class="year_dropdown f-r">-->
+            <!--<div class="z_drop">-->
+              <!--<span id="z_list1-0" class="year_span">2014 <i class="fa fa-angle-down"></i></span>-->
+
+              <!--<div style="display:none;" id="z_list2-0" class="z_open">-->
+                <!--<i class="fa fa-caret-up arp"></i>-->
+                <!--<ol class="year_txt">-->
+                  <!--<li><a href="#">2013</a></li>-->
+                  <!--<li><a href="#">2012</a></li>-->
+                  <!--<li><a href="#">2011</a></li>-->
+                  <!--<li><a href="#">2010</a></li>-->
+                  <!--<li><a href="#">2009</a></li>-->
+                <!--</ol>-->
+                <!--&lt;!&ndash;year_txt&ndash;&gt;-->
+              <!--</div>-->
+              <!--&lt;!&ndash;z_open&ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash;z_drop&ndash;&gt;-->
+          <!--</div>-->
+          <!--year_dropdown-->
+        </div>
+        <!--z_stat_hed-->
+        <div id='billing_statements'>
+          <%= render :partial => "/driver/bank_accounts/billing_pdf" %>
+        </div>
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<section class="z_slider">
+  <div class="slider-wrapper parallax">
+    <ul class="main-slider1 bxslider">
+      <li class="z-bg"></li>
+      <!--<li class="z-bg2"></li>-->
+    </ul>
+    <!-- main-slider -->
+    <%= form_tag('javascript:void(0);') do |f| %>
+        <div class="z-get-started spoz">
+          <h1>Send Packages. <span>Fast.</span></h1>
+
+          <div class="z_input_hold">
+            <div class="z_field_block m-r-10">
+              <!--<input class="z_field_in" type="text" placeholder="Pick Up Location (Address or Zip)">-->
+              <%= text_field_tag :pick_location, nil, :class => "z_field_in", :placeholder => 'Pickup Location (Address or Zip)' %>
+            </div>
+            <!--z_field_block-->
+            <div class="z_field_block m-r-10">
+              <!--<input class="z_field_in" type="text" placeholder="Destination (Address or Zip)">-->
+              <%= text_field_tag :dest_location, nil, :class => "z_field_in", :id => "dest_location", :placeholder => "Destination (Address or Zip)" %>
+            </div>
+
+            <!--z_field_block-->
+            <!--<div class="z_field_time m-r-10">-->
+              <!--<input class="z_field_img" type="text" placeholder="Pickup Time">-->
+              <%#= text_field_tag :pick_time, nil, :class => "z_field_img", :id => "pick_time", :placeholder => "Pickup Time", :style => "font-size:14px" %>
+            <!--</div>-->
+            <!--z_field_time-->
+            <a class="z_orngbig_btn" href="javascript:void(0)" id="get_started">Get Started</a><!--z_orngbig_btn-->
+          </div>
+          <!--z_input_hold-->
+          <div class="z_mem"><p>Already a member?</p>
+            <span> Log in now to use your saved locations and billing info.</span></div>
+          <!--z_mem-->
+        </div>
+        <!--z-get-started ends-->
+        </div><!-- slider-wrapper -->
+    <% end %>
+    </section><!--z_slider-->

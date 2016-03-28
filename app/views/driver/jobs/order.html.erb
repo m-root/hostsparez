@@ -1,0 +1,256 @@
+<section class="z_contnt">
+  <div class="container">
+    <div class="z_pckg_det">
+      <h1>Send a Package</h1>
+
+      <div class="z_det_sliding">
+        <img src="/assets/bar1.png">
+
+        <div class="z_100">
+          <p class="f-l">Enter Details</p>
+
+          <p class="f-r">Submit Payment</p>
+        </div>
+        <!--z_100-->
+      </div>
+      <!--z_det_sliding-->
+      <div class="z_card_det">
+        <div class="z_card_in z_100">
+          <div class="z_card_lft">
+            <% unless @payment_methods.blank? %>
+                <div class="z_crd_hed z_100">Use Saved Card</div>
+                <!--z_crd_hed-->
+                <div class="z_save_cards z_100">
+                  <% @payment_methods.each_with_index do |payment_method, index| %>
+                      <div class="z_sav_card_list z_100">
+                        <div class="z_check">
+                          <!--<input type="checkbox">-->
+                          <% if index == 0 %>
+                              <%= radio_button_tag :pm_radio, payment_method.id, true, :class => "pm_radio_c" %></div>
+                          <% else %>
+                              <%= radio_button_tag :pm_radio, payment_method.id, false, :class => "pm_radio_c" %></div>
+                          <% end %>
+                          <!--z_check-->
+                          <div class="z_scard_info">
+                            <div class="card_no"><%= image_tag("#{payment_method.card_type}.png") %>
+
+                              <p>**** **** ****<%= payment_method.card_number %></p></div>
+
+                            <!--card_no-->
+                            <div class="card_txt_det">
+                            <span><%= payment_method.holder_name %>
+                              | <%= payment_method.billing_address.blank? ? "" : payment_method.billing_address.street_address %></span>
+                            </div>
+                            <!--card_txt_det-->
+                          </div>
+                          <!--z_scard_info-->
+                          </div>
+                          <!--z_sav_card_list-->
+                  <% end %>
+                  <!--z_sav_card_list-->
+                  <div class="z_e_new z_100">
+                    <div class="z_check"><%= radio_button_tag :pm_radio, "0", false, :class => "pm_radio_c" %></div>
+                    <!--z_check-->
+                    <div class="z_scard_info">
+                      <div class="card_no"><p>Enter New Card</p></div>
+                      <!--card_no-->
+                    </div>
+                    <!--z_scard_info-->
+                  </div>
+                  <!--z_e_new -->
+                  </div>
+            <% end %>
+            <!--z_save_cards-->
+            <div id="errors" class="z_100"></div>
+            <%= form_for(:job_order, :url => {:controller => "customer/jobs", :action => "create_order"}, :method => "post") do |f| %>
+                <%= hidden_field_tag :payment_method_id %>
+                <%= hidden_field_tag :billing_address_id %>
+
+                <!--z_crd_hed-->
+                <div id="payment_method_form">
+                  <%= render :partial => "customer/jobs/payment_method_form" %>
+                </div>
+
+                <div class="z_e_new_c z_100" id="payment_chk">
+                  <div class="z_check"><%= check_box_tag :is_active_payment %></div>
+                  <!--z_check-->
+                  <div class="z_scard_info">
+                    <div class="card_no_c"><p>Save Card Details for Faster Checkout</p></div>
+                    <!--card_no_c-->
+                  </div>
+                  <!--z_sav_card_list-->
+                </div>
+
+                <div class="z_sch_delv z_100">
+                  <!--<p>Praesent commodo sursus magna, vel scelerisque nisl consectetur et.</p>-->
+
+                  <p> <%= check_box_tag "terms", false %>I agree to the <a href="#">Insurance Policy, </a>
+                    <a href="#">Terms of Use, </a>
+                    and <a href="#">Privacy Policy.</a></p>
+                </div>
+                <!--z_sch_delv-->
+                <div class="z_del_btn z_100" id="save-btn">
+                  <a href="javascript:void(0);" class="z_orngbig_btn">Schedule Delivery</a>
+                </div>
+                <!--z_del_btn-->
+                </div>
+            <% end %>
+            <!--z_card_lft-->
+            <div class="z_card_rit raidus_2">
+              <%= render :partial => "customer/jobs/job_right_nav" %>
+              <!--z_shiping_det-->
+            </div>
+            <!--z_card_rit-->
+            </div>
+      <!--z_card_in-->
+    </div>
+    <!--z_card_det-->
+  </div>
+  <!--z_pckg_det-->
+  </div>
+  <!--container-->
+</section>
+
+<script type="text/javascript">
+
+    $(function () {
+        var $selects = $('#card_month');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown month_dropdown',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+        var $selects = $('#card_year');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown year_dropdown',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+        var $selects = $('#state_drop');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown state_dropdown',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+        $.setCookie("home_cookie_string", "");
+        <%if @payment_methods.size > 0%>
+            $("#payment_method_form").hide();
+            $("#payment_method_id").val('<%=@payment_methods.first.id%>');
+        <%end%>
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $(".shadow").show();
+            $("#ajax_loader").show();
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.href = response.url
+                    $(".shadow").hide();
+                    $("#ajax_loader").hide();
+                } else {
+                    $("#errors").html(response.html);
+                    $(".shadow").hide();
+                    $("#ajax_loader").hide();
+                    $("html, body").animate({ scrollTop: 200 }, "slow");
+                }
+
+            }), "json");
+            return false;
+
+        });
+
+        $("#cancel-btn").click(function () {
+            $.fancybox.close();
+        });
+    });
+
+
+    $(".pm_radio_c").click(function () {
+        var id = $(this).val();
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            type: "GET",
+            url: "/customer/jobs/get_payment_method?id=" + id,
+            dataType: "JSON",
+            success: function (response) {
+                $("#p_m_t").html(response.nick_name);
+                $("#payment_method_form").html(response.html);
+                if (id != "0") {
+                    $("#payment_method_id").val(id);
+                    $("#payment_method_form").hide();
+                    $("#payment_chk").hide();
+                } else {
+                    $("#payment_method_id").val("");
+                    $("#payment_method_form").show();
+                    $("#payment_chk").show();
+                }
+                $(".shadow").hide();
+                $("#ajax_loader").hide();
+            }
+        });
+    });
+
+
+    $(".p_l").click(function () {
+        $('#pic_loc_drop_list').slideUp('fast');
+        var id = $(this).attr("id").split("_")[1];
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            type: "GET",
+            url: "/customer/jobs/get_location?id=" + id,
+            dataType: "JSON",
+            success: function (response) {
+                $("#p_l_t").html(response.nick_name);
+                $("#billing_address_street_address").val(response.address);
+                $("#billing_address_city").val(response.city);
+                $("#billing_address_zip_code").val(response.zip);
+                if (id != "" && id != undefined) {
+                    $("#billing_address_id").val(id);
+                }
+                $("#pic_loc_drop_val").hide();
+                $(".shadow").hide();
+                $("#ajax_loader").hide();
+            }
+        });
+    });
+
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#pic_loc_drop').click(function () {
+            $('#pic_loc_drop_list').slideToggle('fast');
+            return false;
+        });
+    });
+
+    $("#pic_loc_drop_list").click(function (e) {
+        e.stopPropagation();
+    });
+
+    $(document).click(function () {
+        $('#pic_loc_drop_list').hide();
+    });
+</script>

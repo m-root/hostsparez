@@ -1,0 +1,22 @@
+<section class="z_content3">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>My Billing</h2></div>
+    <!--z_s_hed-->
+    <div class="z_statement_hold">
+      <div class="z_s_holder">
+        <div class="z_stat_hed">
+          <h3>Saved Payment Methods</h3>
+          <%= link_to "Add Card", new_customer_payment_method_path, :class => "my-fancy-box f-r" %>
+        </div>
+        <!--z_stat_hed-->
+        <div id="payment_method_list">
+          <%= render :partial => "customer/payment_methods/list" %>
+        </div>
+      </div>
+      <!--z_s_holder-->
+    </div>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+</section>
+

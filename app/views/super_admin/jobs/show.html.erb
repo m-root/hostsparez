@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#tab_0">
+            Package Route</a>
+        </li>
+        <li class="">
+          <a data-toggle="tab" href="#tab_1">
+            Payment Detail </a>
+        </li>
+        <li class="">
+          <a data-toggle="tab" href="#tab_2">
+            Driver </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab_0" class="tab-pane active">
+          <%= render :partial => "super_admin/jobs/package_route" %>
+        </div>
+        <div id="tab_1" class="tab-pane">
+          <%= render :partial => "super_admin/jobs/package_payment_detail" %>
+        </div>
+        <div id="tab_2" class="tab-pane">
+          <%= render :partial => "super_admin/jobs/package_driver" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

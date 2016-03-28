@@ -1,0 +1,39 @@
+<% puts "CCCCCCCCCCCCc", @errors.inspect %>
+<% if @errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @message.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <li><%= @message %></li>
+
+      </ul>
+    </div>
+<% end %>
+<% if @b_errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @b_errors.each do |msg| %>
+            <li><%= msg.inspect %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @brain_errors.present? %>
+    <div id="error_explanation" class="z_100">
+      <ul>
+        <% @brain_errors.each do |error| %>
+            <li><%= error.message %></li>
+        <% end %>
+        <%if @brain_errors_txt.present?%>
+          <li><%= @brain_errors_txt %></li>
+         <%end%>
+      </ul>
+    </div>
+<% end %>

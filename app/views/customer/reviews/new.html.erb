@@ -1,0 +1,154 @@
+<section class="z_content3 brd_bottom">
+  <div class="container">
+    <div class="z_s_hed z_100"><h2>Rate Driver</h2></div>
+    <!--z_s_hed-->
+    <%= form_for(@review, :url => customer_reviews_path, :method => "post") do |f| %>
+        <%= f.hidden_field "rating" %>
+        <%= f.hidden_field "customer_id", :value => current_user.id %>
+        <%= f.hidden_field "customer_type", :value => "User" %>
+        <%= f.hidden_field "driver_id", :value => @job.driver.id %>
+        <%= f.hidden_field "driver_type", :value => "User" %>
+        <%= f.hidden_field "job_id", :value => @job.id %>
+        <div id="errors"></div>
+        <div class="z_statement_hold">
+          <div class="z_s_holder">
+            <div class="z_rev_holder z_100">
+              <div class="z_dp_img2">
+                <%= @job.driver.blank? ? image_tag("default_image.png") : @job.driver.profile.blank? ? image_tag("default_image.png") : @job.driver.profile.asset.blank? ? image_tag("default_image.png") : image_tag(@job.driver.profile.asset.avatar.url(:thumb)) %>
+              </div>
+              <!--z_dp_img2-->
+              <div class="z_nrev">
+                <div class="z_review_det">
+                  <div class="z_n_rev f-l">
+                    <% unless @job.driver.blank? %>
+                        <h2><%= @job.driver.full_name if @job.driver %></h2>
+
+                        <p><%= @job.driver.profile.blank? ? "" : "#{@job.driver.profile.city} ," %>
+                          <%= @job.driver.profile.blank? ? "" : "#{@job.driver.profile.state}" %></p>
+                        </div>
+
+                        <!--z_nam_rev-->
+                        <div class="z_n_rev f-r mgg">
+                          <div class="zrev"><%= link_to "(#{@job.driver.driver_reviews.size} Reviews)", "/customer/reviews/index?id=#{@job.id}" %></div>
+                          <!--zrev-->
+                          <%= render :partial => "customer/reviews/rating" %>
+                        </div>
+                    <% end %>
+                    <!--z_n_rev-->
+                    </div>
+                <!--z_review_det-->
+              </div>
+              <!--z_nrev-->
+            </div>
+            <!--z_rev_holder-->
+            <div class="z_rate_driver z_100">
+              <div class="z_r_subject">
+                <div style="position: relative">
+                  <label></label>
+                  <%= f.text_field :subject, :placeholder => "Please Describe your experience in a few words.." %>
+                </div>
+              </div>
+              <!--z_r_subject-->
+              <div class="z_r_det">
+                <%= f.text_area :description, :class => "input_text_area", :placeholder => "You can enter a detailed review here.." %>
+              </div>
+              <!--z_r_det-->
+              <div class="z_rate_ur_drvr z_100">
+                <div class="zrev_starb f-l">
+                  <p>Rate Your Driver: </p>
+
+                  <div class="starb" id="1"><i class="fa fa-star"></i></div>
+                  <!--star-->
+                  <div class="starb" id="2"><i class="fa fa-star"></i></div>
+                  <!--star-->
+                  <div class="starb" id="3"><i class="fa fa-star"></i></div>
+                  <!--star-->
+                  <div class="starb" id="4"><i class="fa fa-star"></i></div>
+                  <!--star-->
+                  <div class="starb" id="5"><i class="fa fa-star"></i></div>
+                  <!--star-->
+                </div>
+                <!--zrev_starb-->
+                <div id="save-btn">
+                  <a href="javascript:void(0);" class="z_orngsmal_btn f-r">Submit Review</a>
+                </div>
+              </div>
+              <!--z_rate_ur_drvr-->
+            </div>
+            <!--z_rate_driver-->
+          </div>
+          <!--z_s_holder-->
+        </div>
+    <% end %>
+    <!--z_statement_hold-->
+  </div>
+  <!--container-->
+</section>
+
+<script type="text/javascript">
+    $(".starb").hover(function () {
+        for (var i = 0; i < parseInt($(this).attr("id")); i++) {
+            $("#" + (i + 1).toString()).addClass("active");
+        }
+    }, function () {
+        $(".starb").removeClass("active");
+    });
+    $(".starb").click(function () {
+        $(".starb").removeClass("active1");
+        $("#review_rating").val($(this).attr("id"));
+        for (var i = 0; i < parseInt($(this).attr("id")); i++) {
+            $("#" + (i + 1).toString()).addClass("active1");
+        }
+    });
+
+    $("#new_review").validate({
+        rules: {
+            "review[subject]": {
+                required: true
+            }
+        },
+        messages: {
+            "user[subject]": {
+                required: "Please provide subject"
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            if ($("#review_rating").val() == "") {
+                apprise("Please select rating");
+                return false;
+            }
+            if (!$("#new_review").valid()) {
+                return false;
+            } else {
+                $(".shadow").show();
+                $("#ajax_loader").show();
+                $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                    if (response.success) {
+                        window.location.href = response.url
+                    } else {
+                        $(".shadow").hide();
+                        $("#ajax_loader").hide();
+                        $("#errors").html(response.html);
+                    }
+
+                }), "json");
+                return false;
+            }
+        });
+    });
+
+</script>

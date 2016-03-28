@@ -1,0 +1,56 @@
+<div class="z_light_box">
+</div>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:id => "reset_inst_form", :method => :post, :onsubmit => "return false;"}) do |f| %>
+    <div class="box_hold_new">
+      <h1 class="z_100">Forgot Password?</h1>
+
+      <div id="errors"></div>
+      <div class="z_100">
+        <div class="z_feldz">
+          <%= f.email_field :email, :autofocus => true, :class => "fill_1-0", :placeholder => "Email Address *" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_100" id="forgot_password_btn">
+          <a class="z_orngbig_btn zset_pad z_100" href="#">Reset My Password</a><!--z_orngbig_btn-->
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div>
+<% end %>
+<!--box_hold_new-->
+
+
+<script type="text/javascript">
+    $("#forgot_password_btn").click(function () {
+        $("#ajax_loader").show();
+        $("#reset_inst_form").ajaxSubmit({
+            beforeSubmit: function (a, f, o) {
+                o.dataType = 'json';
+            },
+            success: function (data) {
+                $("#ajax_loader").hide();
+                if (data.success == true) {
+                    $('#pop_up_div').html(data.html);
+                } else {
+                    $("#errors").html(data.html)
+                }
+            },
+            error: function (data) {
+                window.location.reload();
+            }
+        });
+    });
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+</script>
+
+

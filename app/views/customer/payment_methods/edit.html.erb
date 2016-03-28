@@ -1,0 +1,160 @@
+<div class="z_light_box">
+</div>
+  <%= form_for(@payment_method, :url => customer_payment_method_path, :method => "put") do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :card_type %>
+      <div class="box_hold_new_1">
+        <h1 class="z_100">Edit Card</h1>
+
+        <div id="errors"></div>
+        <div class="z_100">
+          <div class="z_feldz">
+            <%= f.text_field :holder_name, :class => "fill_1-0", :placeholder => "Name on Card (ex.John Smith or Bob's Company)" %>
+          </div>
+          <!--z_feldz-->
+          <div class="z_feldz">
+            <%= f.text_field :card_number, :value => @credit_card.masked_number, :class => "fill_1-0", :placeholder => "Card Number (ex. 4111 0000 0000 1234)", :onblur => "SetTypeText()" %>
+          </div>
+          <!--z_feldz-->
+          <div class="z_feldz_blank">
+            <p>Expiration Date</p>
+            <%#= select_month nil, {add_month_numbers: true}, {name: "payment_method[month]", id: "card_month", :class => "z_month"} %>
+            <%#= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: "payment_method[year]", id: "card_year", :class => "z_year"} %>
+            <div class="z_month_year">
+              <div class="z_b_month">
+                <%= select_month Date.new(@payment_method.year, @payment_method.month), {add_month: true}, {name: "payment_method[month]", id: "card_month", :class => "chosen-select-month"} %>
+              </div>
+              <div class="z_b_year">
+                <%= select_year Date.new(@payment_method.year, @payment_method.month), {start_year: Date.today.year, end_year: Date.today.year+10}, {name: "payment_method[year]", id: "card_year", :class => "chosen-select-year"} %>
+              </div>
+            </div>
+          </div>
+          <!--z_feldz-->
+          <div class="z_feldz_half">
+            <%= f.text_field :cvv, :class => "fill_1-0", :placeholder => "CVC (ex. 123)" %>
+          </div>
+          <!--z_feldz-->
+          <div class="z_feldz_half f-r">
+            <%= f.text_field :nick_name, :autofocus => true, :class => "fill_1-0", :placeholder => "Nickname (ex.Debit)" %>
+          </div>
+          <!--z_feldz-->
+          <!--box_butns-->
+          <h1 class="z_100">Billing Address</h1>
+          <% f.object.billing_address ||= BillingAddress.new %>
+          <%= f.fields_for :billing_address do |ba| %>
+              <%= ba.hidden_field :user_id, :value => current_user.id %>
+              <div class="z_feldz">
+                <%= ba.text_field :street_address, :class => "fill_1-0", :placeholder => "Street Address" %>
+              </div>
+              <!--z_s_adres-->
+              <div class="z_feldz_half">
+                <%= ba.text_field :house_no, :class => "fill_1-0", :placeholder => "Apt#" %>
+              </div>
+              <!--z_bilng_adres-->
+
+              <div class="z_feldz_half f-r">
+                <%= ba.text_field :city, :class => "fill_1-0", :placeholder => "City" %>
+              </div>
+              <!--z_s_city-->
+              <div class="z_feldz_half">
+                <div class="z_crd_exp" style="padding: 0px 0">
+                  <%#= ba.subregion_select(:state, "US", {:include_blank => "Select if applicable"}) %>
+                  <%= ba.subregion_select(:state, "US", options={:include_blank => "Select State"}, :class => "chosen-select_n", :style => "width:100%;height:45px") %>
+                </div>
+                <!--z_crd_exp-->
+              </div>
+              <!--z_apt-->
+              <div class="z_feldz_half f-r">
+                <%= ba.text_field :zip_code, :class => "fill_1-0", :placeholder => "Ex. 90001" %>
+              </div>
+
+          <% end %>
+          <div class="z_100" id="save-btn">
+            <a class="z_orngbig_btn zset_pad z_100" href="#">Save Changes</a><!--z_orngbig_btn-->
+          </div>
+
+        </div>
+        <!--z_100-->
+        <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+      </div>
+  <% end %>
+  <!--box_hold_new-->
+
+
+
+
+<script type="text/javascript">
+
+    function SetTypeText() {
+        var number = $("#payment_method_card_number").val();
+        $("#payment_method_card_type").val(GetCardType(number));
+    }
+
+    function GetCardType(number) {
+        var re = new RegExp("^4");
+        if (number.match(re) != null)
+            return "visa";
+
+        re = new RegExp("^(34|37)");
+        if (number.match(re) != null)
+            return "amex";
+
+        re = new RegExp("^5[1-5]");
+        if (number.match(re) != null)
+            return "master";
+
+        re = new RegExp("^6011");
+        if (number.match(re) != null)
+            return "discover";
+
+        return "unknown";
+    }
+
+
+    $(document).ready(function () {
+
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+            $("#ajax_loader").show();
+            $(".shadow").show();
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.href = response.url
+                } else {
+                    $("#errors").html(response.html);
+                }
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }), "json");
+            return false;
+
+        });
+
+
+    });
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new_1").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new_1").hide();
+    });
+
+    $(document).ready(function () {
+        $(".chosen-select_n").chosen();
+        $(".chosen-select-month").chosen({disable_search: true});
+        $(".chosen-select-year").chosen({disable_search: true});
+    })
+
+</script>

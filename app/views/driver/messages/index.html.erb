@@ -1,0 +1,129 @@
+<section class="z_content3">
+  <div class="container">
+    <div class="z_msg_hed z_100">
+      <div class="bord"><h2>Messages</h2>
+
+        <div class="z_msg_srch">
+          <label>Search Messages</label>
+          <input type="text" placeholder="Title or Package ID #" id="filter_input">
+        </div>
+        <!--z_msg_srch-->
+      </div>
+      <!--bord-->
+    </div>
+    <!--z_msg_hed-->
+    <% unless @messages.blank? %>
+        <div class="z_statement_hold">
+          <div class="z_s_holder">
+
+            <div class="z_rmsg_hold">
+
+              <div id="message_detail">
+
+              </div>
+              <div class="back_close">
+                <% if @all_messages.size > 5 %>
+                    <div class="pagination_container">
+                      <i class="fa fa-angle-left z_b_icon"></i>
+                      <%#= will_paginate  @messages, :prev_label => "<<" ,:next_label => ">>", :separator=>"|" %>
+                      <%= will_paginate @messages, :page_links => false, :next_label => 'Next', :previous_label => 'Back |' %>
+                      <i class="fa fa-angle-right"></i>
+                    </div>
+                <% end %>
+                <div class="z_cloze" id="close_message"><a href="javascript:void(0);">Close</a></div>
+              </div>
+              <div id="message_reply">
+
+              </div>
+
+              <div id="list_to_filter">
+                <% @messages.each do |message| %>
+                    <div class="<%= message.status == "close" ? "report_in_msg unread" : "report_in_msg" %>" id="<%= message.id %>" style="cursor: pointer">
+                      <div class="z_msg_lft">
+                        <p><%= message.sender.full_name %><span> #<%= message.job.job_code %></span></p>
+                      </div>
+                      <!--z_msg_lft-->
+                      <div class="z_msg_mid"><%= message.description %>
+                      </div>
+                      <!--z_msg_mid-->
+                      <div class="z_msg_rit"><%= message.created_at < Time.now + 1.day ? message.created_at.strftime("%H:%M:%S%p") : message.created_at.strftime("%m/%d/%Y") %></div>
+                      <!--z_msg_rit-->
+                    </div>
+                <% end %>
+              </div>
+
+            </div>
+            <!--z_rmsg_hold-->
+          </div>
+          <!--z_s_holder-->
+        </div>
+        <!--z_statement_hold-->
+    <% end %>
+  </div>
+  <!--container-->
+</section>
+<script type="text/javascript">
+
+
+    function reply_message(id) {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.ajax({
+            url: '/driver/messages/reply?id=' + id,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#message_reply").html(data);
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    }
+
+    $(".report_in_msg").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        var id = $(this).attr("id")
+        $.ajax({
+            url: '/driver/messages/get_message?id=' + id,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#message_detail").html(data);
+                $("#message_reply").html("");
+                $("#close_message").show();
+                $(".back_close").css("margin-top", "-30px");
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    })
+
+
+    $(document).ready(function () {
+        $("#close_message").hide();
+        $('#filter_input').fastLiveFilter('#list_to_filter');
+    });
+    //    $('#filter_input').autocomplete({
+    //        minLength: 2,
+    //        source: function (request, response) {
+    //            var page_url = "/manage_coders/search_chart_patient_by_dob?term=" + $("#search_chart_patient_by_dob").val();
+    //            $.ajax({
+    //                url: page_url,
+    //                type: 'get',
+    //                dataType: 'html',
+    //                processData: false,
+    //                success: function (data) {
+    //                    $("#chart_patient").html(data);
+    //                    $(".shadow").hide();
+    //                    $("#ajax_loader").hide();
+    //                }
+    //            });
+    //        },
+    //        search: function (event, ui) {
+    //            $("#ajax_loader").show();
+    //        }
+    //    });
+</script>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  customer_type: MyString
+  driver_id: 1
+  driver: 
+  job_id: 1
+  subject: MyString
+  description: MyString
+  rating: 1.5
+
+two:
+  customer_id: 1
+  customer_type: MyString
+  driver_id: 1
+  driver: 
+  job_id: 1
+  subject: MyString
+  description: MyString
+  rating: 1.5

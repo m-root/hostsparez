@@ -1,0 +1,62 @@
+<section class="z_header">
+  <div class="container wid">
+    <!--<a class="logo" href="index.html"><img alt="Ziply" src="/assets/logo.png"></a>-->
+    <%= link_to image_tag("ziply_logo.png"), "/", :class => "logo" %>
+    <div class="z_tp_rit">
+      <div class="z_buttons">
+        <!--<a href="#" class="a-simple f-r">Log In</a>-->
+        <a class="a-simple f-r" href="<%= new_user_session_path %>" onclick="get_call(event,this);">SIGN
+          IN</a>
+        <!--<a id="sign_in" class="a-simple f-r" href="javascript:void(0);">SIGN IN</a>-->
+        <a class="small-orange-btn f-r m-t-4" href="<%= new_user_registration_path %>" onclick="get_call(event,this);">Sign
+          Up</a>
+
+        <div class="a_sep f-r"></div>
+        <%= link_to "Send a Package", new_customer_job_path, :class => "small-green-btn f-r m-t-4" %>
+      </div>
+      <!--z_buttons-->
+      <ul class="main_menu" id="menu">
+
+        <li class="<%= params[:controller].include?('home') and  params[:action].include?('track_package') ? 'active' : '' %>"><%= link_to "Track", "/track-package" %></li>
+
+	<!--<li class="<%= params[:controller].include?('our_drivers') ? 'active' : '' %>"><%= link_to "Our Drivers", "/our-drivers" %></li>-->
+      </ul>
+      <select class="selectnav">
+        <option value="">- Navigation -</option>
+        <option selected="" value="file:///home/rac-laptop/Desktop/08-Ziply-2014/index.html">About</option>
+        <option value="file:///home/rac-laptop/Desktop/08-Ziply-2014/index.html#">Track pp</option>
+        <option value="file:///home/rac-laptop/Desktop/08-Ziply-2014/index.html#">Become a Driver</option>
+      </select><!-- main-menu -->
+      <ul class="smal-nav">
+        <li class="init">Select Page</li>
+
+        <li><%= link_to "Track", "/track-package" %></li>
+
+	<!--<li><%= link_to "Our Drivers", "/our-drivers" %></li>-->
+
+      </ul>
+      <!--smal-nav-->
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+
+    $(".smal-nav").on("click", ".init", function () {
+        $(this).closest(".smal-nav").children('li:not(.init)').slideDown();
+    });
+
+    var allOptions = $(".smal-nav").children('li:not(.init)');
+    $(".smal-nav").on("click", "li:not(.init)", function () {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $(".smal-nav").children('.init').html($(this).html());
+        allOptions.slideUp('fast');
+    });
+    $(".smal-nav").click(function (e) {
+        e.stopPropagation();
+    });
+    $(document).click(function () {
+        $(".smal-nav").children('li:not(.init)').slideUp('fast');
+    });
+</script>

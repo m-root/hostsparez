@@ -1,0 +1,5 @@
+<% [:alert, :notice].select { |type| !flash[type].blank? }.each do |type| %>
+    <div class="message <%= type.to_s %>">
+      <p><%= flash[type] %></p>
+    </div>
+<% end %>

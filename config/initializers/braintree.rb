@@ -1,0 +1,39 @@
+#BraintreeRails::Configuration.environment = :sandbox
+#BraintreeRails::Configuration.logger = Logger.new('log/braintree.log')
+#BraintreeRails::Configuration.merchant_id = "wrnhszdk7pd5qkx9"
+#BraintreeRails::Configuration.public_key = "gbbtq9r76dsj4npw"
+#BraintreeRails::Configuration.private_key = "5fbb59c677cbbeaa3dd227bbe423640a"
+#BraintreeRails::Configuration.client_side_encryption_key = "MIIBCgKCAQEApxW3qLDf0QDi8mKlJ9+Ha9jhlyuAV3hW3Fq2t3sDpKbTyehqB8TsW2Ls4v7R96WUmIhPyTkLR7aLKMgW8H4HGCuVy5KRcZqSq0mbOaTxUGQcg4qxEg5ZCzs/cMhLrutzb6tsztzI2FDdmPGjv+tCjZPB8PqQ2h186qk0CgBD6xSBcUyokWlbEjNlw+UzjDEDEFdh1s6dAxd0lvoKget3fPCc/QpWLTF+w3nzQ4wqW7MS15XWd27lO9dperaQreOKf2xvTVr5ksdxQoo63RVDatsC8LNLj++jhyqcJ6efADZ/XEpUQU0Rou39CeyJ27jN6ByA3UJgr+ihcG6Z7e85vwIDAQAB"
+
+#BraintreeRails::Configuration.environment = :sandbox
+#BraintreeRails::Configuration.logger = Logger.new('log/braintree.log')
+#BraintreeRails::Configuration.merchant_id = "tnskbvvrk6bfd256"
+#BraintreeRails::Configuration.public_key = "8zz837b9t6d2vdrb"
+#BraintreeRails::Configuration.private_key = "ae2f6f8d4f732cedc727f47c5673b766"
+#BraintreeRails::Configuration.client_side_encryption_key = "MIIBCgKCAQEAtMaPWe860PK0NWaTZDcnAoVLe38kzMPDjnublKBW9qVBJNDvwc9YlgRgUgdI11h/I1Lk0SfC+6wiFa52J/u1Vcqlx8ZBc33+dVukDwb4sgrrnU1je30s6XTNphkUIYyiJ83pD12UMoEOAkF0lVapSavooVS2LneC+aKxXQk859AF1egItPtBT/JAlTSYVHeEtAjNZjDqzn8JuaaTwsf54Os8wkXI+wepDAASf3MzVe6fwI+3vkNZhdWjApsZlnbrBfw5HxE3K8avQMQVZFcCYUbhCqOZPLtnP6wFGHQQS5MCdGY5ECAhW0i5Gq46551YG2Wh+435Ao6VKSBnSnBYoQIDAQAB"
+
+
+#braintree production
+
+BraintreeRails::Configuration.environment = :production
+BraintreeRails::Configuration.logger = Logger.new('log/braintree.log')
+BraintreeRails::Configuration.merchant_id = "d4k74s86r39g3qdy"
+BraintreeRails::Configuration.public_key = "9csc7q73rt6k57vs"
+BraintreeRails::Configuration.private_key = "63bec8c29330e0250c173e84d489ad98"
+BraintreeRails::Configuration.client_side_encryption_key = "MIIBCgKCAQEAyew/8RRAO2g2G4x46PMomWCHfsg2s7QxCPaTsQy1M3HQVmGY0Y4/oNyTOgwq3LcyV3drXFbkmb970NWSfk2yAd90Wn/n8C8yZF7hlnZzGxRVhTBQmXPwLoSFOkBMgQyP89gFmXQeXMFm5bQRFnabR1LzM+RVhjdP1dTA/aT6lyAKtixUdEFAaU45AtbICDWizIheT44k+4MY+5yS2TBkmmoonXtPfURErN+225foTU0lirkLDrlT6whLW6bBCYUtd5s3cQaIhvMquPcFFLiRV/ZIS87AJ4N3FSvpZB2eYWUMBVPHF+GQufQhctwQ7Pgg1RAcgu1pyUzlnyLsxafSUQIDAQAB"
+
+
+##braintree production
+#
+#BraintreeRails::Configuration.environment = :sandbox
+#BraintreeRails::Configuration.logger = Logger.new('log/braintree.log')
+#BraintreeRails::Configuration.merchant_id = "f38gypwdznhfnw3v"
+#BraintreeRails::Configuration.public_key = "z37p9rzcn83hj3q9"
+#BraintreeRails::Configuration.private_key = "a676eede240ddb2aeb171ff48a72abda"
+#BraintreeRails::Configuration.client_side_encryption_key = "MIIBCgKCAQEA4RLVK1522lSl2oxALKnGfYHzwyXpcFdUrNn6uxBZJ9Ra5fJ1UuopcyslmjvZgnYAoWdVRwUWI8BpQAeFbEeoc2nBgH32yHhoG48lnJSj34o0k+srZRsbGtYZ1L6mVrm89bBEALxzxkfhugz3GoJWZCxTwMk9ewP4FVKZFsSrQMSodh8QUcZtLBDnTlAATXmXfhWIoaJHd2Gg0Sr5+s9n0zLXJXVivfwItuTCRllCJvzr6tYOJbMXzHA+z2FEN0GtrRMeOzKMDvXwWDfH8xaP7p1OX1stXQX4wLuGDc8r7GWc7fjdUBFRuOrjDxSa/nmdrhS3YarokeifTYEQBZFOTwIDAQAB"
+#
+#
+
+
+
+

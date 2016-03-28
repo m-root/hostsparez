@@ -1,0 +1,49 @@
+<div style="width: 350px">
+  <%= form_for(@user, :url => super_admin_driver_path, :method => "put") do |f| %>
+      <div class="j_b_hold">
+        <div class="jb_title">
+          EDIT DRIVER
+        </div>
+        <%= render :partial => "form", :locals => {:f => f} %>
+      </div>
+  <% end %>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").children("a").click(function () {
+
+            $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+                if (response.success) {
+                    window.location.href = response.url
+                } else {
+                    $("#errors").html(response.html);
+                }
+
+            }), "json");
+            return false;
+
+        });
+
+        $("#cancel-btn").click(function () {
+            $.fancybox.close();
+        });
+
+    });
+
+</script>

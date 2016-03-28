@@ -1,0 +1,24 @@
+<% if  @payment_methods.present? %>
+    <% @payment_methods.each do |payment_method| %>
+        <div class="z_saved_cards z_100">
+          <div class="z_s_crd z_100">
+            <div class="crd-nme f-l">
+              <%= image_tag("#{payment_method.card_type}.png") %>
+              <span><%= payment_method.nick_name %></span></div>
+            <!--crd-nme-->
+            <div class="next_back f-r">
+              <a class="my-fancy-box" href="/customer/payment_methods/<%= payment_method.id %>/edit"> Edit</a>
+              <a class="my-fancy-box" href="/customer/payment_methods/del_pop_up?id=<%= payment_method.id %>"><i class="fa fa-trash-o icon_colr"></i></a>
+            </div>
+          </div>
+          <!--z_s_crd-->
+          <div class="bilng_info z_100"><p><%= payment_method.holder_name %>
+            <span class="binfo_mrg"> **** **** **** <%= payment_method.card_number %></span></p>
+
+            <p>Exp. Date: <span> <%= "#{payment_method.month}/#{payment_method.year}" %></span></p>
+
+            <p>CVC: <span> <%= payment_method.cvv %></span></p></div>
+          <!--bilng_info-->
+        </div>
+    <% end %>
+<% end %>

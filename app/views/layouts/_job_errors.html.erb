@@ -1,0 +1,26 @@
+<% if @errors.present? %>
+    <div id="error_explanation">
+      <ul>
+        <% @errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<% if @message.present? %>
+    <div id="error_explanation">
+      <ul>
+        <li><%= @message %></li>
+
+      </ul>
+    </div>
+<% end %>
+<% if @b_errors.present? %>
+    <div id="error_explanation">
+      <ul>
+        <% @b_errors.each do |msg| %>
+            <li><%= msg.inspect %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

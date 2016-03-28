@@ -1,0 +1,36 @@
+<% @messages.each do |message| %>
+    <div class="<%= message.status == "close" ? "report_in_msg unread" : "report_in_msg" %>" id="<%= message.id %>" style="cursor: pointer">
+      <div class="z_msg_lft">
+        <p><%= message.sender.full_name %><span> #<%= message.job.job_code %></span></p>
+      </div>
+      <!--z_msg_lft-->
+      <div class="z_msg_mid"><%= message.description %>
+      </div>
+      <!--z_msg_mid-->
+      <div class="z_msg_rit"><%= message.created_at < Time.now + 1.day ? message.created_at.strftime("%H:%M:%S%p") : message.created_at.strftime("%m/%d/%Y") %></div>
+      <!--z_msg_rit-->
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(".report_in_msg").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        var id = $(this).attr("id")
+        $.ajax({
+            url: '/customer/messages/get_message?id=' + id,
+            type: 'get',
+            dataType: 'html',
+            processData: false,
+            success: function (data) {
+                $("#message_detail").html(data);
+                $("#message_reply").html("");
+                $("#close_message").show();
+                $(".back_close").css("margin-top", "-30px");
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    })
+
+</script>

@@ -1,0 +1,62 @@
+<div class="z_route_det z_100">
+  <div class="track_hold">
+    <div class="z_trck_hed z_100">
+      <h1 class="f-l">Pickup Location</h1>
+
+      <p class="f-r">Package # <%= @job.job_code %></p>
+    </div>
+    <!--z_trck_hed-->
+    <div class="z_trck_list z_100">
+      <h1 class="f-l">Address: <p><%= @job.pick_up_address %></p></h1>
+      <h1 class="f-r">Contact: <p><%= @job.pick_up_phone %></p></h1>
+    </div>
+    <!--z_trck_hed-->
+    <div class="z_trck_list z_100">
+      <h1 class="f-l">Pickup Time: <p><%= @job.status == "picked" or @job.status == "accepted"  ? @job.pick_up_time.in_time_zone(@job.driver.time_zone).strftime("%m/%d/%y,%l:%M %p") : "TBD" %></p>
+      </h1>
+      <h1 class="f-r">Size: <p><%= @job.package.name if @job.package %></p></h1>
+    </div>
+    <!--z_trck_hed-->
+    <div class="z_trck_lst z_100">
+      <h1 class="f-l">Comments:
+        <p><%= @job.pick_up_comment %></p></h1>
+    </div>
+    <!--z_trck_hed-->
+  </div>
+  <!--track_hold-->
+  <div class="track_hold">
+    <div class="z_trck_hed z_100">
+      <h1 class="f-l">Package Destination</h1>
+
+      <p class="f-r">Status: <%= @job.get_status %></p>
+    </div>
+    <!--z_trck_hed-->
+    <div class="z_trck_list z_100">
+      <h1 class="f-l">Address: <p><%= @job.destination_address %></p></h1>
+      <h1 class="f-r">Contact: <p><%= @job.recipient_phone %></p></h1>
+    </div>
+    <!--z_trck_hed-->
+    <div class="z_trck_list z_100">
+      <% if @job.time_value.present? %>
+          <% if @job.status == "delivered" %>
+              <h1 class="f-l">Delivered Time:
+                <p><%= (@job.delivered_date).in_time_zone(@job.driver.time_zone).strftime("%m/%d/%y,%l:%M %p")%></p></h1>
+          <% else %>
+              <h1 class="f-l">Delivery Time:
+                <p><%= @job.status == "picked" ? @job.delivery_time.in_time_zone(@job.driver.time_zone).strftime("%m/%d/%y,%l:%M %p") : "TBD"%></p></h1>
+          <% end %>
+      <% else %>
+          <h1 class="f-l">Delivery Time: <p><%= @job.pick_up_time.in_time_zone(@job.driver.time_zone).strftime("%m/%d/%y,%l:%M %p") %></p></h1>
+      <% end %>
+      <h1 class="f-r">Recipient: <p><%= @job.recipient_name %></p></h1>
+    </div>
+    <!--z_trck_hed-->
+    <div class="z_trck_lst z_100">
+      <h1 class="f-l">Comments:
+        <p><%= @job.recipient_comment %>
+        </p></h1>
+    </div>
+    <!--z_trck_hed-->
+  </div>
+  <!--track_hold-->
+</div>

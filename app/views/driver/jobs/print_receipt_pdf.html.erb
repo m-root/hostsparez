@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <style type="text/css">
+          /* Client-specific Styles */
+      #outlook a {
+          padding: 0;
+      }
+
+          /* Force Outlook to provide a "view in browser" menu link. */
+      body {
+          width: 100% !important;
+          -webkit-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+          margin: 0;
+          padding: 0;
+      }
+
+          /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+      .ExternalClass {
+          width: 100%;
+      }
+
+          /* Force Hotmail to display emails at full width */
+      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+          line-height: 100%;
+      }
+
+          /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+      #backgroundTable {
+          margin: 0;
+          padding: 0;
+          width: 100% !important;
+          line-height: 100% !important;
+      }
+
+          /* End reset */
+
+          /* Some sensible defaults for images
+          Bring inline: Yes. */
+      img {
+          outline: none;
+          text-decoration: none;
+          -ms-interpolation-mode: bicubic;
+      }
+
+      a img {
+          border: none;
+      }
+
+      .image_fix {
+          display: block;
+      }
+
+          /* Yahoo paragraph fix
+          Bring inline: Yes. */
+      p {
+          margin: 1em 0;
+      }
+
+          /* Hotmail header color reset
+          Bring inline: Yes. */
+      h1, h2, h3, h4, h5, h6 {
+          color: black;
+      }
+
+      h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+          color: inherit !important;
+      }
+
+          /* Outlook 07, 10 Padding issue fix
+          Bring inline: No.*/
+      table td {
+          border-collapse: collapse;
+      }
+
+          /* Remove spacing around Outlook 07, 10 tables
+          Bring inline: Yes */
+      table {
+          border-collapse: collapse;
+          mso-table-lspace: 0pt;
+          mso-table-rspace: 0pt;
+      }
+
+          /* Yahoo links color fix */
+      .yshortcuts {
+          color: inherit !important;
+      }
+
+      .yshortcuts a span {
+          color: inherit !important;
+      }
+
+  </style>
+
+</head>
+<body>
+<table bgcolor="#eeeeee" align="center" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" width="100%">
+  <tr>
+    <td>
+      <table bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" border="0" width="680">
+        <tr>
+
+          <td>
+
+            <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%">
+
+            </table>
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#376021" height="63">
+              <tr>
+                <td width="3%" align="left"></td>
+                <td width="94%" style="margin: 0; color:#fff; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:18px;" align="center">
+                  PACKAGE INVOICE
+                </td>
+                <td width="3%" align="right"></td>
+              </tr>
+            </table>
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+              <tr>
+                <td width="3%"></td>
+                <td width="94%">
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+                    <tr>
+                      <td height="37" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="31.3%" align="left">PACkAGE
+                        ID
+                      </td>
+                      <td height="37" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="31.3%" align="center">PACKAGE
+                        SIZE
+                      </td>
+                      <td height="37" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="31.3%" align="right">AMOUNT</td>
+                    </tr>
+                    <tr>
+                      <td height="14" colspan="3" align="center">
+                        <img style="border:0; display:block;" src="http://www.grasspit.com/assets/line.png"/>
+                      </td>
+                    </tr>
+                    <%# @offer.transaction.products.each do |product| %>
+                    <tr>
+                      <td height="26" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="31.3%" align="left">
+                        <%= @job.job_code %>
+                      </td>
+                      <td height="26" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="31.3%" align="center">
+                        <%#= quantity = product.products_transactions.detect { |pt| pt.transaction.eql? @offer.transaction }.quantity %>
+                        <%= @job.package.name if @job.package %>
+                      </td>
+                      <td height="26" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="31.3%" align="right">
+                        $<%= "%.2f" % @job.transaction_history.amount if @job.transaction_history %>
+                      </td>
+                    </tr>
+
+                    <%# end %>
+                    <tr>
+                      <td height="11" colspan="3" align="center">
+                        <img style="border:0; display:block;" src="http://www.grasspit.com/assets/line.png"/>
+                      </td>
+                    </tr>
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="74%" align="left"></td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="10%" align="center">TOTAL</td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="10%" align="right">
+                        $<%= "%.2f" % @job.transaction_history.amount if @job.transaction_history %></td>
+                    </tr>
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">PICKUP
+                        ADDRESS
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.pick_up_address %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">PICKUP
+                        TIME
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.pick_up_time.strftime("%m/%d/%y at %I:%M %p") %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">CONATCT
+
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.pick_up_phone %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        PICK UP COMMENT
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.pick_up_comment %>
+                      </td>
+                    </tr>
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">DESTINATION
+
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.destination_address %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        RECIPIENT
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.recipient_name %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        RECIPIENT PHONE
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.recipient_phone %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        DELIVERY COMMENT
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.recipient_comment %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        DISTANCE
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.distance_text %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        TIME
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.time_text %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        CARD TYPE
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        <%= @job.transaction_history.payment_method.card_type if @job.transaction_history %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="25" style="margin: 0; color:#494949; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px; font-weight:bold;" valign="bottom" width="26%" align="left">
+                        CARD NUMBER
+                      </td>
+                      <td height="25" style="margin: 0; color:#909090; margin-bottom: 0; margin: 0 !important; font-family:Arial, Helvetica, sans-serif; margin-bottom: 0 !important; font-size:14px;" valign="bottom" width="74%" align="left">:
+                        **** **** **** <%= @job.transaction_history.payment_method.card_number if @job.transaction_history %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td width="3%"></td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- End of wrapper table -->
+</body>
+</html>
+

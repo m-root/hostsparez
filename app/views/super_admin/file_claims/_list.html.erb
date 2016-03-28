@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>Active File Claims
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="#portlet-config" data-toggle="modal" class="config">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+
+        <table class="table table-striped table-bordered table-hover" id="active_jobs">
+          <thead>
+          <tr>
+            <th>
+              Package ID
+            </th>
+            <th>
+              Driver
+            </th>
+            <th>
+              Customer
+            </th>
+            <th style="width: 135px">
+              Description
+            </th>
+            <th style="width: 135px">
+              Status
+            </th>
+            <th style="width: 100px">
+              Action
+            </th>
+          </tr>
+          </thead>
+          <% unless @active_file_claims.blank? %>
+              <tbody>
+              <% @active_file_claims.each_with_index do |file_claim, index| %>
+                  <tr class="odd gradeX">
+                    <td>
+                      #<%= file_claim.job.job_code %>
+                    </td>
+                    <td>
+                      <%= file_claim.job.driver.blank? ? "n/a" : file_claim.job.driver.full_name %> </a>
+                    </td>
+                    <td>
+                      <%= file_claim.job.customer.full_name.capitalize%>
+                    </td>
+
+                    <td>
+                      <%= file_claim.description %>
+                    </td>
+
+                    <td>
+                      <%= file_claim.status %>
+                    </td>
+                    <td>
+                      <%= link_to "Claim File", "javascript:void(0)", :style => "text-decoration:none", :class => "label label-sm label-success", :onclick => "claim_file(#{file_claim.id})" %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>File Claims history
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="#portlet-config" data-toggle="modal" class="config">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <table class="table table-striped table-bordered table-hover" id="jobs_history">
+          <thead>
+          <tr>
+            <th>
+              Package ID
+            </th>
+            <th>
+              Driver
+            </th>
+            <th>
+              Customer
+            </th>
+            <th style="width: 135px">
+              Description
+            </th>
+            <th style="width: 135px">
+              Status
+            </th>
+
+          </tr>
+          </thead>
+          <% unless @file_claim_history.blank? %>
+              <tbody>
+              <% @file_claim_history.each_with_index do |file_claim, index| %>
+                  <tr class="odd gradeX">
+                    <td>
+                      #<%= file_claim.job.job_code %>
+                    </td>
+                    <td>
+                      <%= file_claim.job.driver.blank? ? "n/a" : file_claim.job.driver.full_name %> </a>
+                    </td>
+                    <td>
+                      <%= file_claim.job.customer.full_name.capitalize%>
+                    </td>
+
+                    <td>
+                      <%= file_claim.description %>
+                    </td>
+
+                    <td>
+                      <%= file_claim.status %>
+                    </td>
+
+                  </tr>
+              <% end %>
+              </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>

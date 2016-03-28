@@ -1,0 +1,104 @@
+<%= javascript_include_tag "jqueryeasydropdown" %>
+<div class="grassp_popupin_new" style="width: 350px">
+  <%= form_for(@user, :as => :user, :url => registration_path(@user), :html => {:id => "d_sign_up_form", :onsubmit => "return false;"}) do |f| %>
+      <%= hidden_field_tag :role, "driver" %>
+      <div class="j_b_hold" style=" background: none repeat scroll 0 0 #E5E5E5;
+              padding-bottom: 50px;">
+        <!--<div class="jb_title">-->
+        <!--REGISTER-->
+        <!--</div>-->
+        <div class="driver_f_text">
+          <h1>Cha-Ching</h1>
+        <h5>Full-time or on the side, start making money now.</h5>
+        <span>Complete the form below and a Ziply team member will contact you shortly.</span>
+        </div>
+        <div class="row" id="sign_up_errors"></div>
+        <div class="jb_fields">
+          <%= hidden_field_tag :role, "driver" %>
+          <%= f.text_field :first_name, :autofocus => true, :class => "input_full", :placeholder => "First Name" %>
+          <%= f.text_field :last_name, :autofocus => true, :class => "input_full", :placeholder => "Last Name" %>
+          <%= f.email_field :email, :autofocus => true, :class => "input_full", :placeholder => "Email" %>
+          <% f.object.profile ||= Profile.new %>
+          <%= f.fields_for :profile do |p| %>
+              <%= p.text_field :phone_number, :autofocus => true, :class => "input_full", :placeholder => "Phone Number" %>
+              <div style="position: relative;float: left">
+                <%= p.select :phone_type_id, PhoneType.all.map { |phone_type| [phone_type.name, phone_type.id] }, {include_blank: 'Select Phone Type', :class => "driver_form_down"} %>
+                <i class="icon-angle-down set_pos"></i>
+              </div>
+              <div style="position: relative;float: left">
+                <%= p.select :vehicle_type_id, VehicleType.all.map { |vehicle_type| [vehicle_type.name, vehicle_type.id] }, {include_blank: 'Select Vehicle Type'}, :class => "driver_form_down" %>
+                <i class="icon-angle-down set_pos"></i>
+              </div>
+
+          <% end %>
+
+          <input class="login_button" type="submit" value="BECOME A DRIVER" id="d_sign_up_btn">
+
+        </div>
+
+      </div>
+  <% end %>
+</div>
+<style>
+    .fancybox-close {
+        display: none !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".fancybox-close").css("display", "none");
+        var $selects = $('#user_profile_attributes_vehicle_type_id');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown driver_form_down',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+        var $selects = $('#user_profile_attributes_phone_type_id');
+        $selects.easyDropDown({
+            cutOff: 10,
+            wrapperClass: 'dropdown driver_form_down',
+            onChange: function (selected) {
+                // do something
+            }
+        });
+    });
+    $("#d_sign_up_btn").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $("#d_sign_up_form").ajaxSubmit({
+            beforeSubmit: function (a, f, o) {
+                o.dataType = 'json';
+            },
+            success: function (data) {
+                $("#ajax_loader").hide();
+                $(".shadow").hide()
+                console.log(data.success);
+                if (data.success == true) {
+                    $.fancybox.close();
+                    $.fancybox('<%= escape_javascript(render(:partial => 'home/driver_success'))%>',
+                            {
+                                openEffect: "fade",
+                                closeEffect: "fade",
+                                autoSize: true,
+                                minWidth: 480,
+                                scrolling: 'auto'
+                            });
+                }
+                else if (data.success == false) {
+                    $("#sign_up_errors").html(data.html);
+                }
+            },
+            error: function (data) {
+                window.location.reload();
+            }
+        });
+    });
+    function close_sign_up_popup() {
+        $("#sign_up_pop_up").toggle();
+    }
+</script>
+
+

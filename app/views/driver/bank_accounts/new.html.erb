@@ -1,0 +1,148 @@
+<%= javascript_include_tag "jquery.geocomplete" %>
+<div class="z_light_box">
+</div>
+<%= form_for(@location, :url => customer_locations_path, :method => "post") do |f| %>
+    <%= f.hidden_field :contact_method_type, :value => 1 %>
+    <%= f.hidden_field :city %>
+    <%= f.hidden_field :state %>
+    <%= f.hidden_field :zip_code %>
+    <%= f.hidden_field :country %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <div class="box_hold_new">
+      <h1 class="z_100">Add Location</h1>
+
+      <div id="errors"></div>
+      <div class="z_100">
+        <div class="z_feldz">
+          <%= f.text_field :nick_name, :autofocus => true, :class => "fill_1-0", :placeholder => "Nicknames (ex.Work)" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= f.text_field :address, :class => "fill_1-0", :placeholder => "Address (ex.123 Main St, Los Angeles, Ca, 90001)", :onblur => "load_location();" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= f.text_field :contact_person, :class => "fill_1-0", :placeholder => "Contact Person (ex.Daniel Sabatier)" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= f.text_field :contact_phone, :class => "fill_1-0", :placeholder => "Contact Number (ex. 555-123-4567)" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_feldz">
+          <%= f.text_field :comments, :class => "fill_1-0", :placeholder => "Comments (ex. Use extra care. Fragile contents.)" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_100" id="save-btn">
+          <a class="z_orngbig_btn zset_pad z_100" href="#">Save to My Locations</a><!--z_orngbig_btn-->
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <!--<a href="index.html" class="close"><img src="img/box_close.png"></a>-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div>
+    <!--box_hold_new-->
+
+<% end %>
+
+<script type="text/javascript"
+        src="//maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+
+<script type="text/javascript">
+
+    //    $(document).ready(function () {
+
+    $("#location_address").geocomplete({
+        details: "form",
+        //            componentRestrictions: {country: 'UK'},
+        types: ["geocode", "establishment"],
+        select: function (event, ui) {
+            alert("dsad");
+            if (ui.item.value != '') {
+                $("#location_address").trigger("geocode");
+            }
+        }
+    });
+
+    var placeholder = " ";
+    $("input[type=text],input[type=email],input[type=password]").focus(function () {
+        placeholder = $(this).attr("placeholder");
+        return $(this).attr("placeholder", " ");
+    });
+    $("input[type=text],input[type=email],input[type=password]").blur(function () {
+        if ($(this).val() === "") {
+            return $(this).attr("placeholder", placeholder);
+        }
+    });
+
+    $("#save-btn").children("a").click(function () {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        $.post($(this).parents("form").attr("action"), $(this).parents("form").serialize(), (function (response) {
+            if (response.success) {
+                window.location.href = response.url
+            } else {
+                $("#errors").html(response.html);
+            }
+            $("#ajax_loader").hide();
+            $(".shadow").hide();
+        }), "json");
+        return false;
+
+    });
+
+    $("#cancel-btn").click(function () {
+        $.fancybox.close();
+    });
+
+    //    });
+
+    function clear_fields() {
+        $("#location_zip_code").val("");
+        $("#location_country").val("");
+        $("#location_state").val("");
+        $("#location_city").val("");
+    }
+
+    function load_location() {
+        clear_fields();
+        var geo = new google.maps.Geocoder;
+        geo.geocode({ 'address': $("#location_address").val()}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                // loop through to get address, city, state, zip
+                $.each(results[0].address_components, function () {
+                    console.log(results[0]);
+                    switch (this.types[0]) {
+                        case "postal_code":
+                            $("#location_zip_code").val(this.short_name);
+                            break;
+                        case "country":
+                            $("#location_country").val(this.short_name);
+                            break;
+                        case "administrative_area_level_1":
+                            $("#location_state").val(this.short_name);
+                            break;
+                        case "locality":
+                            $("#location_city").val(this.short_name);
+                            break;
+                    }
+                });
+            } else {
+                hudMsg("error", "Location is Invalid: ");
+                return false
+            }
+        });
+    }
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $('.box_hold_new').hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+
+
+</script>

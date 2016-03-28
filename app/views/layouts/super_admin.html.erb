@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ziply</title>
+
+  <%#= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
+
+  <link href="/assets/boot_style.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/apprise.css" rel="stylesheet" type="text/css"/>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+  <!-- END GLOBAL MANDATORY STYLES -->
+  <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+  <link href="/assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+  <!--<link href="/assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>-->
+  <!--<link href="/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>-->
+
+  <link rel="stylesheet" type="text/css" href="/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css"/>
+
+
+  <!-- END PAGE LEVEL PLUGIN STYLES -->
+  <!-- BEGIN PAGE STYLES -->
+  <link href="/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
+  <!-- END PAGE STYLES -->
+  <!-- BEGIN THEME STYLES -->
+  <link href="/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+  <link href="/assets/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+  <link href="/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+
+
+  <script src="/assets/apprise-1.5.full"></script>
+
+  <script src="/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+  <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+  <script src="/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+  <script src="/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+  <script src="/assets/global/scripts/metronic.js" type="text/javascript"></script>
+  <script src="/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+  <script src="/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+  <script src="/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+  <script src="/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="/assets/global/plugins/select2/select2.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+  <script src="/assets/admin/pages/scripts/table-managed.js"></script>
+
+  <script type="text/javascript" src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+  <%= javascript_include_tag "app", "jquery.form", "jquery.maskedinput", "jquery.validate.min",  "redactor-rails", "redactor-rails/plugins" %>
+  <%= stylesheet_link_tag "redactor-rails", "redactor-rails/plugins"%>
+
+  <%= csrf_meta_tags %>
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <script>
+      function hudMsg(type, message, timeOut) {
+
+          $('.hudmsg').remove();
+
+          if (!timeOut) {
+              timeOut = 3000;
+          }
+
+          var timeId = new Date().getTime();
+
+          if (type != '' && message != '') {
+              $('<div class="hudmsg ' + type + '" id="msg_' + timeId + '"><img src="/assets/msg_' + type + '.png" alt="" />' + message + '</div>').hide().appendTo('body').fadeIn();
+
+              var timer = setTimeout(
+                      function () {
+                          $('.hudmsg#msg_' + timeId + '').fadeOut('slow', function () {
+                              $(this).remove();
+                          });
+                      }, timeOut
+              );
+          }
+      }
+      jQuery(document).ready(function () {
+          Metronic.init(); // init metronic core componets
+          Layout.init(); // init layout
+          QuickSidebar.init() // init quick sidebar
+          Index.init();
+//          Index.initDashboardDaterange();
+//          Index.initJQVMAP(); // init index page's custom scripts
+//          Index.initCalendar(); // init index page's custom scripts
+//          Index.initCharts(); // init index page's custom scripts
+//          Index.initChat();
+//          Index.initMiniCharts();
+//          Index.initIntro();
+//          Tasks.initDashboardWidget();
+//          TableManaged.init();
+
+      });
+  </script>
+</head>
+<body class="page-header-fixed page-quick-sidebar-over-content">
+
+<!--<div id="pop_up_div"></div>-->
+<%= render :partial => "shared/super_admin_header_after_log_in" %>
+
+<div class="page-container">
+  <!-- BEGIN SIDEBAR -->
+  <div id="page_side_bar">
+    <%= render :partial => "shared/super_admin_side_bar" %>
+  </div>
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="shadow" style="display: none !important;"></div>
+      <div id="ajax_loader" class="ajax_loader" style="display: none !important;"><%= image_tag("/assets/ajax_loader.gif", :width => 100) %></div>
+      <div id="flash">
+        <%= render :partial => "layouts/super_admin_flash", :object => flash %>
+      </div>
+      <div id="pop_up_div">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
+<%#= render :partial => "shared/footer" %>
+<div class="page-footer">
+  <div class="page-footer-inner">
+    2014 &copy; Ziply
+  </div>
+  <div class="page-footer-tools">
+		<span class="go-top">
+		<i class="fa fa-angle-up"></i>
+		</span>
+  </div>
+</div>
+
+
+</body>
+</html>

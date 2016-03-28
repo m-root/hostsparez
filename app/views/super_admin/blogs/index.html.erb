@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      Blogs
+      <small>Edit , View and More</small>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/blogs">All Blogs</a>
+        <!--<i class="fa fa-angle-right"></i>-->
+      </li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="table-toolbar">
+  <div class="btn-group">
+    <%= link_to(new_super_admin_blog_path) do %>
+        <button id="sample_editable_1_new" class="btn green">
+          Add New <i class="fa fa-plus"></i>
+        </button>
+    <% end %>
+  </div>
+
+</div>
+<div id="blog_list">
+  <%= render :partial => "/super_admin/blogs/list" %>
+</div>
+
+
+<!-- END PAGE CONTENT-->
+</div>
+
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function () {
+        TableManaged.init();
+        initialize_table();
+    });
+
+    function initialize_table() {
+        var active_table = $('#blog_table');
+
+        // begin first table
+        active_table.dataTable({
+            "columns": [
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                },
+                {
+                    "orderable": true
+                }
+
+
+            ],
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 5,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "lengthMenu": "_MENU_ records",
+                "paginate": {
+                    "previous": "Prev",
+                    "next": "Next",
+                    "last": "Last",
+                    "first": "First"
+                }
+            },
+            "columnDefs": [
+                {  // set default column settings
+                    'orderable': false,
+                    'targets': [0]
+                },
+                {
+                    "searchable": false,
+                    "targets": [0]
+                }
+            ],
+            "order": [
+                [1, "asc"]
+            ] // set first column as a default sort by asc
+        });
+
+    }
+
+    function disable_user(id, status) {
+        var msg = "";
+        var new_status = "";
+        var success_message = "";
+        if (status == true) {
+            msg = "Are you sure you want to Disable this Blog?"
+            new_status = false
+            success_message = "Blog successfully Disabled";
+        } else {
+            msg = "Are you sure you want to Enable this Blog?"
+            new_status = true
+            success_message = "Blog successfully Enable";
+        }
+        apprise(msg, {'confirm': true}, function (r) {
+            if (r) {
+                $('.shadow').show();
+                $('.ajax_loader').show();
+                $.ajax({
+                    url: '/super_admin/blogs/disable_blog?id=' + id + "&status=" + new_status,
+                    type: 'get',
+                    dataType: 'html',
+                    processData: false,
+                    success: function (data) {
+                        $("#blog_list").html(data);
+                        $("#ajax_loader").hide();
+                        $(".shadow").hide();
+                        initialize_table();
+                        hudMsg("success", success_message);
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+
+

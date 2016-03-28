@@ -1,0 +1,181 @@
+<div class="z_light_box">
+</div>
+<div class="box_hold_sep">
+  <%= form_for(@user, :as => :user, :url => session_path(@user), :html => {:id => "log_in_form", :onsubmit => "return false;"}) do |f| %>
+      <div class="box_rit">
+        <h1>Sign In</h1>
+
+        <div class="sign_in_error" id="sign_in_errors" style="width: 80%;color: red;"></div>
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.email_field :email, :autofocus => true, :class => "fill_1-0", :placeholder => "Email Address *" %>
+          </div>
+        </div>
+        <!--feldz-->
+        <div class="feldz_sep">
+          <div class="sign_in_frm_error_label">
+            <label></label>
+            <%= f.password_field :password, :class => "fill_1-0", :placeholder => "Create Password *" %>
+          </div>
+          <div class="forgot_pass">
+            <%= link_to "Forgot Your Password?", new_password_path(@user), :class => "my-fancy-box b_span" %>
+            <p class="f-r b_p_sep">Don't have an
+              account? <%= link_to "Sign up", "/customer/jobs/sign_up_pop_up", :class => "my-fancy-box b_span" %></p>
+          </div>
+
+          <div class="box_butns_sep">
+            <a class="z_orngbig_btn zset_pad" href="javascript:void(0);" id="login_and_continue_pop">Log in</a><!--z_orngbig_btn-->
+            <!--<input class="login_button" type="submit" value="Login" id="login_and_continue">-->
+            <!--<a class="z_fbbig_btn" href="#"><i class="fa fa-facebook zfb"></i> Login With Facebook</a>-->
+            <a class="z_fbbig_btn face_con" href="javascript:void(0);"><i class="fa fa-facebook zfb"></i>Log in with
+              Facebook</a>
+            <!--z_fbbig_btn-->
+          </div>
+          <!--box_butns-->
+        </div>
+        <!--feldz-->
+      </div>
+  <% end %>
+  <!--box_rit-->
+  <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+</div>
+
+
+<script type="text/javascript">
+    var placeholder = " ";
+    $("input[type=text],input[type=email],input[type=password]").focus(function () {
+        placeholder = $(this).attr("placeholder");
+        return $(this).attr("placeholder", " ");
+    });
+    $("input[type=text],input[type=email],input[type=password]").blur(function () {
+        if ($(this).val() === "") {
+            return $(this).attr("placeholder", placeholder);
+        }
+    });
+
+    $('.my-fancy-box').bind('click', function (e) {
+        $("#ajax_loader").show();
+        $(".shadow").show();
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: $(this).attr('href'),
+            error: function (jqXHR, textStatus) {
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+                hudMsg("error", "Something went wrong please try later");
+
+            },
+            success: function (response) {
+                $("#pop_up_div").html(response).fadeIn('slow');
+                $("#ajax_loader").hide();
+                $(".shadow").hide();
+            }
+        });
+    });
+
+    //    $(".face_con").click(function () {
+    //        $("#ajax_loader").show();
+    //        $(".shadow").show();
+    //        $.ajax({
+    //            type: "GET",
+    //            url: "/customer/jobs/set_cookies?pick_location=" + $("#sender_location_address").val() + "&dest_location=" + $("#receiver_location_address").val() +
+    //                    "&pick_time=" + $("#job_pick_up_time").val() + "&pick_comments=" + $("#sender_location_comments").val() +
+    //                    "&dest_comments=" + $("#receiver_location_comments").val() + "&recipient=" + $("#receiver_location_contact_person").val() +
+    //                    "&phone=" + $("#receiver_location_contact_phone").val(),
+    //            error: function (jqXHR, textStatus) {
+    //                $("#ajax_loader").hide();
+    //                $(".shadow").hide();
+    //                hudMsg("error", "Something went wrong please try later");
+    //
+    //            },
+    //            success: function (response) {
+    //                window.location.href = "/users/auth/facebook";
+    //                $("#ajax_loader").hide();
+    //                $(".shadow").hide();
+    //            }
+    //        });
+    //    });
+
+    $("#login_and_continue_pop").click(function () {
+        if (!$("#log_in_form").valid()) {
+            return false;
+        } else {
+            $("#log_in_form").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    console.log(data.success);
+                    if (data.success == true) {
+                        $("#job_customer_id").val(data.user_id);
+                        $("#sender_location_user_id").val(data.user_id);
+                        $("#receiver_location_user_id").val(data.user_id);
+                        $("#pop_up_div").html("");
+                        $("#ajax_loader").show();
+                        $(".shadow").show();
+                        $.post($("#new_job").attr("action"), $("#new_job").serialize(), (function (response) {
+                            if (response.success) {
+                                $("#ajax_loader").hide();
+                                window.location.href = response.url
+                            } else {
+                                $("#ajax_loader").hide();
+                                $(".shadow").hide();
+                                $("#errors").html(response.html);
+                                $("html, body").animate({ scrollTop: 0 }, "slow");
+                            }
+
+                        }), "json");
+                        return false;
+                    } else {
+                        $("#sign_in_errors").html(data.errors)
+                    }
+                },
+                error: function (data) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+
+
+    $(document).ready(function () {
+        $("#log_in_form").validate({
+            rules: {
+                "user[email]": {
+                    required: true,
+                    email: true
+                },
+                "user[password]": {
+                    required: true,
+                    minlength: 8
+                }
+            },
+            messages: {
+                "user[email]": {
+                    required: "Please enter your email",
+                    email: "Please enter valid email"
+                },
+                "user[password]": {
+                    required: "Please enter your password",
+                    minlength: "Your password must be at least 8 characters long"
+                }
+            }
+        });
+    });
+
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_sep").hide();
+    }
+
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_sep").hide();
+    });
+
+
+</script>
+

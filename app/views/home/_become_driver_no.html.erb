@@ -1,0 +1,86 @@
+<div class="z_light_box">
+</div>
+<%= form_for(:user, :as => :user, :url => "/home/ziply_update", :html => {:id => "d_sign_up_form", :onsubmit => "return false;"}) do |f| %>
+    <div class="box_hold_new">
+      <div class="z_expression z_100">
+        <h3>Oh No</h3>
+        <h5>It looks like Ziply is not currently available in your area</h5>
+        <span>To find out when we start covering your area, and get other Ziply related news, Click the button Below</span>
+      </div>
+      <!--z_expression-->
+      <div class="z_100">
+        <div class="z_feldz">
+          <%= f.text_field :email, :autofocus => true, :class => "fill_1-0", :placeholder => "jsmith@gmail.com" %>
+        </div>
+        <!--z_feldz-->
+        <div class="z_100">
+          <a class="z_orngbig_btn zset_pad z_100 mrgbot" href="javascript:void(0);" id="d_sign_up_btn">Send Me
+            Updates</a><!--z_orngbig_btn-->
+          <a class="z_xgray_btn z_100" href="javascript:void(0);" onclick="close_pop_up();">Not Right Now</a>
+        </div>
+        <!--box_butns-->
+      </div>
+      <!--z_100-->
+      <a href="javascript:void(0);" class="close" onclick="close_pop_up();"><img src="/assets/box_close.png"></a>
+    </div><!--box_hold_new-->
+    </div>
+<% end %>
+
+
+<script type="text/javascript">
+    $("#d_sign_up_btn").click(function () {
+        if (!$("#d_sign_up_form").valid()) {
+            return false;
+        } else {
+//            $("#ajax_loader").show();
+//            $(".shadow").show();
+            $("#d_sign_up_form").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    $("#ajax_loader").hide();
+                    $(".shadow").hide()
+                    console.log(data.success);
+                    if (data.success == true) {
+                        $('.z_light_box').hide();
+                        $("#pop_up_div").html('<%= escape_javascript(render(:partial => '/home/driver_success'))%>')
+                    }
+                    else if (data.success == false) {
+                        $("#sign_up_errors").html(data.html);
+                    }
+                },
+                error: function (data) {
+//                    window.location.reload();
+                }
+            });
+        }
+    });
+
+    $("#d_sign_up_form").validate({
+        rules: {
+            "user[email]": {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            "user[email]": {
+                required: "Please enter your email",
+                email: "Please enter valid email"
+            }
+        }
+    });
+
+
+    function close_pop_up() {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    }
+    $(".z_light_box").click(function (e) {
+        $('.z_light_box').hide();
+        $(".box_hold_new").hide();
+    });
+</script>
+
+

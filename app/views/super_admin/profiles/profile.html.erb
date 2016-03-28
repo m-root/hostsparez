@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+      Manage Profile
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <a href="/super_admin/dashboard">Home</a>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <a href="/super_admin/profiles/profile">Profile</a>
+      </li>
+
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="row">
+  <div class="col-md-6 ">
+    <!-- BEGIN SAMPLE FORM PORTLET-->
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-gift"></i> Edit Profile
+        </div>
+        <div class="tools">
+          <a class="collapse" href="">
+          </a>
+
+        </div>
+      </div>
+      <div class="portlet-body form">
+        <%= form_for(current_user, :url => {:controller => "/super_admin/profiles", :action => @profile.id.blank? ? "create" : "update"}, :method => @profile.id.blank? ? "post" : "put", :html => {:multipart => true, :id => "abc", :onsubmit => "return false;"}) do |f| %>
+            <% if @profile.id.blank? %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+            <% end %>
+            <div id="errors"></div>
+            <div class="form-body">
+              <div class="form-group">
+                <label>Email</label>
+
+                <div class="input-group">
+                  <%= f.text_field :email, :autofocus => true, :class => "form-control", :placeholder => "Email" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>First Name</label>
+
+                <div class="input-group">
+                  <%= f.text_field :first_name, :autofocus => true, :class => "form-control", :placeholder => "First Name" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+
+                <div class="input-group">
+                  <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last Name" %>
+                </div>
+              </div>
+
+              <% f.object.profile ||= Profile.new %>
+              <%= f.fields_for :profile do |p| %>
+                  <% p.object.asset ||= Asset.new %>
+                  <%= p.fields_for :asset do |a| %>
+                      <div class="form-group">
+                        <label>Profile Image</label>
+
+                        <div class="input-group">
+                          <%= a.file_field :avatar, :class => "upload1", :id => "profile_dp" %>
+                          <%= current_user.profile.blank? ? image_tag("default_image.png") : current_user.profile.asset.blank? ? image_tag("default_image.png") : image_tag(current_user.profile.asset.avatar.url(:thumb)) %>
+                          <!--<img src="/assets/default_image.png" style="height:100px;width:100px;" id="dp">-->
+                        </div>
+                      </div>
+                  <% end %>
+              <% end %>
+            </div>
+            <div class="form-actions">
+              <!--<button class="btn blue" type="submit">Update</button>-->
+              <div id="save-btn">
+                <a class="btn blue" href="javascript:void(0)">Update Profile</a>
+              </div>
+              <%#= f.submit "Save", :class => "btn blue" %>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+    <!-- END SAMPLE FORM PORTLET-->
+
+  </div>
+</div>
+
+<div class="clearfix">
+</div>
+
+</div>
+
+<!--box_hold_new-->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#uploadBtn").change(function () {
+            $("#uploadFile").val($(this).val());
+        });
+
+        var placeholder = " ";
+        $("input[type=text],input[type=email],input[type=password]").focus(function () {
+            placeholder = $(this).attr("placeholder");
+            return $(this).attr("placeholder", " ");
+        });
+        $("input[type=text],input[type=email],input[type=password]").blur(function () {
+            if ($(this).val() === "") {
+                return $(this).attr("placeholder", placeholder);
+            }
+        });
+
+        $("#save-btn").click(function () {
+            $("#abc").ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    o.dataType = 'json';
+                },
+                success: function (data) {
+                    if (data.success == "true") {
+                        window.location.href = data.url
+                    } else {
+                        $("#errors").html(data.html)
+                    }
+                },
+                error: function (data) {
+//                    window.location.reload();
+                }
+            });
+        });
+    });
+
+</script>
