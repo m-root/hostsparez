@@ -178,7 +178,7 @@ class SuperAdmin::DriversController < SuperAdmin::SuperAdminController
     @user = User.find_by_id(params[:id])
     generated_password = Devise.friendly_token.first(8)
     if @user.update_attributes(:is_disabled => false, :status => "active", :send_email => true, :email_sent_at => Time.now())
-      UserMailer.confirm_driver(@user, request.protocol, request.host_with_port, generated_password).deliver
+      # UserMailer.confirm_driver(@user, request.protocol, request.host_with_port, generated_password).deliver
       @active_drivers = User.active_drivers
       @in_active_drivers = User.in_active_drivers
       render :partial => "super_admin/drivers/list"
@@ -302,12 +302,13 @@ class SuperAdmin::DriversController < SuperAdmin::SuperAdminController
 
   def track_driver
     @driver = User.find_by_id(params[:id])
+    @driver_lat_long = User.find_by_id(params[:id]).travelling_times.last
   end
 
   def get_lat_long
-    @driver = User.find_by_id(params[:id])
-    @driver.update_attributes(:latitude => @driver.latitude + 0.025, :longitude => @driver.longitude + 0.025)
-    render :json => {:driver1 => @driver}
+    @updated_lat_long = User.find_by_id(params[:id]).travelling_times.last
+    # @updated_lat_long.update_attributes(:latitude => @updated_lat_long.latitude.to_f + 0.025, :longitude => @updated_lat_long.longitude.to_f + 0.025)
+    render :json => {:updated_lat_long => @updated_lat_long}
   end
 
   private
