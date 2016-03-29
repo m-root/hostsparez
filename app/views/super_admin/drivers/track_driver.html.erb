@@ -31,41 +31,6 @@
 </script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsVAID_qXayvJ4lKtnJsZlZTuCn_0MPjw&callback=initMap&sensor=false&libraries=places"></script>
-<script>
-    //    var myLatLng = {lat: <%#= @driver.latitude %>, lng: <%#= @driver.longitude %>};
-    //    var map;
-    //    function set_position(new_position) {
-    //        map.setCenter(new_position);
-    //    }
-    //    function initMap() {
-    //
-    //        map = new google.maps.Map(document.getElementById('map'), {
-    //            zoom: 8,
-    //            center: myLatLng
-    //        });
-    //
-    //        var marker = new google.maps.Marker({
-    //            position: myLatLng,
-    //            map: map,
-    //            icon: "/assets/11.png"
-    //        });
-    //
-    //        setInterval(function () {
-    //            $.ajax({
-    //                url: '/super_admin/drivers/get_lat_long?id=<%#= @driver.id %>',
-    //                type: 'get',
-    //                dataType: 'json',
-    //                processData: false,
-    //                success: function (data) {
-    //                    position = new google.maps.LatLng(data["driver1"].latitude, data["driver1"].longitude);
-    //                }
-    //            })
-    //            marker.setPosition()
-    //        }, 5000);
-    //    }
-
-
-</script>
 
 <script>
     var map;
@@ -99,32 +64,4 @@
             })
         }, 5000);
     }
-</script>
-
-<script>
-    //    function initialize() {
-    //        var mytourLatlng = new google.maps.LatLng(<%#= @driver.latitude %>, <%#= @driver.itude %>);
-    //        var mapOptions = {
-    //            zoom: 19,
-    //            disableDefaultUI: true,
-    //            center: mytourLatlng
-    //        };
-    //        map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    //
-    //        var image = '/assets/11.png';
-    //        var tour_marker = new google.maps.Marker({
-    //            position: mytourLatlng,
-    //            map: map,
-    //            title: 'title of map',
-    //            icon: image
-    //        });
-    //
-    //        var image = '/assets/icon-current-location.png';
-    //        marker_position = new google.maps.Marker({
-    //            //            position: mytourLatlng,
-    //            map: map,
-    //            icon: image
-    //        });
-    //
-    //    }
 </script>

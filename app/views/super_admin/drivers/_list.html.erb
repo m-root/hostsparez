@@ -33,9 +33,9 @@
             <th>
               Driver Type
             </th>
-            <th>
-              Shipments
-            </th>
+            <!--<th>-->
+              <!--Shipments-->
+            <!--</th>-->
             <th>
               Joined
             </th>
@@ -61,11 +61,11 @@
                     <td>
                       <%= driver.profile.vehicle_type_id == 2 ? "Oversize" : "Standard" %>
                     </td>
-                    <td>
-                      <%= driver.driver_jobs.size %>
-                    </td>
+                    <!--<td>-->
+                      <!--<%#= driver.driver_jobs.size %>-->
+                    <!--</td>-->
                     <td class="center">
-                      <%= driver.created_at.strftime("%m-%d-%y") %>
+                      <%= driver.created_at.strftime("%m-%d-%Y") %>
                     </td>
                     <td>
                       <a href="javascript:void(0)" style="text-decoration:none" onclick="confirm_driver(<%=driver.id%>)">
@@ -142,9 +142,9 @@
             <th>
               Driver Type
             </th>
-            <th>
-              Shipments
-            </th>
+            <!--<th>-->
+              <!--Shipments-->
+            <!--</th>-->
             <th>
               Joined
             </th>
@@ -170,11 +170,11 @@
                     <td>
                       <%= driver.profile.vehicle_type_id == 2 ? "Oversize" : "Standar" %>
                     </td>
-                    <td>
-                      <%= driver.driver_jobs.size %>
-                    </td>
+                    <!--<td>-->
+                      <!--<%#= driver.driver_jobs.size %>-->
+                    <!--</td>-->
                     <td class="center">
-                      <%= driver.created_at.strftime("%m-%d-%y") %>
+                      <%= driver.created_at.strftime("%m-%d-%Y") %>
                     </td>
                     <td>
 
