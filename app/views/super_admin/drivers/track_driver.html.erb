@@ -70,9 +70,9 @@
 <script>
     var map;
     function initMap() {
-        var myLatlng = new google.maps.LatLng('<%= @driver_lat_long.latitude.present? ? @driver_lat_long.latitude : 31.234 %>', '<%= @driver_lat_long.longitude.present? ? @driver_lat_long.longitude : 71.222 %>');
+        var myLatlng = new google.maps.LatLng('<%= @driver_lat_long.nil? ? 31.5312 : @driver_lat_long.latitude.nil? ?  31.5312 : @driver_lat_long.latitude %>', '<%= @driver_lat_long.nil? ? 74.3522 : @driver_lat_long.longitude.nil? ?  74.3522 : @driver_lat_long.longitude %>');
         var mapOptions = {
-            zoom: 25,
+            zoom: 15,
             center: myLatlng
         }
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -90,10 +90,11 @@
                 dataType: 'json',
                 processData: false,
                 success: function (data) {
-                    var myLatlng1 = new google.maps.LatLng(data["updated_lat_long"].latitude, data["updated_lat_long"].longitude);
-                    marker.setPosition(myLatlng1);
-                    map.setCenter(myLatlng1)
-
+                    if (data["updated_lat_long"] != null) {
+                        var myLatlng1 = new google.maps.LatLng(data["updated_lat_long"].latitude, data["updated_lat_long"].longitude);
+                        marker.setPosition(myLatlng1);
+                        map.setCenter(myLatlng1)
+                    }
                 }
             })
         }, 5000);

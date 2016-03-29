@@ -16,7 +16,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @host = host
     @protocol = protocol
-    mail(:to => @user.email, :subject => 'Welcome to Ziply')
+    mail(:to => @user.email, :subject => 'Welcome to Hostspaerez')
   end
 
   def invite_complete(user, user_password)
