@@ -86,7 +86,7 @@ class ServicesController < ApplicationController
             if not @user.valid_password?(params[:password])
               render :json => {:success => "false", :errors => "Invalid email or password."}
             else
-              unless params[:device_token].blank?
+              # unless params[:device_token].blank?
                 if  @user.update_attribute(:device_token, params[:device_token])
                   unless params[:time_zone].blank?
                     @user.update_attribute(:time_zone, params[:time_zone])
@@ -107,9 +107,9 @@ class ServicesController < ApplicationController
                   else
                     render :json => {:success => "false", :errors => "User time zone is missing"}
                   end
-                else
-                  render :json => {:success => "false", :errors => "Device token not updated"}
-                end
+                # else
+                #   render :json => {:success => "false", :errors => "Device token not updated"}
+                # end
               else
                 render :json => {:success => "false", :errors => "Device token missing"}
               end
