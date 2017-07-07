@@ -65,7 +65,8 @@ gem 'delayed_job_active_record'
 gem 'rack-timeout'
 
 
-gem 'aws-sdk', '< 2.0'
+#gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk'
 
 
 gem 'ckeditor'
