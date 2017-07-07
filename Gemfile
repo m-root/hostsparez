@@ -5,10 +5,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 # ruby "1.9.3"
 # Use postgresql as the database for Active Record
-gem 'pg'
+#gem 'pg'
 # gem 'sqlite3'
 
-# gem 'mysql2', '~> 0.3.18'
+gem 'mysql2', '~> 0.3.18'
 # gem 'json', '~> 2.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
