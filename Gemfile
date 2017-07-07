@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# gem 'rails'
 gem 'rails', '4.0.2'
-ruby "1.9.3"
+# ruby "1.9.3"
 # Use postgresql as the database for Active Record
 gem 'pg'
+# gem 'sqlite3'
 
-gem 'mysql2', '~> 0.3.18'
-
+# gem 'mysql2', '~> 0.3.18'
+# gem 'json', '~> 2.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -46,7 +48,7 @@ gem "braintree-rails", :github => "lyang/braintree-rails", :branch => 'master'
 gem 'gmaps4rails'
 gem "paperclip", '~> 3.5.2'
 gem "aws-s3", :require => "aws/s3"
-gem "aws-sdk"
+# gem "aws-sdk"
 gem 'airbrake'
 gem 'rails_stdout_logging'
 gem 'rails_12factor'
@@ -61,6 +63,10 @@ gem 'prawn'
 gem 'twilio-ruby'
 gem 'delayed_job_active_record'
 gem 'rack-timeout'
+
+
+gem 'aws-sdk', '< 2.0'
+
 
 gem 'ckeditor'
 gem 'redactor-rails'
